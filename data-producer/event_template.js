@@ -1,3 +1,5 @@
+'use strict'
+
 var eventTemplate = {
   "eventId": "{{eventId}}",
   "deviceId": "{{deviceId}}",

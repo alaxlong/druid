@@ -2,10 +2,15 @@
 
 const faker = require('faker');
 const uuid = require('uuid/v4');
-const mustache = require('mustache')
-const eventTemplate = require("./event_template")
+const mustache = require('mustache');
+const eventTemplate = require("./event_template");
 
-const EVERY_SECONDS = 1000
+const kafka = require('kafka-node');
+const kafkaConf = require('./kafka');
+const kafkaClient = new kafka.KafkaClient({kafkaHost: kafkaConf.brokerHost, requestTimeout: kafkaConf.timeout});
+const kafkaProducer = new kafka.Producer(kafkaClient, kafkaConf.producerOptions)
+
+const EVERY_SECONDS = 1000;
 
 const eventNames = [
   "viewStart",
@@ -17,22 +22,42 @@ const eventNames = [
   "loginClicked",
   "left_menu_clicked",
   "dashboard_menu_clicked"
-]
+];
 
-setInterval(function() {
-  postRandomEvent()  
-}, EVERY_SECONDS)
+kafkaProducer.on('ready', function() {
+  setInterval(function() {
+    produceRandomEvent();
+  }, EVERY_SECONDS);
+})
 
-function postRandomEvent() {
+kafkaProducer.on('error', function(err){
+  console.log("Error!\n%s", err)
+})
+
+function produceRandomEvent() {
 
   var populateWith = {
     eventId : uuid(),
     deviceId: uuid(),
     eventName: getRandomElement(eventNames),
     clientCreationDate: new Date().toISOString()
-  }
+  };
 
-  console.log(mustache.render(JSON.stringify(eventTemplate), populateWith))
+  let eventData = mustache.render(JSON.stringify(eventTemplate), populateWith)
+
+  var payload = [{
+    topic: kafkaConf.topic,
+    messages: eventData,
+    attributes: kafkaConf.compressionType
+  }]
+
+  kafkaProducer.send(payload, function(err, data){
+    if (err) {
+      console.log("Error producing!\n%s", err)
+    } else {
+      console.log(data)
+    }
+  })
 }
 
 function getRandomElement(items) {
