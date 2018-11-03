@@ -1,0 +1,14 @@
+{
+  "name": "data-producer",
+  "version": "1.0.0",
+  "description": "Fake data producer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Can Elmas",
+  "license": "ISC",
+  "dependencies": {
+    "mustache": "^3.0.0"
+  }
+}
