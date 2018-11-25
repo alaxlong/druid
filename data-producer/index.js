@@ -3,63 +3,117 @@
 const faker = require('faker');
 const uuid = require('uuid/v4');
 const mustache = require('mustache');
-const eventTemplate = require("./event_template");
+const _ = require('lodash');
+const moment = require("moment")
 
 const kafka = require('kafka-node');
-const kafkaConf = require('./kafka');
+const kafkaConf = require('./config/kafka');
 const kafkaClient = new kafka.KafkaClient({kafkaHost: kafkaConf.brokerHost, requestTimeout: kafkaConf.timeout});
 const kafkaProducer = new kafka.Producer(kafkaClient, kafkaConf.producerOptions)
 
-const EVERY_SECONDS = 1000;
+const EVERY_SECONDS = 3 * 1000;
 
-const eventNames = [
-  "viewStart",
-  "viewStop",
-  "productPurchased",
-  "clientSessionStart",
-  "clientSessionStop",
-  "logoutClicked",
-  "loginClicked",
-  "left_menu_clicked",
-  "dashboard_menu_clicked"
-];
+const NUM_OF_USERS = 1
+const NUM_OF_SESSION_FOR_EACH_USER = 1
+const NUM_OF_EVENTS_FOR_EACH_SESSION = 20
+
+const userGenerator = require("./generators/user_generator");
+const DeviceGenerator = require("./generators/device_generator")
+const SessionGenerator = require("./generators/session_generator")
+const EventGenerator = require("./generators/event_generator")
 
 kafkaProducer.on('ready', function() {
-  setInterval(function() {
-    produceRandomEvent();
+  setInterval( () => {
+
+    _.times(NUM_OF_USERS,() => {
+
+      // create new user
+      let user_info = userGenerator.generate()
+
+      // create new device based on user's last device id
+      let device_info = new DeviceGenerator(user_info[0]["ldid"]).generate()
+
+      // create sessions
+      _.times(NUM_OF_SESSION_FOR_EACH_USER, () => {
+
+        // create session events
+        create_session_events(user_info, device_info)
+
+      })
+
+      // send user
+      sendUser(user_info, kafkaProducer)
+
+    })
+
   }, EVERY_SECONDS);
+
+
 })
+
+function create_session_events(user_info, device_info) {
+
+  let session_info = new SessionGenerator().generate()
+  let event_generator = new EventGenerator(device_info, session_info)
+
+  // fire clientSessionStart
+  let eventCreationDate = moment(session_info[0]["startDateTime"]).format()
+
+  sendEvent(event_generator.fireEvent('clientSessionStart', eventCreationDate))
+
+  // fire random events
+  _.times(NUM_OF_EVENTS_FOR_EACH_SESSION, () =>{
+    eventCreationDate = nextEventCreationDate(eventCreationDate)
+    sendEvent(event_generator.fireRandomEvent(eventCreationDate))
+  })
+
+  // fire clientSessionStop
+  sendEvent(event_generator.fireEvent('clientSessionStop', nextEventCreationDate(eventCreationDate)))
+
+}
 
 kafkaProducer.on('error', function(err){
   console.log("Error!\n%s", err)
 })
 
-function produceRandomEvent() {
+function nextEventCreationDate(lastCreationDate) {
+  return moment(lastCreationDate).add(2, "seconds").format()
+}
 
-  var populateWith = {
-    eventId : uuid(),
-    deviceId: uuid(),
-    eventName: getRandomElement(eventNames),
-    clientCreationDate: new Date().toISOString()
-  };
+function sendUser(userInfo) {
 
-  let eventData = mustache.render(JSON.stringify(eventTemplate), populateWith)
-
-  var payload = [{
-    topic: kafkaConf.topic,
-    messages: eventData,
+  let user_payload = [{
+    topic: kafkaConf.topics.users,
+    messages: JSON.stringify(userInfo[1]),
     attributes: kafkaConf.compressionType
   }]
 
-  kafkaProducer.send(payload, function(err, data){
+  // send user
+  kafkaProducer.send(user_payload, (err,data)=> {
     if (err) {
       console.log("Error producing!\n%s", err)
     } else {
       console.log(data)
     }
   })
+
 }
 
-function getRandomElement(items) {
-  return items[Math.floor(Math.random()*items.length)];
+function sendEvent(eventInfo) {
+
+  let event_payload = [{
+    topic: kafkaConf.topics.events,
+    messages: JSON.stringify(eventInfo[1]),
+    attributes: kafkaConf.compressionType
+  }]
+
+  // send user
+  kafkaProducer.send(event_payload, (err,data)=> {
+    if (err) {
+      console.log("Error producing!\n%s", err)
+    } else {
+      console.log(data)
+    }
+  })
+
 }
