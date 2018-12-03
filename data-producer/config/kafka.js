@@ -1,12 +1,11 @@
 'use strict'
 
-module.exports = {
-  // brokerHost : 'k1.corp.commencis.net:9092',
-  brokerHost : '192.168.1.23:9092',
-  timeout: 5000,
+module.exports = {  
+  brokerHost : 'ec2-52-29-159-96.eu-central-1.compute.amazonaws.com:9092',
+  timeout: 20000,
   producerOptions: {
     requireAcks: 1,
-    ackTimeoutMs: 100,
+    ackTimeoutMs: 1000,
     partitionerType : 0
   },
   topics: {

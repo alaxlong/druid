@@ -14,7 +14,7 @@ const kafkaProducer = new kafka.Producer(kafkaClient, kafkaConf.producerOptions)
 const EVERY_SECONDS = 3 * 1000;
 
 const NUM_OF_USERS = 1
-const NUM_OF_SESSION_FOR_EACH_USER = 1
+const NUM_OF_SESSION_FOR_EACH_USER = 5
 const NUM_OF_EVENTS_FOR_EACH_SESSION = 20
 
 const userGenerator = require("./generators/user_generator");
@@ -23,6 +23,7 @@ const SessionGenerator = require("./generators/session_generator")
 const EventGenerator = require("./generators/event_generator")
 
 kafkaProducer.on('ready', function() {
+
   setInterval( () => {
 
     _.times(NUM_OF_USERS,() => {
@@ -54,7 +55,7 @@ kafkaProducer.on('ready', function() {
 function create_session_events(user_info, device_info) {
 
   let session_info = new SessionGenerator().generate()
-  let event_generator = new EventGenerator(device_info, session_info)
+  let event_generator = new EventGenerator(device_info, session_info, user_info)
 
   // fire clientSessionStart
   let eventCreationDate = moment(session_info[0]["startDateTime"]).format()
@@ -100,6 +101,8 @@ function sendUser(userInfo) {
 }
 
 function sendEvent(eventInfo) {
+
+  // console.log(eventInfo[1])
 
   let event_payload = [{
     topic: kafkaConf.topics.events,

@@ -37,7 +37,8 @@ class UserGenerator extends Generator {
   exposeData() {
     this.exposedData = {
       "aid" : uuid(),
-      "ldid": uuid()
+      "ldid": uuid(),
+      "customerId": uuid()
     }
   }
 
@@ -48,7 +49,7 @@ class UserGenerator extends Generator {
       email : faker.internet.email(),
       phone: faker.phone.phoneNumber(),
       appconnectId: this.exposedData["aid"],
-      customerId: uuid(),
+      customerId: this.exposeData["customerId"],
       nationalId: faker.finance.iban(),
       lastDeviceId: this.exposedData["ldid"],
       firstName: faker.name.firstName(),
