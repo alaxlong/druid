@@ -9,7 +9,7 @@ const moment = require('moment')
 const session_template = {
   "clientSession": {
     "sessionId": "{{sessionId}}",
-    "startDateTime": "{{startDateTime}}"    
+    "startDateTime": "{{startDateTime}}"
   }
 }
 
@@ -22,7 +22,7 @@ module.exports = class SessionGenerator extends Generator {
   exposeData() {
     this.exposedData = {
       "sessionId" : uuid(),
-      "startDateTime" : moment(faker.date.past()).format()
+      "startDateTime" : moment(faker.date.past()).format('x')
     }
   }
 

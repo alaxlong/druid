@@ -3,7 +3,6 @@
 const _ = require('lodash')
 const Generator = require('./generator')
 const uuid = require('uuid/v4');
-const moment = require('moment')
 
 var eventTemplate = {
   "eventId": "{{eventId}}",

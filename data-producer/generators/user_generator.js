@@ -4,6 +4,7 @@ const uuid = require('uuid/v4');
 const faker = require('faker');
 const Generator = require('./generator')
 const _ = require('lodash');
+const moment = require('moment')
 
 const user_template = {
   "appId": "{{appId}}",
@@ -22,8 +23,8 @@ const user_template = {
     "{{anotherDeviceId}}"
   ],
   "cat": "{{createdAt}}",
-  "lma": "2018-03-05T21:30:48.789Z",
-  "lsa": "2018-03-05T21:30:48Z"
+  "lma": "{{lastModifiedAt}}",
+  "lsa": "{{lastSeenAt}}"
 }
 
 class UserGenerator extends Generator {
@@ -49,15 +50,17 @@ class UserGenerator extends Generator {
       email : faker.internet.email(),
       phone: faker.phone.phoneNumber(),
       appconnectId: this.exposedData["aid"],
-      customerId: this.exposeData["customerId"],
+      customerId: this.exposedData["customerId"],
       nationalId: faker.finance.iban(),
       lastDeviceId: this.exposedData["ldid"],
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      gender: this.gender(),
-      dob: faker.date.past(),
+      gender: this.gender(),      
+      dateOfBirth: moment(faker.date.past(_.sample([20, 25, 30, 35, 40, 45, 50, 55, 60]))).format("YYYY-MM-DD"),
       anotherDeviceId: uuid(),
-      createdAt: faker.date.past()
+      createdAt: moment(faker.date.past()).format('x'),
+      lastSeenAt: moment(faker.date.recent()).format('x'),
+      lastModifiedAt: moment(faker.date.recent()).format('x')
     }
 
   }
