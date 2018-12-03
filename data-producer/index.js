@@ -11,11 +11,11 @@ const kafkaConf = require('./config/kafka');
 const kafkaClient = new kafka.KafkaClient({kafkaHost: kafkaConf.brokerHost, requestTimeout: kafkaConf.timeout});
 const kafkaProducer = new kafka.Producer(kafkaClient, kafkaConf.producerOptions)
 
-const EVERY_SECONDS = 5 * 1000;
+const EVERY_SECONDS = process.env.PERIOD || 5 * 1000;
 
-const NUM_OF_USERS = 100
-const NUM_OF_SESSION_FOR_EACH_USER = 1
-const NUM_OF_EVENTS_FOR_EACH_SESSION = 20
+const NUM_OF_USERS = process.env.NUM_OF_USERS || 100
+const NUM_OF_SESSION_FOR_EACH_USER = process.env.NUM_OF_SESSION_FOR_EACH_USER || 1
+const NUM_OF_EVENTS_FOR_EACH_SESSION = process.env.NUM_OF_EVENTS_FOR_EACH_SESSION || 20
 
 const userGenerator = require("./generators/user_generator");
 const DeviceGenerator = require("./generators/device_generator")
