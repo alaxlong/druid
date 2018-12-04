@@ -58,7 +58,7 @@ function create_session_events(user_info, device_info) {
   let event_generator = new EventGenerator(device_info, session_info, user_info)
 
   // fire clientSessionStart
-  let eventCreationDate = moment(session_info[0]["startDateTime"]).format()
+  let eventCreationDate = session_info[0]["startDateTime"]
 
   sendEvent(event_generator.fireEvent('clientSessionStart', eventCreationDate))
 
@@ -78,14 +78,14 @@ kafkaProducer.on('error', function(err){
 })
 
 function nextEventCreationDate(lastCreationDate) {
-  return moment(lastCreationDate).add(2, "seconds").format()
+  return moment(lastCreationDate, "x").add(2, "seconds").format("x")
 }
 
 function sendUser(userInfo) {
 
   let user_payload = [{
     topic: kafkaConf.topics.users,
-    messages: JSON.stringify(userInfo[1]),
+    messages: [JSON.stringify(userInfo[1])],
     attributes: kafkaConf.compressionType
   }]
 
@@ -104,7 +104,7 @@ function sendEvent(eventInfo) {
 
   let event_payload = [{
     topic: kafkaConf.topics.events,
-    messages: JSON.stringify(eventInfo[1]),
+    messages: [JSON.stringify(eventInfo[1])],
     attributes: kafkaConf.compressionType
   }]
 

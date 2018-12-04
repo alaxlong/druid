@@ -58,7 +58,7 @@ module.exports = class EventGenerator extends Generator {
       appconnectId: this.user_info[0]["aid"],
       customerId: this.user_info[0]["customerId"],
       eventName: this.eventName,
-      clientCreationDate: this.eventCreationDate
+      clientCreationDate: this.exposedData["clientCreationDate"]
     }
 
   }
