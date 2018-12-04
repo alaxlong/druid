@@ -76,3 +76,7 @@ typings/
 .fusebox/
 
 *.csv
+*.idea
+*.zip
+*.pem
+*.DS_Store
