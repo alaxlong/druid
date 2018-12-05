@@ -1,6 +1,16 @@
-# ToDo
+# Takeaways
 
-# Setup
+* Use Avro for serialization
+* Use Parquet for HDFS format
+* Both requires fixed schema
+* For **TimeBasedPartitioner** timezone is important
+
+# Scenarios
+
+* String serialization - String storage
+* Avro serialization - Avro storage
+* Avro serialization - Parquet storage
+
 
 ## Create ec2 instance for Kafka
 ```bash

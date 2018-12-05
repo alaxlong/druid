@@ -102,9 +102,6 @@ function sendUser(userInfo) {
 
 function sendEvent(eventInfo) {
 
-  console.log(JSON.stringify(eventInfo[1]))
-  console.log("\n")
-
   let event_payload = [{
     topic: kafkaConf.topics.events,
     messages: [JSON.stringify(eventInfo[1])],
