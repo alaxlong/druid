@@ -11,9 +11,9 @@ const kafkaConf = require('./config/kafka');
 const kafkaClient = new kafka.KafkaClient({kafkaHost: kafkaConf.brokerHost, requestTimeout: kafkaConf.timeout});
 const kafkaProducer = new kafka.Producer(kafkaClient, kafkaConf.producerOptions)
 
-const EVERY_SECONDS = process.env.PERIOD_IN_MS || 5 * 1000;
+const EVERY_SECONDS = process.env.PERIOD_IN_MS || 1 * 1000;
 
-const NUM_OF_USERS = process.env.NUM_OF_USERS || 10
+const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
 const NUM_OF_SESSION_FOR_EACH_USER = process.env.NUM_OF_SESSION_FOR_EACH_USER || 1
 const NUM_OF_EVENTS_FOR_EACH_SESSION = process.env.NUM_OF_EVENTS_FOR_EACH_SESSION || 1
 
@@ -21,6 +21,12 @@ const userGenerator = require("./generators/user_generator");
 const DeviceGenerator = require("./generators/device_generator")
 const SessionGenerator = require("./generators/session_generator")
 const EventGenerator = require("./generators/event_generator")
+
+const mode = process.env.NODE_ENV || "dev"
+
+function isProd() {
+  return mode == "prod"
+}
 
 kafkaProducer.on('ready', function() {
 
@@ -34,7 +40,7 @@ kafkaProducer.on('ready', function() {
       // create new device based on user's last device id
       let device_info = new DeviceGenerator(user_info[0]["ldid"]).generate()
 
-      // create sessions
+      // create user sessions
       _.times(NUM_OF_SESSION_FOR_EACH_USER, () => {
 
         // create session events
@@ -60,22 +66,20 @@ function create_session_events(user_info, device_info) {
   // fire clientSessionStart
   let eventCreationDate = session_info[0]["startDateTime"]
 
-  sendEvent(event_generator.fireEvent('clientSessionStart', eventCreationDate))
+  sendEvent(event_generator.generateEvent('clientSessionStart', eventCreationDate))
 
   // fire random events
-  _.times(NUM_OF_EVENTS_FOR_EACH_SESSION, () =>{
+  _.times(NUM_OF_EVENTS_FOR_EACH_SESSION, () => {
     eventCreationDate = nextEventCreationDate(eventCreationDate)
-    sendEvent(event_generator.fireRandomEvent(eventCreationDate))
+    sendEvent(event_generator.generateRandomEvent(eventCreationDate))
   })
 
   // fire clientSessionStop
-  sendEvent(event_generator.fireEvent('clientSessionStop', nextEventCreationDate(eventCreationDate)))
+  sendEvent(event_generator.generateEvent('clientSessionStop', nextEventCreationDate(eventCreationDate)))
 
 }
 
-kafkaProducer.on('error', function(err){
-  console.log("Error!\n%s", err)
-})
+kafkaProducer.on("error", (err)=> {console.log("Error!\n%s", err)})
 
 function nextEventCreationDate(lastCreationDate) {
   return moment(lastCreationDate, "x").add(2, "seconds").format("x")
@@ -101,6 +105,10 @@ function sendUser(userInfo) {
 }
 
 function sendEvent(eventInfo) {
+
+  if (!isProd()) {
+    console.log(eventInfo[1])    
+  }
 
   let event_payload = [{
     topic: kafkaConf.topics.events,

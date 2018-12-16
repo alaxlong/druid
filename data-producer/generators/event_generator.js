@@ -3,33 +3,22 @@
 const _ = require('lodash')
 const Generator = require('./generator')
 const uuid = require('uuid/v4');
+const CommerceEvents = require("./commerce_events")
+const CustomEvents = require("./custom_events")
 
 var eventTemplate = {
   "eventId": "{{eventId}}",
   "deviceId": "{{deviceId}}",
-  "appconnectId" : "{{appconnectId}}",
-  "customerId" : "{{customerId}}",
+  "appconnectId": "{{appconnectId}}",
+  "customerId": "{{customerId}}",
   "eventName": "{{eventName}}",
-  "clientCreationDate": "{{clientCreationDate}}",
+  "clientCreationDate": "{{clientCreationDate}}"
 }
 
-const events = [
-  "left_menu_clicked",
-  "dashboard_item_clicked",
-  "logout_clicked",
-  "kredi_kart_basvuru_step_1_viewed",
-  "kredi_kart_basvuru_step_2_viewed",
-  "kredi_kart_basvuru_step_3_viewed",
-  "kredi_kart_basvuru_step_4_viewed",
-  "kredi_kart_basvuru_step_1_success",
-  "kredi_kart_basvuru_step_2_success",
-  "kredi_kart_basvuru_step_3_success",
-  "kredi_kart_basvuru_step_4_success",
-  "kredi_kart_basvuru_step_1_failure",
-  "kredi_kart_basvuru_step_2_failure",
-  "kredi_kart_basvuru_step_3_failure",
-  "kredi_kart_basvuru_step_4_failure",
-  "user_logged_in"
+const eventCategories = [
+  // "view",
+  "commerce",
+  "custom"
 ]
 
 module.exports = class EventGenerator extends Generator {
@@ -45,7 +34,7 @@ module.exports = class EventGenerator extends Generator {
 
   exposeData() {
     this.exposedData = {
-      "eventId" : uuid(),
+      "eventId": uuid(),
       "clientCreationDate": this.eventCreationDate
     }
   }
@@ -54,7 +43,7 @@ module.exports = class EventGenerator extends Generator {
 
     return {
       eventId: this.exposedData["eventId"],
-      deviceId : this.deviceInfo[0]["deviceId"],
+      deviceId: this.deviceInfo[0]["deviceId"],
       appconnectId: this.user_info[0]["aid"],
       customerId: this.user_info[0]["customerId"],
       eventName: this.eventName,
@@ -63,14 +52,38 @@ module.exports = class EventGenerator extends Generator {
 
   }
 
-  fireEvent(eventName, eventCreationDate) {
-    this.eventName = eventName
-    this.eventCreationDate = eventCreationDate
-    return this.generate()
+  generateCommerceEvent(eventCreationDate) {
+    let event = CommerceEvents.take()
+    return this.generateComplexEvent(event["name"], event["attrs"], eventCreationDate)
   }
 
-  fireRandomEvent(eventCreationDate) {
-    return this.fireEvent(_.sample(events), eventCreationDate)
+  generateCustomEvent(eventCreationDate) {
+    return this.generateEvent(CustomEvents.take(), eventCreationDate)
+  }
+
+  generateRandomEvent(eventCreationDate) {
+
+    let category = _.sample(eventCategories)
+
+    switch (category) {
+      case "commerce":
+        return this.generateCommerceEvent(eventCreationDate)
+      case "custom":
+      default:
+        return this.generateCustomEvent(eventCreationDate)
+    }
+
+  }
+
+  generateEvent(eventName, eventCreationDate) {
+    return this.generateComplexEvent(eventName, null, eventCreationDate)
+  }
+
+  generateComplexEvent(eventName, attributes, eventCreationDate) {
+    this.eventName = eventName
+    this.attributes = attributes
+    this.eventCreationDate = eventCreationDate
+    return this.generate()
   }
 
 }
