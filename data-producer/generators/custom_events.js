@@ -17,6 +17,6 @@ const events = [
   "kredi_kart_basvuru_step_3_failure",
 ]
 
-module.exports.take = () => {
+module.exports.takeOne = () => {
   return _.sample(events)
 }

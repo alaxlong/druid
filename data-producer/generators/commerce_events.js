@@ -26,6 +26,7 @@ const commerceEvents = [
   {"name": "search_content", "attrs": {"keyword": "{{keyword}}"}},
   {"name": "add_to_wishlist", "attrs": {"product_id" : "{{product_id}}"}},
   {"name": "add_to_cart", "attrs" : {"product_id" : "{{product_id}}"}},
+  {"name": "clear_cart", "attrs": null},
   {"name": "remove_from_cart", "attrs" : {"product_id" : "{{product_id}}"}},
   {"name": "error_add_to_cart", "attrs" : {"reason" : "{{reason}}"}},
   {"name": "start_checkout", "attrs" : null},
@@ -41,7 +42,7 @@ function getDataToPopulate() {
   let subCategory = util.format("%s-%s", category, _.random(1, 5))
 
   return {
-    product_id: uuid(),
+    product_id: util.format("%s-%s", category, _.random(20,30)),
     keyword: faker.commerce.product(),
     reason : _.sample([100, 101, 102, 103, 104, 105]),
     description: faker.commerce.productName(),
@@ -59,13 +60,13 @@ function getDataToPopulate() {
 
 function generateEvent() {
   let event = _.sample(commerceEvents)
-  
+
   return {
     "name" : event["name"],
     "attrs": JSON.parse(mustache.render(JSON.stringify(event["attrs"]), getDataToPopulate()))
   }
 }
 
-module.exports.take = () => {
-  return generateEvent()
+module.exports = {
+  takeOne : generateEvent
 }

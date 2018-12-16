@@ -5,8 +5,9 @@ const Generator = require('./generator')
 const uuid = require('uuid/v4');
 const CommerceEvents = require("./commerce_events")
 const CustomEvents = require("./custom_events")
+const util = require("../util.js")
 
-var eventTemplate = {
+const eventTemplate = {
   "eventId": "{{eventId}}",
   "deviceId": "{{deviceId}}",
   "appconnectId": "{{appconnectId}}",
@@ -15,10 +16,26 @@ var eventTemplate = {
   "clientCreationDate": "{{clientCreationDate}}"
 }
 
+const EVENT_CATEGORY_VIEWS = "view"
+const EVENT_CATEGORY_COMMERCE = "commerce"
+const EVENT_CATEGORY_CUSTOM = "custom"
+
 const eventCategories = [
-  // "view",
-  "commerce",
-  "custom"
+  EVENT_CATEGORY_VIEWS,
+  EVENT_CATEGORY_COMMERCE,
+  EVENT_CATEGORY_CUSTOM
+]
+
+const SCENARIO_RANDOM = "random" // generate from each event category
+const SCENARIO_VIEW = "view"  // gnerate only view events
+const SCENARIO_COMMERCE = "commerce" // generate only commerce events
+const SCENARIO_CUSTOM = "custom"  // generate only custom events
+
+const scenarios = [
+  SCENARIO_RANDOM,
+  SCENARIO_VIEW,
+  SCENARIO_COMMERCE,
+  SCENARIO_CUSTOM
 ]
 
 module.exports = class EventGenerator extends Generator {
@@ -47,18 +64,24 @@ module.exports = class EventGenerator extends Generator {
       appconnectId: this.user_info[0]["aid"],
       customerId: this.user_info[0]["customerId"],
       eventName: this.eventName,
-      clientCreationDate: this.exposedData["clientCreationDate"]
+      clientCreationDate: this.exposedData["clientCreationDate"],
+      attributes : this.attributes
     }
 
   }
 
   generateCommerceEvent(eventCreationDate) {
-    let event = CommerceEvents.take()
+    let event = CommerceEvents.takeOne()
     return this.generateComplexEvent(event["name"], event["attrs"], eventCreationDate)
   }
 
   generateCustomEvent(eventCreationDate) {
-    return this.generateEvent(CustomEvents.take(), eventCreationDate)
+    return this.generateEvent(CustomEvents.takeOne(), eventCreationDate)
+  }
+
+  generateViewEvent(eventCreationDate) {
+    // TODO:
+    return this.generateEvent(CustomEvents.takeOne(), eventCreationDate)
   }
 
   generateRandomEvent(eventCreationDate) {
@@ -66,9 +89,11 @@ module.exports = class EventGenerator extends Generator {
     let category = _.sample(eventCategories)
 
     switch (category) {
-      case "commerce":
+      case EVENT_CATEGORY_COMMERCE:
         return this.generateCommerceEvent(eventCreationDate)
-      case "custom":
+      case EVENT_CATEGORY_VIEWS:
+        return this.generateViewEvent(eventCreationDate)
+      case EVENT_CATEGORY_CUSTOM:
       default:
         return this.generateCustomEvent(eventCreationDate)
     }
@@ -81,9 +106,36 @@ module.exports = class EventGenerator extends Generator {
 
   generateComplexEvent(eventName, attributes, eventCreationDate) {
     this.eventName = eventName
-    this.attributes = attributes
     this.eventCreationDate = eventCreationDate
-    return this.generate()
+    eventTemplate["attributes"] = attributes
+    return this.generate()[1]
+  }
+
+  generateSessionEvents(numOfEvents, timeStartingFrom) {
+
+    let scenario = _.sample(scenarios)
+
+    let eventCreationTime = timeStartingFrom
+
+    return _.times(numOfEvents, () => {
+      eventCreationTime = util.nextEventTime(eventCreationTime)
+      return this.generateSessionEvent(scenario, eventCreationTime)
+    })
+  }
+
+  generateSessionEvent(scenario, eventCreationTime) {
+    switch(scenario) {
+      case SCENARIO_COMMERCE:
+        return this.generateCommerceEvent(eventCreationTime)
+      case SCENARIO_CUSTOM:
+        return this.generateCustomEvent(eventCreationTime)
+      case SCENARIO_VIEW:
+        return this.generateViewEvent(eventCreationTime)
+      case SCENARIO_RANDOM:
+      default:
+        return this.generateRandomEvent(eventCreationTime)
+    }
+
   }
 
 }
