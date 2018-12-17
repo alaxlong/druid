@@ -5,6 +5,7 @@ const Generator = require('./generator')
 const uuid = require('uuid/v4');
 const CommerceEvents = require("./commerce_events")
 const CustomEvents = require("./custom_events")
+const ViewEvents = require("./screen_events")
 const util = require("../util.js")
 
 const eventTemplate = {
@@ -16,6 +17,7 @@ const eventTemplate = {
   "clientCreationDate": "{{clientCreationDate}}"
 }
 
+// Event Categories
 const EVENT_CATEGORY_VIEWS = "view"
 const EVENT_CATEGORY_COMMERCE = "commerce"
 const EVENT_CATEGORY_CUSTOM = "custom"
@@ -26,6 +28,7 @@ const eventCategories = [
   EVENT_CATEGORY_CUSTOM
 ]
 
+// Event Scenarios
 const SCENARIO_RANDOM = "random" // generate from each event category
 const SCENARIO_VIEW = "view"  // gnerate only view events
 const SCENARIO_COMMERCE = "commerce" // generate only commerce events
@@ -80,8 +83,8 @@ module.exports = class EventGenerator extends Generator {
   }
 
   generateViewEvent(eventCreationDate) {
-    // TODO:
-    return this.generateEvent(CustomEvents.takeOne(), eventCreationDate)
+    let event = ViewEvents.takeOne()
+    return this.generateComplexEvent(event["name"], event["attrs"], eventCreationDate)
   }
 
   generateRandomEvent(eventCreationDate) {

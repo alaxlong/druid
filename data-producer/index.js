@@ -11,16 +11,15 @@ const kafkaConf = require('./config/kafka');
 const kafkaClient = new kafka.KafkaClient({kafkaHost: kafkaConf.brokerHost, requestTimeout: kafkaConf.timeout});
 const kafkaProducer = new kafka.Producer(kafkaClient, kafkaConf.producerOptions)
 
-const PERIOD = process.env.PERIOD_IN_MS || 1 * 1000;
-
-const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
-const SESION_PER_USER = process.env.SESION_PER_USER || 1
-const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
-
 const userGenerator = require("./generators/user_generator");
 const DeviceGenerator = require("./generators/device_generator")
 const SessionGenerator = require("./generators/session_generator")
 const EventGenerator = require("./generators/event_generator")
+
+const PERIOD = process.env.PERIOD_IN_MS || 1 * 1000;
+const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
+const SESION_PER_USER = process.env.SESION_PER_USER || 1
+const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
 
 const mode = process.env.NODE_ENV || "dev"
 
@@ -124,7 +123,7 @@ function sendEvent(event) {
     })
 
   } else {
-    console.log(JSON.stringify(events))
+    console.log(JSON.stringify(event))
   }
 
 }
