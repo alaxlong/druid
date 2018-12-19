@@ -21,10 +21,10 @@ const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
 const SESION_PER_USER = process.env.SESION_PER_USER || 1
 const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
 
-const mode = process.env.NODE_ENV || "dev"
+const mode = process.env.NODE_ENV || "development"
 
 function isProd() {
-  return mode == "prod"
+  return mode == "production"
 }
 
 kafkaProducer.on('ready', function() {
