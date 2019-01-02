@@ -80,3 +80,4 @@ typings/
 *.zip
 *.pem
 *.DS_Store
+*.jar

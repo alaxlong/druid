@@ -1,0 +1,26 @@
+version: '2'
+services:
+
+    redis:
+      image: redis:5.0.3-alpine3.8
+      ports:
+        - "6379:6379"
+      volumes:
+        - /home/ubuntu/redis-data:/data
+
+  producer:
+    image: canelmas/connect-data-producer:1.1.47
+    depends_on:
+      - redis
+    environment:
+      BROKER : ec2-52-29-159-96.eu-central-1.compute.amazonaws.com:9092
+      PERIOD : 10000
+      NUM_OF_USERS : 2
+      SESION_PER_USER : 1
+      EVENTS_PER_SESSION : 2
+      TOPICS_USERS : poc-users
+      TOPICS_EVENTS : poc-events
+      RUN_MODE : 2
+      NODE_OPTIONS: --max_old_space_size=4096
+      NODE_ENV: production
+      REDIS_HOST: redis

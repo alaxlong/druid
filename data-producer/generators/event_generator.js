@@ -64,8 +64,8 @@ module.exports = class EventGenerator extends Generator {
     return {
       eventId: this.exposedData["eventId"],
       deviceId: this.deviceInfo[0]["deviceId"],
-      appconnectId: this.user_info[0]["aid"],
-      customerId: this.user_info[0]["customerId"],
+      appconnectId: this.user_info["aid"],
+      customerId: this.user_info["cid"],
       eventName: this.eventName,
       clientCreationDate: this.exposedData["clientCreationDate"],
       attributes : this.attributes

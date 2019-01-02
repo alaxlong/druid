@@ -1,9 +1,16 @@
 # Takeaways
 
 * Use Avro for serialization
-* Use Parquet for HDFS format
-* Both requires fixed schema
+* Use Parquet for HDFS storage/processing format
+* Both Avro and Parquet require fixed schema
+* KafkaConnect doesn't currently have JSON Parquet connector
 * For **TimeBasedPartitioner** timezone is important
+* Confluent's Schema Registry expects PLAINTEXT named listeners and security protocol map; otherwise it won't start. Details [here](https://github.com/confluentinc/schema-registry/issues/648)
+* There's no easy way to write to S3 in avro format if the data on kafka is not serialized in avro and backed with a schema. Confluent doesn't have a solution out of the box.
+
+ERROR io.confluent.admin.utils.cli.KafkaReadyCommand - Error while running kafka-ready.
+ESC[32mschema-registry    |ESC[0m java.lang.RuntimeException: No endpoints found for security protocol [PLAINTEXT]. Endpoints found in ZK [{EXTERNAL=ec2-52-29-159-96.eu-central-1.compute.amazonaws.com:9092, INTERNAL=localhost:19092}]
+ESC[32mschema-registry    |ESC[0m       at io.confluent.admin.utils.cli.KafkaReadyCommand.main(KafkaReadyCommand.java:143)
 
 # Scenarios
 
