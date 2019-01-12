@@ -1,36 +1,25 @@
 'use strict'
 
 const _ = require('lodash')
-const Generator = require('./generator')
 const uuid = require('uuid/v4');
 const faker = require('faker')
 const moment = require('moment')
+const mustache = require('mustache');
 
-const session_template = {
+const sessionTemplate = {
   "clientSession": {
     "sessionId": "{{sessionId}}",
     "startDateTime": "{{startDateTime}}"
   }
 }
 
-module.exports = class SessionGenerator extends Generator {
+module.exports.generate = () => {
+  return JSON.parse(mustache.render(JSON.stringify(sessionTemplate), getDataToPopulate()))
+}
 
-  constructor() {
-    super(session_template)
+function getDataToPopulate() {
+  return {
+    sessionId: uuid(),
+    startDateTime : moment(faker.date.past()).format('x')
   }
-
-  exposeData() {
-    this.exposedData = {
-      "sessionId" : uuid(),
-      "startDateTime" : moment(faker.date.past()).format('x')
-    }
-  }
-
-  getDataToPopulate() {
-    return {
-      sessionId: this.exposedData["sessionId"],
-      startDateTime : this.exposedData["startDateTime"]
-    }
-  }
-
 }

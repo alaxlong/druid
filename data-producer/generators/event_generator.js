@@ -1,21 +1,12 @@
 'use strict'
 
 const _ = require('lodash')
-const Generator = require('./generator')
 const uuid = require('uuid/v4');
 const CommerceEvents = require("./commerce_events")
 const CustomEvents = require("./custom_events")
 const ViewEvents = require("./screen_events")
 const util = require("../util.js")
-
-const eventTemplate = {
-  "eventId": "{{eventId}}",
-  "deviceId": "{{deviceId}}",
-  "appconnectId": "{{appconnectId}}",
-  "customerId": "{{customerId}}",
-  "eventName": "{{eventName}}",
-  "clientCreationDate": "{{clientCreationDate}}"
-}
+const mustache = require('mustache');
 
 // Event Categories
 const EVENT_CATEGORY_VIEWS = "view"
@@ -41,104 +32,207 @@ const scenarios = [
   SCENARIO_CUSTOM
 ]
 
-module.exports = class EventGenerator extends Generator {
+module.exports.generate = (eventName,
+                           eventCreationTime,
+                           deviceInfo,
+                           clientSession,
+                           appconnectId,
+                           customerId) => {
 
-  constructor(deviceInfo, sessionInfo, user_info) {
-    super(eventTemplate)
-    this.deviceId = deviceInfo[0]["deviceId"]
-    this.appconnectId = user_info[0]["aid"]
-    this.customerId = user_info[0]["customerId"]
-    this.template["deviceProperty"] = deviceInfo[1]["deviceProperty"]
-    this.template["clientSession"] = sessionInfo[1]["clientSession"]
+  let template = newTemplate(deviceInfo, clientSession, null)
+
+  return JSON.parse(mustache.render(JSON.stringify(template),
+                                    getDataToPopulate(eventName,
+                                                      eventCreationTime,
+                                                      deviceInfo,
+                                                      appconnectId,
+                                                      customerId)))
+
+}
+
+module.exports.generateSessionEvents = (numOfEvents,
+                                        sessionStartTime,
+                                        deviceInfo,
+                                        clientSession,
+                                        appconnectId,
+                                        customerId) => {
+
+  let scenario = _.sample(scenarios)
+
+  let eventCreationTime = sessionStartTime
+
+  return _.times(numOfEvents, () => {
+    eventCreationTime = util.nextEventTime(eventCreationTime)
+    return generateSessionEvent(scenario,
+                                eventCreationTime,
+                                deviceInfo,
+                                clientSession,
+                                appconnectId,
+                                customerId)
+  })
+
+}
+
+function newTemplate(deviceInfo, clientSession, attributes) {
+
+  return {
+    "eventId": "{{eventId}}",
+    "deviceId": "{{deviceId}}",
+    "appconnectId": "{{appconnectId}}",
+    "customerId": "{{customerId}}",
+    "eventName": "{{eventName}}",
+    "clientCreationDate": "{{clientCreationDate}}",
+    "deviceProperty": deviceInfo,
+    "clientSession" : clientSession,
+    "attributes" : attributes
   }
 
-  exposeData() {
-    this.exposedData = {
-      "eventId": uuid(),
-      "clientCreationDate": this.eventCreationDate
-    }
+}
+
+function generateSessionEvent(scenario,
+                              eventCreationTime,
+                              deviceInfo,
+                              clientSession,
+                              appconnectId,
+                              customerId) {
+  switch(scenario) {
+    case SCENARIO_COMMERCE:
+      return generateCommerceEvent(eventCreationTime,
+                                   deviceInfo,
+                                   clientSession,
+                                   appconnectId,
+                                   customerId)
+    case SCENARIO_CUSTOM:
+      return generateCustomEvent(eventCreationTime,
+                                 deviceInfo,
+                                 clientSession,
+                                 appconnectId,
+                                 customerId)
+    case SCENARIO_VIEW:
+      return generateViewEvent(eventCreationTime,
+                               deviceInfo,
+                               clientSession,
+                               appconnectId,
+                               customerId)
+    case SCENARIO_RANDOM:
+    default:
+      return generateRandomEvent(eventCreationTime,
+                                 deviceInfo,
+                                 clientSession,
+                                 appconnectId,
+                                 customerId)
   }
 
-  getDataToPopulate() {
+}
 
-    return {
-      eventId: this.exposedData["eventId"],
-      deviceId: this.deviceId,
-      appconnectId: this.appconnectId,
-      customerId: this.customerId,
-      eventName: this.eventName,
-      clientCreationDate: this.exposedData["clientCreationDate"],
-      attributes : this.attributes
-    }
+function generateCommerceEvent(eventCreationTime,
+                               deviceInfo,
+                               clientSession,
+                               appconnectId,
+                               customerId) {
 
+  let event = CommerceEvents.takeOne()
+  return generateEvent(event["name"],
+                       event["attrs"],
+                       eventCreationTime,
+                       deviceInfo,
+                       clientSession,
+                       appconnectId,
+                       customerId)
+}
+
+function generateCustomEvent(eventCreationTime,
+                             deviceInfo,
+                             clientSession,
+                             appconnectId,
+                             customerId) {
+
+  return generateEvent(CustomEvents.takeOne(),
+                       null,
+                       eventCreationTime,
+                       deviceInfo,
+                       clientSession,
+                       appconnectId,
+                       customerId)
+
+}
+
+function generateViewEvent(eventCreationTime,
+                           deviceInfo,
+                           clientSession,
+                           appconnectId,
+                           customerId) {
+
+  let event = ViewEvents.takeOne()
+  return generateEvent(event["name"],
+                       event["attrs"],
+                       eventCreationTime,
+                       deviceInfo,
+                       clientSession,
+                       appconnectId,
+                       customerId)
+
+}
+
+function generateRandomEvent(eventCreationTime,
+                             deviceInfo,
+                             clientSession,
+                             appconnectId,
+                             customerId) {
+
+  let category = _.sample(eventCategories)
+
+  switch (category) {
+    case EVENT_CATEGORY_COMMERCE:
+      return generateCommerceEvent(eventCreationTime,
+                                   deviceInfo,
+                                   clientSession,
+                                   appconnectId,
+                                   customerId)
+    case EVENT_CATEGORY_VIEWS:
+      return generateViewEvent(eventCreationTime,
+                               deviceInfo,
+                               clientSession,
+                               appconnectId,
+                               customerId)
+    case EVENT_CATEGORY_CUSTOM:
+    default:
+      return generateCustomEvent(eventCreationTime,
+                                 deviceInfo,
+                                 clientSession,
+                                 appconnectId,
+                                 customerId)
   }
 
-  generateCommerceEvent(eventCreationDate) {
-    let event = CommerceEvents.takeOne()
-    return this.generateComplexEvent(event["name"], event["attrs"], eventCreationDate)
-  }
+}
 
-  generateCustomEvent(eventCreationDate) {
-    return this.generateEvent(CustomEvents.takeOne(), eventCreationDate)
-  }
+function generateEvent(eventName,
+                       attributes,
+                       eventCreationTime,
+                       deviceInfo,
+                       clientSession,
+                       appconnectId,
+                       customerId) {
 
-  generateViewEvent(eventCreationDate) {
-    let event = ViewEvents.takeOne()
-    return this.generateComplexEvent(event["name"], event["attrs"], eventCreationDate)
-  }
+  let template = newTemplate(deviceInfo, clientSession, attributes)
 
-  generateRandomEvent(eventCreationDate) {
+  return JSON.parse(mustache.render(JSON.stringify(template),
+                                    getDataToPopulate(eventName,
+                                                      eventCreationTime,
+                                                      deviceInfo,
+                                                      appconnectId,
+                                                      customerId)))
+}
 
-    let category = _.sample(eventCategories)
+function getDataToPopulate(eventName, eventCreationTime, deviceInfo, appconnectId, customerId) {
 
-    switch (category) {
-      case EVENT_CATEGORY_COMMERCE:
-        return this.generateCommerceEvent(eventCreationDate)
-      case EVENT_CATEGORY_VIEWS:
-        return this.generateViewEvent(eventCreationDate)
-      case EVENT_CATEGORY_CUSTOM:
-      default:
-        return this.generateCustomEvent(eventCreationDate)
-    }
-
-  }
-
-  generateEvent(eventName, eventCreationDate) {
-    return this.generateComplexEvent(eventName, null, eventCreationDate)
-  }
-
-  generateComplexEvent(eventName, attributes, eventCreationDate) {
-    this.eventName = eventName
-    this.eventCreationDate = eventCreationDate
-    eventTemplate["attributes"] = attributes
-    return this.generate()[1]
-  }
-
-  generateSessionEvents(numOfEvents, timeStartingFrom) {
-
-    let scenario = _.sample(scenarios)
-
-    let eventCreationTime = timeStartingFrom
-
-    return _.times(numOfEvents, () => {
-      eventCreationTime = util.nextEventTime(eventCreationTime)
-      return this.generateSessionEvent(scenario, eventCreationTime)
-    })
-  }
-
-  generateSessionEvent(scenario, eventCreationTime) {
-    switch(scenario) {
-      case SCENARIO_COMMERCE:
-        return this.generateCommerceEvent(eventCreationTime)
-      case SCENARIO_CUSTOM:
-        return this.generateCustomEvent(eventCreationTime)
-      case SCENARIO_VIEW:
-        return this.generateViewEvent(eventCreationTime)
-      case SCENARIO_RANDOM:
-      default:
-        return this.generateRandomEvent(eventCreationTime)
-    }
-
+  return {
+    eventId: uuid(),
+    deviceId: deviceInfo["deviceId"],
+    appconnectId: appconnectId,
+    customerId: customerId,
+    eventName: eventName,
+    clientCreationDate: eventCreationTime
   }
 
 }

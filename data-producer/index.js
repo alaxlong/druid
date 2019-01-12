@@ -17,14 +17,14 @@ const modes = require("./modes")
 const redis = require("./config/redis")
 
 const userGenerator = require("./generators/user_generator");
-const DeviceGenerator = require("./generators/device_generator")
-const SessionGenerator = require("./generators/session_generator")
-const EventGenerator = require("./generators/event_generator")
+const deviceGenerator = require("./generators/device_generator")
+const sessionGenerator = require("./generators/session_generator")
+const eventGenerator = require("./generators/event_generator")
 
 const PERIOD = process.env.PERIOD_IN_MS || 2 * 1000;
-const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
+const NUM_OF_USERS = process.env.NUM_OF_USERS || 10
 const SESION_PER_USER = process.env.SESION_PER_USER || 1
-const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
+const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 20
 
 const runMode = process.env.RUN_MODE || modes.GENERATE_AND_SEND_EVENTS_AND_USERS
 
@@ -135,9 +135,9 @@ function generateAndPersistUsersOntoRedis() {
     let userInfo = userGenerator.generate()
 
     if (isProd()) {
-      redis.set(userInfo[1]["aid"], JSON.stringify(userInfo[1]), redis.print)
+      redis.set(userInfo["aid"], JSON.stringify(userInfo), redis.print)
     } else {
-      console.log(JSON.stringify(userInfo[1]))
+      console.log(JSON.stringify(userInfo))
     }
 
   })
@@ -162,7 +162,7 @@ function readUsersFromRedisAndSendEvents() {
               let json_user = JSON.parse(user_info)
 
               // create new device based on user's last device id
-              let device_info = new DeviceGenerator(json_user[0]["ldid"]).generate()
+              let device_info = deviceGenerator.generate(json_user["ldid"])
 
               // create user sessions
               _.times(SESION_PER_USER, () => {
@@ -201,7 +201,7 @@ function generateAndSendEventsAndUsers() {
       let user_info = userGenerator.generate()
 
       // create new device based on user's last device id
-      let device_info = new DeviceGenerator(user_info[0]["ldid"]).generate()
+      let device_info = deviceGenerator.generate(user_info["ldid"])
 
       // create user sessions
       _.times(SESION_PER_USER, () => {
@@ -212,7 +212,7 @@ function generateAndSendEventsAndUsers() {
       })
 
       // send user
-      sendUser(user_info[1], kafkaProducer)
+      sendUser(user_info, kafkaProducer)
 
     })
 
@@ -222,20 +222,34 @@ function generateAndSendEventsAndUsers() {
 
 function create_session_events(user_info, device_info) {
 
-  let session_info = new SessionGenerator().generate()
-  let event_generator = new EventGenerator(device_info, session_info, user_info)
+  let session_info = sessionGenerator.generate()
 
-  let sessionStartTime = session_info[0]["startDateTime"]
+  let sessionStartTime = session_info["clientSession"]["startDateTime"]
 
   // fire clientSessionStart
-  sendEvent(event_generator.generateEvent('clientSessionStart', sessionStartTime))
+  sendEvent(eventGenerator.generate('clientSessionStart',
+                                    sessionStartTime,
+                                    device_info,
+                                    session_info["clientSession"],
+                                    user_info["aid"],
+                                    user_info["cid"]))
 
   // fire session events
-  let sessionEvents = event_generator.generateSessionEvents(EVENTS_PER_SESSION, sessionStartTime)
+  let sessionEvents = eventGenerator.generateSessionEvents(EVENTS_PER_SESSION,
+                                                            sessionStartTime,
+                                                            device_info,
+                                                            session_info["clientSession"],
+                                                            user_info["aid"],
+                                                            user_info["cid"])
   _.forEach(sessionEvents, sendEvent)
 
   // fire clientSessionStop
-  sendEvent(event_generator.generateEvent('clientSessionStop', util.sessionStopTime(EVENTS_PER_SESSION, sessionStartTime)))
+  sendEvent(eventGenerator.generate('clientSessionStop',
+                                    util.sessionStopTime(EVENTS_PER_SESSION, sessionStartTime),
+                                    device_info,
+                                    session_info["clientSession"],
+                                    user_info["aid"],
+                                    user_info["cid"]))
 
 }
 
@@ -284,8 +298,7 @@ function sendEvent(event) {
     })
 
   } else {
-    console.log(JSON.stringify(event))
-    // // console.log("here")
+    console.log(JSON.stringify(event))    
     // heapdump.writeSnapshot('./heapdump/' + Date.now() + '.heapsnapshot')
   }
 
