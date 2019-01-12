@@ -1,6 +1,6 @@
 'use strict'
 
-var heapdump = require('heapdump');
+// var heapdump = require('heapdump');
 const faker = require('faker');
 const uuid = require('uuid/v4');
 const mustache = require('mustache');
@@ -56,7 +56,29 @@ redis.on('error', (err) => {
 
 kafkaProducer.on("error", (err) => { error(err) })
 
-function scan(cursor, callback, finalize) {
+kafkaProducer.on('ready', function() {
+
+  if (runMode == modes.SEND_USERS_ON_REDIS) {
+
+    sendUsersOnRedis()
+
+  } else if (runMode == modes.GENERATE_AND_WRITE_USERS_TO_REDIS) {
+
+    generateAndPersistUsersOntoRedis()
+
+  } else if (runMode == modes.GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS) {
+
+    readUsersFromRedisAndSendEvents()
+
+  } else {
+
+    generateAndSendEventsAndUsers()
+
+  }
+
+})
+
+function scanRedis(cursor, callback, finalize) {
 
   redis.scan(cursor, "MATCH", "*", "COUNT", 200, (err,reply)=> {
 
@@ -83,120 +105,120 @@ function scan(cursor, callback, finalize) {
   })
 }
 
-kafkaProducer.on('ready', function() {
+function sendUsersOnRedis() {
 
-  if (runMode == modes.SEND_USERS_ON_REDIS) {
+  console.log("SEND_USERS_ON_REDIS")
 
-    console.log("SEND_USERS_ON_REDIS")
+  let cursor = 0
 
-    let cursor = 0
+  scanRedis(cursor, (key) => {
 
-    scan(cursor, (key)=>{
+    redis.get(key, (err, user_info) => {
 
-      redis.get(key, (err, user_info) => {
+      if (user_info) {
+        sendUser(JSON.parse(user_info), kafkaProducer)
+      } else {
+        error(err)
+      }
+    })
 
-        if (user_info) {
-          sendUser(JSON.parse(user_info), kafkaProducer)
-        } else {
-          error(err)
-        }
-      })
+  }, () => { console.log("All users sent.")})
 
-    }, () => { console.log("All users sent.")})
+}
 
-  } else if (runMode == modes.GENERATE_AND_WRITE_USERS_TO_REDIS) {
+function generateAndPersistUsersOntoRedis() {
 
-    console.log("GENERATE_AND_WRITE_USERS_TO_REDIS")
+  console.log("GENERATE_AND_WRITE_USERS_TO_REDIS")
+
+  _.times(NUM_OF_USERS, () => {
+
+    let userInfo = userGenerator.generate()
+
+    if (isProd()) {
+      redis.set(userInfo[1]["aid"], JSON.stringify(userInfo[1]), redis.print)
+    } else {
+      console.log(JSON.stringify(userInfo[1]))
+    }
+
+  })
+}
+
+function readUsersFromRedisAndSendEvents() {
+
+  console.log("GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS")
+
+  setInterval(() => {
 
     _.times(NUM_OF_USERS, () => {
 
-      let userInfo = userGenerator.generate()
+      redis.send_command("RANDOMKEY", (err, aid) => {
 
-      if (isProd()) {
-        redis.set(userInfo[1]["aid"], JSON.stringify(userInfo[1]), redis.print)
-      } else {
-        console.log(JSON.stringify(userInfo[1]))
-      }
+        if (aid) {
+
+          redis.get(aid, (err, user_info) => {
+
+            if (user_info) {
+
+              let json_user = JSON.parse(user_info)
+
+              // create new device based on user's last device id
+              let device_info = new DeviceGenerator(json_user["ldid"]).generate()
+
+              // create user sessions
+              _.times(SESION_PER_USER, () => {
+
+                // create session events
+                create_session_events(json_user, device_info)
+
+              })
+
+            } else {
+              error(err)
+            }
+
+          })
+
+        } else {
+          error(err)
+        }
+
+      })
 
     })
 
-  } else if (runMode == modes.GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS) {
+  }, PERIOD)
+}
 
-    console.log("GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS")
+function generateAndSendEventsAndUsers() {
 
-    setInterval(() => {
+  console.log("GENERATE_AND_SEND_EVENTS_AND_USERS")
 
-      _.times(NUM_OF_USERS, () => {
+  setInterval(() => {
 
-        redis.send_command("RANDOMKEY", (err, aid) => {
+    _.times(NUM_OF_USERS,() => {
 
-          if (aid) {
+      // create new user
+      let user_info = userGenerator.generate()
 
-            redis.get(aid, (err, user_info) => {
+      // create new device based on user's last device id
+      let device_info = new DeviceGenerator(user_info[0]["ldid"]).generate()
 
-              if (user_info) {
+      // create user sessions
+      _.times(SESION_PER_USER, () => {
 
-                let json_user = JSON.parse(user_info)
-
-                // create new device based on user's last device id
-                let device_info = new DeviceGenerator(json_user["ldid"]).generate()
-
-                // create user sessions
-                _.times(SESION_PER_USER, () => {
-
-                  // create session events
-                  create_session_events(json_user, device_info)
-
-                })
-
-              } else {
-                error(err)
-              }
-
-            })
-
-          } else {
-            error(err)
-          }
-
-        })
+        // create session events
+        create_session_events(user_info, device_info)
 
       })
 
-    }, PERIOD)
+      // send user
+      sendUser(user_info[1], kafkaProducer)
 
-  } else {
+    })
 
-    console.log("GENERATE_AND_SEND_EVENTS_AND_USERS")
+  }, PERIOD);
 
-    setInterval(() => {
-
-      _.times(NUM_OF_USERS,() => {
-
-        // create new user
-        let user_info = userGenerator.generate()
-
-        // create new device based on user's last device id
-        let device_info = new DeviceGenerator(user_info[0]["ldid"]).generate()
-
-        // create user sessions
-        _.times(SESION_PER_USER, () => {
-
-          // create session events
-          create_session_events(user_info, device_info)
-
-        })
-
-        // send user
-        sendUser(user_info[1], kafkaProducer)
-
-      })
-
-    }, PERIOD);
-
-  }
-
-})
+}
 
 function create_session_events(user_info, device_info) {
 
@@ -262,10 +284,9 @@ function sendEvent(event) {
     })
 
   } else {
-
-    // console.log(JSON.stringify(event))
-    // console.log("here")
-    heapdump.writeSnapshot('./heapdump/' + Date.now() + '.heapsnapshot')
+    console.log(JSON.stringify(event))
+    // // console.log("here")
+    // heapdump.writeSnapshot('./heapdump/' + Date.now() + '.heapsnapshot')
   }
 
 }
