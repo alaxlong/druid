@@ -45,11 +45,11 @@ module.exports = class EventGenerator extends Generator {
 
   constructor(deviceInfo, sessionInfo, user_info) {
     super(eventTemplate)
-    this.deviceInfo = deviceInfo
-    this.sesionInfo = sessionInfo
-    this.user_info = user_info
-    eventTemplate["deviceProperty"] = deviceInfo[1]["deviceProperty"]
-    eventTemplate["clientSession"] = sessionInfo[1]["clientSession"]
+    this.deviceId = deviceInfo[0]["deviceId"]
+    this.appconnectId = user_info[0]["aid"]
+    this.customerId = user_info[0]["customerId"]
+    this.template["deviceProperty"] = deviceInfo[1]["deviceProperty"]
+    this.template["clientSession"] = sessionInfo[1]["clientSession"]
   }
 
   exposeData() {
@@ -63,9 +63,9 @@ module.exports = class EventGenerator extends Generator {
 
     return {
       eventId: this.exposedData["eventId"],
-      deviceId: this.deviceInfo[0]["deviceId"],
-      appconnectId: this.user_info["aid"],
-      customerId: this.user_info["cid"],
+      deviceId: this.deviceId,
+      appconnectId: this.appconnectId,
+      customerId: this.customerId,
       eventName: this.eventName,
       clientCreationDate: this.exposedData["clientCreationDate"],
       attributes : this.attributes

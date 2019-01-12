@@ -22,7 +22,7 @@ const SessionGenerator = require("./generators/session_generator")
 const EventGenerator = require("./generators/event_generator")
 
 const PERIOD = process.env.PERIOD_IN_MS || 2 * 1000;
-const NUM_OF_USERS = process.env.NUM_OF_USERS || 3
+const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
 const SESION_PER_USER = process.env.SESION_PER_USER || 1
 const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
 
@@ -100,7 +100,7 @@ function scanRedis(cursor, callback, finalize) {
 
       if (cursor == 0) {
         return finalize()
-      } else return scan(cursor, callback, finalize)
+      } else return scanRedis(cursor, callback, finalize)
     }
   })
 }
@@ -162,7 +162,7 @@ function readUsersFromRedisAndSendEvents() {
               let json_user = JSON.parse(user_info)
 
               // create new device based on user's last device id
-              let device_info = new DeviceGenerator(json_user["ldid"]).generate()
+              let device_info = new DeviceGenerator(json_user[0]["ldid"]).generate()
 
               // create user sessions
               _.times(SESION_PER_USER, () => {
