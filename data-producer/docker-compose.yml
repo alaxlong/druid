@@ -6,7 +6,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /home/ubuntu/redis-data:/data
+        - /Users/can/Projects/poc-kafka-hadoop-spark/redis/redis-data:/data
 
   producer:
     image: canelmas/connect-data-producer:1.1.47
@@ -22,5 +22,5 @@ services:
       TOPICS_EVENTS : poc-events
       RUN_MODE : 2
       NODE_OPTIONS: --max_old_space_size=4096
-      NODE_ENV: production
+      NODE_ENV: development
       REDIS_HOST: redis

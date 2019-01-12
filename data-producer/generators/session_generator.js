@@ -27,12 +27,10 @@ module.exports = class SessionGenerator extends Generator {
   }
 
   getDataToPopulate() {
-
     return {
       sessionId: this.exposedData["sessionId"],
       startDateTime : this.exposedData["startDateTime"]
     }
-
   }
 
 }

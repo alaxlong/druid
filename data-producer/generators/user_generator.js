@@ -36,14 +36,15 @@ class UserGenerator extends Generator {
   gender() { return _.sample(["male", "female", "other"]) }
 
   exposeData() {
-
-    this.template.data = this.generateDemographics()
-
     this.exposedData = {
       "aid" : uuid(),
       "ldid": uuid(),
       "customerId": uuid()
     }
+  }
+
+  appendAdditionalData() {
+    this.template.data = this.generateDemographics()
   }
 
   getDataToPopulate() {
