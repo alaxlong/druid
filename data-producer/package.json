@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "faker": "^4.1.0",
+    "heapdump": "^0.3.12",
     "kafka-node": "^3.0.1",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",

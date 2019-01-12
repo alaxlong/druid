@@ -1,12 +1,12 @@
 version: '2'
 services:
 
-    redis:
-      image: redis:5.0.3-alpine3.8
-      ports:
-        - "6379:6379"
-      volumes:
-        - /home/ubuntu/redis-data:/data
+  redis:
+    image: redis:5.0.3-alpine3.8
+    ports:
+      - "6379:6379"
+    volumes:
+      - /home/ubuntu/redis-data:/data
 
   producer:
     image: canelmas/connect-data-producer:1.1.47

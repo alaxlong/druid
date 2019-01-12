@@ -1,5 +1,6 @@
 'use strict'
 
+var heapdump = require('heapdump');
 const faker = require('faker');
 const uuid = require('uuid/v4');
 const mustache = require('mustache');
@@ -20,12 +21,12 @@ const DeviceGenerator = require("./generators/device_generator")
 const SessionGenerator = require("./generators/session_generator")
 const EventGenerator = require("./generators/event_generator")
 
-const PERIOD = process.env.PERIOD_IN_MS || 1 * 1000;
-const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
-const SESION_PER_USER = process.env.SESION_PER_USER || 2
-const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 30
+const PERIOD = process.env.PERIOD_IN_MS || 2 * 1000;
+const NUM_OF_USERS = process.env.NUM_OF_USERS || 3
+const SESION_PER_USER = process.env.SESION_PER_USER || 1
+const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 10
 
-const runMode = process.env.RUN_MODE || modes.SEND_EVENTS_AND_USERS
+const runMode = process.env.RUN_MODE || modes.GENERATE_AND_WRITE_USERS_TO_REDIS
 
 const mode = process.env.NODE_ENV || "development"
 
@@ -111,7 +112,11 @@ kafkaProducer.on('ready', function() {
 
       let userInfo = userGenerator.generate()
 
-      redis.set(userInfo[1]["aid"], JSON.stringify(userInfo[1]), redis.print)
+      if (isProd()) {
+        redis.set(userInfo[1]["aid"], JSON.stringify(userInfo[1]), redis.print)
+      } else {
+        console.log(JSON.stringify(userInfo[1]))
+      }
 
     })
 
@@ -131,7 +136,7 @@ kafkaProducer.on('ready', function() {
 
               if (user_info) {
 
-                let json_user = JSON.parse(user_info)                
+                let json_user = JSON.parse(user_info)
 
                 // create new device based on user's last device id
                 let device_info = new DeviceGenerator(json_user["ldid"]).generate()
@@ -257,7 +262,10 @@ function sendEvent(event) {
     })
 
   } else {
-    console.log(JSON.stringify(event))
+
+    // console.log(JSON.stringify(event))
+    // console.log("here")
+    heapdump.writeSnapshot('./heapdump/' + Date.now() + '.heapsnapshot')
   }
 
 }
