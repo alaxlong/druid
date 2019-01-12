@@ -24,9 +24,9 @@ const EventGenerator = require("./generators/event_generator")
 const PERIOD = process.env.PERIOD_IN_MS || 2 * 1000;
 const NUM_OF_USERS = process.env.NUM_OF_USERS || 3
 const SESION_PER_USER = process.env.SESION_PER_USER || 1
-const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 10
+const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
 
-const runMode = process.env.RUN_MODE || modes.GENERATE_AND_WRITE_USERS_TO_REDIS
+const runMode = process.env.RUN_MODE || modes.GENERATE_AND_SEND_EVENTS_AND_USERS
 
 const mode = process.env.NODE_ENV || "development"
 
@@ -167,7 +167,7 @@ kafkaProducer.on('ready', function() {
 
   } else {
 
-    console.log("SEND_EVENTS_AND_USERS")
+    console.log("GENERATE_AND_SEND_EVENTS_AND_USERS")
 
     setInterval(() => {
 
