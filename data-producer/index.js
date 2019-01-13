@@ -21,12 +21,12 @@ const deviceGenerator = require("./generators/device_generator")
 const sessionGenerator = require("./generators/session_generator")
 const eventGenerator = require("./generators/event_generator")
 
-const PERIOD = process.env.PERIOD_IN_MS || 2 * 1000;
-const NUM_OF_USERS = process.env.NUM_OF_USERS || 10
-const SESION_PER_USER = process.env.SESION_PER_USER || 1
-const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 20
+const PERIOD = process.env.PERIOD_IN_MS || 10 * 1000;
+const NUM_OF_USERS = process.env.NUM_OF_USERS || 100000
+const SESION_PER_USER = process.env.SESION_PER_USER || 3
+const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 15
 
-const runMode = process.env.RUN_MODE || modes.GENERATE_AND_SEND_EVENTS_AND_USERS
+const runMode = process.env.RUN_MODE || modes.GENERATE_AND_WRITE_USERS_TO_REDIS
 
 const mode = process.env.NODE_ENV || "development"
 
@@ -101,8 +101,11 @@ function scanRedis(cursor, callback, finalize) {
       if (cursor == 0) {
         return finalize()
       } else return scanRedis(cursor, callback, finalize)
+
     }
+
   })
+
 }
 
 function sendUsersOnRedis() {
@@ -130,7 +133,7 @@ function generateAndPersistUsersOntoRedis() {
 
   console.log("GENERATE_AND_WRITE_USERS_TO_REDIS")
 
-  _.times(NUM_OF_USERS, () => {
+  for (var k = 0; k < NUM_OF_USERS; k++) {
 
     let userInfo = userGenerator.generate()
 
@@ -140,7 +143,8 @@ function generateAndPersistUsersOntoRedis() {
       console.log(JSON.stringify(userInfo))
     }
 
-  })
+  }
+
 }
 
 function readUsersFromRedisAndSendEvents() {
@@ -149,7 +153,7 @@ function readUsersFromRedisAndSendEvents() {
 
   setInterval(() => {
 
-    _.times(NUM_OF_USERS, () => {
+    for (var k = 0; k < NUM_OF_USERS; k++) {
 
       redis.send_command("RANDOMKEY", (err, aid) => {
 
@@ -184,7 +188,7 @@ function readUsersFromRedisAndSendEvents() {
 
       })
 
-    })
+    }
 
   }, PERIOD)
 }
@@ -195,7 +199,7 @@ function generateAndSendEventsAndUsers() {
 
   setInterval(() => {
 
-    _.times(NUM_OF_USERS,() => {
+    for (var k = 0; k<NUM_OF_USERS; k++) {
 
       // create new user
       let user_info = userGenerator.generate()
@@ -213,8 +217,8 @@ function generateAndSendEventsAndUsers() {
 
       // send user
       sendUser(user_info, kafkaProducer)
-
-    })
+      
+    }
 
   }, PERIOD);
 
@@ -298,7 +302,7 @@ function sendEvent(event) {
     })
 
   } else {
-    console.log(JSON.stringify(event))    
+    console.log(JSON.stringify(event))
     // heapdump.writeSnapshot('./heapdump/' + Date.now() + '.heapsnapshot')
   }
 
