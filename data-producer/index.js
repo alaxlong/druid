@@ -169,12 +169,12 @@ function readUsersFromRedisAndSendEvents() {
               let device_info = deviceGenerator.generate(json_user["ldid"])
 
               // create user sessions
-              _.times(SESION_PER_USER, () => {
+              for (var i = 0; i < SESION_PER_USER; i++) {
 
                 // create session events
                 create_session_events(json_user, device_info)
 
-              })
+              }
 
             } else {
               error(err)
@@ -208,16 +208,16 @@ function generateAndSendEventsAndUsers() {
       let device_info = deviceGenerator.generate(user_info["ldid"])
 
       // create user sessions
-      _.times(SESION_PER_USER, () => {
+      for (var i = 0; i < SESION_PER_USER; i++) {
 
         // create session events
         create_session_events(user_info, device_info)
-
-      })
+        
+      }
 
       // send user
       sendUser(user_info, kafkaProducer)
-      
+
     }
 
   }, PERIOD);
