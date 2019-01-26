@@ -23,7 +23,7 @@ const eventGenerator = require("./generators/event_generator")
 
 const PERIOD = process.env.PERIOD_IN_MS || 10 * 1000;
 const NUM_OF_USERS = process.env.NUM_OF_USERS || 100000
-const SESION_PER_USER = process.env.SESION_PER_USER || 3
+const SESSION_PER_USER = process.env.SESSION_PER_USER || 3
 const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 15
 
 const runMode = process.env.RUN_MODE || modes.GENERATE_AND_WRITE_USERS_TO_REDIS
@@ -169,7 +169,7 @@ function readUsersFromRedisAndSendEvents() {
               let device_info = deviceGenerator.generate(json_user["ldid"])
 
               // create user sessions
-              for (var i = 0; i < SESION_PER_USER; i++) {
+              for (var i = 0; i < SESSION_PER_USER; i++) {
 
                 // create session events
                 create_session_events(json_user, device_info)
@@ -208,11 +208,11 @@ function generateAndSendEventsAndUsers() {
       let device_info = deviceGenerator.generate(user_info["ldid"])
 
       // create user sessions
-      for (var i = 0; i < SESION_PER_USER; i++) {
+      for (var i = 0; i < SESSION_PER_USER; i++) {
 
         // create session events
         create_session_events(user_info, device_info)
-        
+
       }
 
       // send user
@@ -272,7 +272,7 @@ function sendUser(userInfo) {
       if (err) {
         error("Error producing! %s", err)
       } else {
-        // console.log(result)
+        console.log(result)
       }
     })
 
@@ -297,7 +297,7 @@ function sendEvent(event) {
       if (err) {
         error("Error producing! %s",err)
       } else {
-        // console.log(result)
+        console.log(result)
       }
     })
 
