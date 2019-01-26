@@ -31,7 +31,7 @@ function newTemplate() {
     "cat": "{{createdAt}}",
     "lma": "{{lastModifiedAt}}",
     "lsa": "{{lastSeenAt}}",
-    "data" : generateDemographics()
+    "data" : process.env.GENERATE_USER_DEMOGRAPHICS ? generateDemographics() : null
   }
 
 }
