@@ -23,8 +23,3 @@ docker-compose --file $YML exec broker kafka-topics --create \
 
 # List topics
 docker-compose --file $YML exec broker kafka-topics --list --zookeeper zookeeper:2181
-
-# copy s3 connector jar
-# copy connect sink
-# copy worker properties
-# mount aws credentials
