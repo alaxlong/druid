@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import { sessionStopTime } from "./util";
 import { KafkaClient, Producer } from 'kafka-node';
-import { brokerHost, timeout, producerOptions, topics, compressionType } from './config/kafka';
+import KafkaConfig from './config/kafka';
 import redisClient from "./config/redis";
 import modes from "./modes";
 
@@ -12,17 +12,17 @@ import SessionGenerator from "./generators/session_generator";
 import EventGenerator from "./generators/event_generator";
 
 const kafkaClient = new KafkaClient({
-  kafkaHost: brokerHost,
-  requestTimeout: timeout
+  kafkaHost: KafkaConfig.brokerHost,
+  requestTimeout: KafkaConfig.timeout
 });
-const kafkaProducer = new Producer(kafkaClient, producerOptions)
+const kafkaProducer = new Producer(kafkaClient, KafkaConfig.producerOptions)
 
 const PERIOD = process.env.PERIOD_IN_MS || 5 * 1000;
 const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
 const SESSION_PER_USER = process.env.SESSION_PER_USER || 1
 const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
 
-const runMode = process.env.RUN_MODE || modes.GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS
+const runMode = process.env.RUN_MODE || modes.GENERATE_AND_WRITE_USERS_TO_REDIS
 
 const mode = process.env.NODE_ENV || "development"
 
@@ -258,9 +258,9 @@ let sendUser = (userInfo) => {
   if (isProd()) {
 
     let user_payload = [{
-      topic: topics.users,
+      topic: KafkaConfig.topics.users,
       messages: [JSON.stringify(userInfo)],
-      attributes: compressionType
+      attributes: KafkaConfig.compressionType
     }]
 
     // send user
@@ -283,9 +283,9 @@ let sendEvent = (event) => {
   if (isProd()) {
 
     let event_payload = [{
-      topic: topics.events,
+      topic: KafkaConfig.topics.events,
       messages: [JSON.stringify(event)],
-      attributes: compressionType
+      attributes: KafkaConfig.compressionType
     }]
 
     // send user
