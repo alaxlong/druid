@@ -1,6 +1,4 @@
-'use strict'
-
-const _ = require('lodash')
+import _ from 'lodash';
 
 const events = [
   "login",
@@ -17,6 +15,8 @@ const events = [
   "kredi_kart_basvuru_step_3_failure",
 ]
 
-module.exports.takeOne = () => {
+let takeOne = () => {
   return _.sample(events)
 }
+
+export default { takeOne }

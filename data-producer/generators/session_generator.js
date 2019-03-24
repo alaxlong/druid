@@ -1,10 +1,8 @@
-'use strict'
-
-const _ = require('lodash')
-const uuid = require('uuid/v4');
-const faker = require('faker')
-const moment = require('moment')
-const mustache = require('mustache');
+import _ from 'lodash';
+import uuid from 'uuid/v4';
+import faker from 'faker';
+import moment from 'moment';
+import mustache from 'mustache';
 
 const sessionTemplate = {
   "clientSession": {
@@ -13,13 +11,15 @@ const sessionTemplate = {
   }
 }
 
-module.exports.generate = () => {
+let generate = () => {
   return JSON.parse(mustache.render(JSON.stringify(sessionTemplate), getDataToPopulate()))
 }
 
-function getDataToPopulate() {
+let getDataToPopulate = () => {
   return {
     sessionId: uuid(),
     startDateTime : moment(faker.date.past()).format('x')
   }
 }
+
+export default { generate }

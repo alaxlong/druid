@@ -1,8 +1,5 @@
-'use strict'
-
-const _ = require('lodash')
-const uuid = require('uuid/v4');
-const mustache = require('mustache');
+import _ from 'lodash';
+import mustache from 'mustache';
 
 const deviceTemplate = {
   "deviceId": "{{deviceId}}",
@@ -21,11 +18,11 @@ const deviceTemplate = {
   "carrier": "{{carrier}}"
 }
 
-module.exports.generate = (deviceId) => {
+let generate = (deviceId) => {
   return JSON.parse(mustache.render(JSON.stringify(deviceTemplate), getDataToPopulate(deviceId)))
 }
 
-function getDataToPopulate(deviceId) {
+let getDataToPopulate = (deviceId) => {
 
   let platform = _.sample(["ANDROID", "iOS"]) // no web for now
   let brand = getDeviceBrand(platform)
@@ -34,7 +31,7 @@ function getDataToPopulate(deviceId) {
   return {
     deviceId: deviceId,
     language: _.sample(["tr", "en", "fr", "it", "es"]),
-    country : _.sample(["US", "TR", "ES", "PT", "PL", "UK", "NO", "MT", "KR", "IT", "DE"]),
+    country: _.sample(["US", "TR", "ES", "PT", "PL", "UK", "NO", "MT", "KR", "IT", "DE"]),
     appVersionName: _.sample(["1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"]),
     appVersionCode: _.sample(["1", "2", "3", "4", "5", "6"]),
     platform: platform,
@@ -47,8 +44,8 @@ function getDataToPopulate(deviceId) {
 
 }
 
-function getDeviceBrand(platform) {
-  switch(platform) {
+let getDeviceBrand = (platform) => {
+  switch (platform) {
     case "ANDROID":
       return _.sample(["HTC", "Casper", "LGE", "Samsung", "General Mobile"])
     case "iOS":
@@ -56,9 +53,9 @@ function getDeviceBrand(platform) {
   }
 }
 
-function getDeviceModel(brand) {
+let getDeviceModel = (brand) => {
 
-  switch(brand) {
+  switch (brand) {
     case "Apple":
       return _.sample(["iPhone SE", "iPhone 7 Plus", "iPhone X", "iPhone 6"])
     default:
@@ -66,3 +63,5 @@ function getDeviceModel(brand) {
   }
 
 }
+
+export default { generate }

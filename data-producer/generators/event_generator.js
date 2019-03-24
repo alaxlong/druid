@@ -1,12 +1,10 @@
-'use strict'
-
-const _ = require('lodash')
-const uuid = require('uuid/v4');
-const CommerceEvents = require("./commerce_events")
-const CustomEvents = require("./custom_events")
-const ViewEvents = require("./screen_events")
-const util = require("../util.js")
-const mustache = require('mustache');
+import _ from 'lodash'
+import uuid from 'uuid/v4';
+import CommerceEvents from "./commerce_events"
+import CustomEvents from "./custom_events"
+import ViewEvents from "./screen_events"
+import {nextEventTime} from "../util.js"
+import mustache from 'mustache';
 
 // Event Categories
 const EVENT_CATEGORY_VIEWS = "view"
@@ -20,19 +18,19 @@ const eventCategories = [
 ]
 
 // Event Scenarios
-const SCENARIO_RANDOM = "random" // generate from each event category
-const SCENARIO_VIEW = "view"  // gnerate only view events
-const SCENARIO_COMMERCE = "commerce" // generate only commerce events
-const SCENARIO_CUSTOM = "custom"  // generate only custom events
+const SCENARIO_RANDOM = "random"
+const SCENARIO_VIEW = "view"  
+const SCENARIO_COMMERCE = "commerce"
+const SCENARIO_CUSTOM = "custom" 
 
 const scenarios = [
-  SCENARIO_RANDOM,
-  SCENARIO_VIEW,
-  SCENARIO_COMMERCE,
-  SCENARIO_CUSTOM
+  // SCENARIO_RANDOM,
+  // SCENARIO_VIEW,
+  SCENARIO_COMMERCE
+  // SCENARIO_CUSTOM
 ]
 
-module.exports.generate = (eventName,
+export let generate = (eventName,
                            eventCreationTime,
                            deviceInfo,
                            clientSession,
@@ -50,19 +48,19 @@ module.exports.generate = (eventName,
 
 }
 
-module.exports.generateSessionEvents = (numOfEvents,
+export let generateSessionEvents = (numOfEvents,
                                         sessionStartTime,
                                         deviceInfo,
                                         clientSession,
                                         appconnectId,
                                         customerId) => {
 
-  let scenario = _.sample(scenarios)
+  let scenario = process.env.EVENT_SCENARIO || _.sample(scenarios)
 
   let eventCreationTime = sessionStartTime
 
   return _.times(numOfEvents, () => {
-    eventCreationTime = util.nextEventTime(eventCreationTime)
+    eventCreationTime = nextEventTime(eventCreationTime)
     return generateSessionEvent(scenario,
                                 eventCreationTime,
                                 deviceInfo,
@@ -73,7 +71,7 @@ module.exports.generateSessionEvents = (numOfEvents,
 
 }
 
-function newTemplate(deviceInfo, clientSession, attributes) {
+let newTemplate = (deviceInfo, clientSession, attributes) => {
 
   return {
     "eventId": "{{eventId}}",
@@ -89,12 +87,12 @@ function newTemplate(deviceInfo, clientSession, attributes) {
 
 }
 
-function generateSessionEvent(scenario,
+let generateSessionEvent = (scenario,
                               eventCreationTime,
                               deviceInfo,
                               clientSession,
                               appconnectId,
-                              customerId) {
+                              customerId) => {
   switch(scenario) {
     case SCENARIO_COMMERCE:
       return generateCommerceEvent(eventCreationTime,
@@ -125,11 +123,11 @@ function generateSessionEvent(scenario,
 
 }
 
-function generateCommerceEvent(eventCreationTime,
+let generateCommerceEvent = (eventCreationTime,
                                deviceInfo,
                                clientSession,
                                appconnectId,
-                               customerId) {
+                               customerId) => {
 
   let event = CommerceEvents.takeOne()
   return generateEvent(event["name"],
@@ -141,11 +139,11 @@ function generateCommerceEvent(eventCreationTime,
                        customerId)
 }
 
-function generateCustomEvent(eventCreationTime,
+let generateCustomEvent = (eventCreationTime,
                              deviceInfo,
                              clientSession,
                              appconnectId,
-                             customerId) {
+                             customerId) => {
 
   return generateEvent(CustomEvents.takeOne(),
                        null,
@@ -157,11 +155,11 @@ function generateCustomEvent(eventCreationTime,
 
 }
 
-function generateViewEvent(eventCreationTime,
+let generateViewEvent = (eventCreationTime,
                            deviceInfo,
                            clientSession,
                            appconnectId,
-                           customerId) {
+                           customerId) => {
 
   let event = ViewEvents.takeOne()
   return generateEvent(event["name"],
@@ -174,11 +172,11 @@ function generateViewEvent(eventCreationTime,
 
 }
 
-function generateRandomEvent(eventCreationTime,
+let generateRandomEvent = (eventCreationTime,
                              deviceInfo,
                              clientSession,
                              appconnectId,
-                             customerId) {
+                             customerId) => {
 
   let category = _.sample(eventCategories)
 
@@ -206,13 +204,13 @@ function generateRandomEvent(eventCreationTime,
 
 }
 
-function generateEvent(eventName,
+let generateEvent = (eventName,
                        attributes,
                        eventCreationTime,
                        deviceInfo,
                        clientSession,
                        appconnectId,
-                       customerId) {
+                       customerId) => {
 
   let template = newTemplate(deviceInfo, clientSession, attributes)
 
@@ -224,7 +222,7 @@ function generateEvent(eventName,
                                                       customerId)))
 }
 
-function getDataToPopulate(eventName, eventCreationTime, deviceInfo, appconnectId, customerId) {
+let getDataToPopulate = (eventName, eventCreationTime, deviceInfo, appconnectId, customerId) => {
 
   return {
     eventId: uuid(),
@@ -235,4 +233,10 @@ function getDataToPopulate(eventName, eventCreationTime, deviceInfo, appconnectI
     clientCreationDate: eventCreationTime
   }
 
+}
+
+export default {
+  generate,
+  generateSessionEvents,
+  scenarios
 }

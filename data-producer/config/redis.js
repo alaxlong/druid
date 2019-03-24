@@ -1,8 +1,6 @@
-'use strict'
+import { createClient } from 'redis';
 
-const redis = require('redis')
-
-module.exports = redis.createClient(
+export default createClient(
   process.env.REDIS_PORT || 6379,
   process.env.REDIS_HOST || 'localhost'
 )

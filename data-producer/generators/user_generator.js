@@ -1,12 +1,10 @@
-'use strict'
+import uuid from 'uuid/v4';
+import faker from 'faker';
+import _ from 'lodash';
+import moment from 'moment'
+import mustache from 'mustache';
 
-const uuid = require('uuid/v4');
-const faker = require('faker');
-const _ = require('lodash');
-const moment = require('moment')
-const mustache = require('mustache');
-
-module.exports.generate = () => {
+let generate = () => {
   return JSON.parse(mustache.render(JSON.stringify(newTemplate()), getDataToPopulate()))
 }
 
@@ -36,7 +34,7 @@ function newTemplate() {
 
 }
 
-function getDataToPopulate() {
+let getDataToPopulate = () => {
 
   return {
     appId: 'poc',
@@ -59,7 +57,7 @@ function getDataToPopulate() {
 
 }
 
-function generateDemographics() {
+let generateDemographics = () => {
 
   let firstActivityYearsAgo = _.sample([20, 25, 30, 35, 40, 45, 50, 55, 60])
 
@@ -125,3 +123,6 @@ function generateDemographics() {
     "num_of_okul_last_1_year" : _.random(0,36)
   }
 }
+
+
+export default { generate }

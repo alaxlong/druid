@@ -1,9 +1,7 @@
-'use strict'
-
-const mustache = require('mustache');
-const _ = require("lodash")
-const faker = require("faker")
-const util = require("util")
+import _ from 'lodash';
+import mustache from 'mustache';
+import faker from "faker"
+import util from "util"
 
 const viewEvents = [
   "viewStart",
@@ -18,7 +16,7 @@ const viewEventAttributes = {
 
 const views = _.times(10, faker.lorem.word)
 
-function randomAttributes() {
+let randomAttributes = () => {
 
   let view = _.sample(views)
 
@@ -27,13 +25,13 @@ function randomAttributes() {
   return JSON.parse(mustache.render(JSON.stringify(viewEventAttributes), {viewLabel: viewName, viewClass: viewName, viewId: viewName}))
 }
 
-function generateEvent() {
+let generateEvent = () => {
   return {
     "name": _.sample(viewEvents),
     "attrs": randomAttributes()
   }
 }
 
-module.exports = {
+export default {
   takeOne : generateEvent
 }

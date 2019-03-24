@@ -1,5 +1,5 @@
-FROM node:8
-MAINTAINER Can Elmas <can@commencis.com>
+FROM node:10.15.3
+LABEL maintainer="Can Elmas <canelm@gmail.com>"
 
 WORKDIR /app
 COPY package*.json ./
