@@ -87,3 +87,4 @@ heapdump/
 data-producer/dist
 kafka/data
 redis/data
+useful.md
