@@ -131,12 +131,11 @@ let generateAndPersistUsersOntoRedis = () => {
   for (var k = 0; k < NUM_OF_USERS; k++) {
     let userInfo = UserGenerator.generate()
 
-    // if (isProd()) {
-
+    if (isProd()) {
       redisClient.set(userInfo["aid"], JSON.stringify(userInfo), redisClient.print)
-    // } else {
-      // info(JSON.stringify(userInfo))
-    // }
+    } else {
+      info(JSON.stringify(userInfo))
+    }
   }
 
   info(`${NUM_OF_USERS} users written onto Redis.`)

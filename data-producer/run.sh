@@ -8,5 +8,6 @@ docker run -d --name=data-producer \
 -e TOPICS_USERS=poc-users \
 -e TOPICS_EVENTS=poc-events \
 -e RUN_MODE=0 \
+-e EVENT_SCENARIO=random \
 -e NODE_OPTIONS=--max_old_space_size=4096 \
 -e NODE_ENV=production canelmas/connect-data-producer:1.1.0
