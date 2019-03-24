@@ -1,6 +1,6 @@
 #!/bin/bash
 
-YML="setup/docker-compose-template.yml"
+YML="docker/docker-compose-template.yml"
 
 TOPIC_EVENTS="poc-events"
 TOPIC_USERS="poc-users"
@@ -23,3 +23,6 @@ docker-compose --file $YML exec broker kafka-topics --create \
 
 # List topics
 docker-compose --file $YML exec broker kafka-topics --list --zookeeper zookeeper:2181
+
+# Connect
+docker-compose --file $YML exec broker connect-standalone /root/config/worker-json.properties /root/config/kafka-to-s3-json-gzip.properties
