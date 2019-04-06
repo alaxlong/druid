@@ -2,6 +2,7 @@
 
 YML="docker/docker-compose-template.yml"
 DATA_FOLDER="/Users/can/Projects/poc-kafka-hadoop-spark/kafka/data"
+KAFKA_CONNECT_S3_SINK="confluentinc-kafka-connect-s3-5.0.0.zip"
 
 clear_dirs() {    
     rm -rf $DATA_FOLDER/zk-data
@@ -25,7 +26,7 @@ copy_files() {
     cp config/workers/worker-json.properties $DATA_FOLDER/connect/
     cp config/sinks/kafka-to-s3-json-gzip.properties $DATA_FOLDER/connect/
     cp config/aws/* $DATA_FOLDER/aws/    
-    tar -C $DATA_FOLDER/plugins/ -zxf confluentinc-kafka-connect-s3-5.0.0.zip    
+    tar -C $DATA_FOLDER/plugins/ -zxf $KAFKA_CONNECT_S3_SINK
 }
 
 reset() {

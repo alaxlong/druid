@@ -2,8 +2,8 @@
 
 YML="docker/docker-compose-template.yml"
 
-TOPIC_EVENTS="poc-events"
-TOPIC_USERS="poc-users"
+TOPIC_EVENTS="events-raw"
+TOPIC_USERS="users-raw"
 
 REPL_FACTOR=1 
 PARTITIONS=3
