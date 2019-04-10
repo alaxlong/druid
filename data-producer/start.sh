@@ -11,14 +11,14 @@ start() {
         -e NUM_OF_USERS=1 \
         -e SESION_PER_USER=1 \
         -e EVENTS_PER_SESSION=10 \
-        -e TOPICS_USERS=users-raw \
-        -e TOPICS_EVENTS=events-raw \
+        -e TOPICS_USERS=users \
+        -e TOPICS_EVENTS=events \
         -e RUN_MODE=0 \
         -e EVENT_SCENARIO=random \
         -e NODE_OPTIONS=--max_old_space_size=4096 \
         -e REDIS_HOST=redis \
         -e BROKER=broker:19092 \
-        -e NODE_ENV=production canelmas/connect-data-producer:$1
+        -e NODE_ENV=development canelmas/connect-data-producer:$1
 }
 
 if [ $# -lt 1 ]; then

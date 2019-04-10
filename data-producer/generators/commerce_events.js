@@ -132,12 +132,7 @@ let generateEvent = () => {
   _.times(numOfItems, () => {
     products.push(generateProduct())
   })  
-
-  console.log(products)
-
-  let data = getDataToPopulate(products)
-  console.log(data)
-
+    
   return {
     "name": event["name"],
     "attrs": JSON.parse(mustache.render(JSON.stringify(event["attrs"]), getDataToPopulate(products)))
