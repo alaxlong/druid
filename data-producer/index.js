@@ -1,7 +1,12 @@
 import _ from 'lodash';
 
-import { sessionStopTime } from "./util";
-import { KafkaClient, Producer } from 'kafka-node';
+import {
+  sessionStopTime
+} from "./util";
+import {
+  KafkaClient,
+  Producer
+} from 'kafka-node';
 import KafkaConfig from './config/kafka';
 import redisClient from "./config/redis";
 import modes from "./modes";
@@ -25,6 +30,7 @@ const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
 const runMode = process.env.RUN_MODE || modes.GENERATE_AND_WRITE_USERS_TO_REDIS
 
 const mode = process.env.NODE_ENV || "development"
+const verbose = process.env.VERBOSE || false
 
 let isProd = () => {
   return mode == "production"
@@ -144,24 +150,24 @@ let generateAndPersistUsersOntoRedis = () => {
 
 let readUsersFromRedisAndSendEvents = () => {
 
-  info("GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS") 
+  info("GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS")
 
   setInterval(() => {
 
     for (var k = 0; k < NUM_OF_USERS; k++) {
 
-      redisClient.send_command("RANDOMKEY", (err, aid) => {        
+      redisClient.send_command("RANDOMKEY", (err, aid) => {
 
-        if (aid) {          
+        if (aid) {
 
           redisClient.get(aid, (err, userInfo) => {
 
             if (userInfo) {
 
-              let jsonUser = JSON.parse(userInfo)              
+              let jsonUser = JSON.parse(userInfo)
 
               // create new device based on user's last device id
-              let deviceInfo = DeviceGenerator.generate(jsonUser["ldid"])              
+              let deviceInfo = DeviceGenerator.generate(jsonUser["ldid"])
 
               // create user sessions
               for (var i = 0; i < SESSION_PER_USER; i++) {
@@ -177,7 +183,7 @@ let readUsersFromRedisAndSendEvents = () => {
 
           })
 
-        } else {          
+        } else {
           error(err)
         }
 
@@ -268,7 +274,10 @@ let sendUser = (userInfo) => {
       if (err) {
         error(`Error producing! ${err}`)
       } else {
-        info(result)
+        if (verbose) {
+          info(result)
+        }
+
       }
     })
 
@@ -293,7 +302,9 @@ let sendEvent = (event) => {
       if (err) {
         error(`Error producing! ${err}`)
       } else {
-        info(result)
+        if (verbose) {
+          info(result)
+        }
       }
     })
 

@@ -18,6 +18,7 @@ start() {
         -e NODE_OPTIONS=--max_old_space_size=4096 \
         -e REDIS_HOST=redis \
         -e BROKER=broker:19092 \
+        -e VERBOSE=true \
         -e NODE_ENV=production canelmas/connect-data-producer:$1
 }
 
