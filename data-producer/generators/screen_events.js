@@ -14,7 +14,7 @@ const viewEventAttributes = {
   "viewId" : "{{viewId}}"
 }
 
-const views = _.times(10, faker.lorem.word)
+const views = _.times(100, faker.lorem.word)
 
 let randomAttributes = () => {
 
