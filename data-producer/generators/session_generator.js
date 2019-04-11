@@ -17,8 +17,8 @@ let generate = () => {
 
 let getDataToPopulate = () => {
   return {
-    sessionId: uuid(),
-    startDateTime : moment(faker.date.past()).format('x')
+    sessionId: uuid(),    
+    startDateTime : moment(faker.date.between(moment().subtract(14, "days"), moment())).format("x")
   }
 }
 
