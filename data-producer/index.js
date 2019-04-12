@@ -32,6 +32,10 @@ const runMode = process.env.RUN_MODE || modes.GENERATE_AND_WRITE_USERS_TO_REDIS
 const mode = process.env.NODE_ENV || "development"
 const verbose = process.env.VERBOSE || false
 
+let isVerbose = () => {
+  return verbose == "true"
+}
+
 let isProd = () => {
   return mode == "production"
 }
@@ -46,6 +50,16 @@ let error = (err) => {
 
 let info = (msg) => {
   console.info(msg)
+}
+
+let printSetup = () => {
+  info(`mode=${mode}`)
+  info(`runMode=${runMode}`)
+  info(`period=${PERIOD}`)
+  info(`numOfUsers=${NUM_OF_USERS}`)
+  info(`sessionPerUser=${SESSION_PER_USER}`)
+  info(`eventPerSession=${EVENTS_PER_SESSION}`)
+  info(`verbose=${verbose}`)
 }
 
 redisClient.on('ready', () => {
@@ -63,7 +77,8 @@ kafkaProducer.on("error", (err) => {
 })
 
 kafkaProducer.on('ready', function () {
-  info("Kafka [OK]")
+  info("Kafka [OK]")  
+  printSetup()
 
   if (runMode == modes.SEND_USERS_ON_REDIS) {
     sendUsersOnRedis()
@@ -109,8 +124,6 @@ let scanRedis = (cursor, callback, finalize) => {
 
 let sendUsersOnRedis = () => {
 
-  info("SEND_USERS_ON_REDIS")
-
   let cursor = 0
 
   scanRedis(cursor, (key) => {
@@ -132,8 +145,6 @@ let sendUsersOnRedis = () => {
 
 let generateAndPersistUsersOntoRedis = () => {
 
-  info("GENERATE_AND_WRITE_USERS_TO_REDIS")
-
   for (var k = 0; k < NUM_OF_USERS; k++) {
     let userInfo = UserGenerator.generate()
 
@@ -149,8 +160,6 @@ let generateAndPersistUsersOntoRedis = () => {
 }
 
 let readUsersFromRedisAndSendEvents = () => {
-
-  info("GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS")
 
   setInterval(() => {
 
@@ -195,8 +204,6 @@ let readUsersFromRedisAndSendEvents = () => {
 }
 
 let generateAndSendEventsAndUsers = () => {
-
-  info("GENERATE_AND_SEND_EVENTS_AND_USERS")
 
   setInterval(() => {
 
@@ -274,7 +281,7 @@ let sendUser = (userInfo) => {
       if (err) {
         error(`Error producing! ${err}`)
       } else {
-        if (verbose) {
+        if (isVerbose()) {
           info(result)
         }
 
@@ -302,7 +309,7 @@ let sendEvent = (event) => {
       if (err) {
         error(`Error producing! ${err}`)
       } else {
-        if (verbose) {
+        if (isVerbose()) {
           info(result)
         }
       }

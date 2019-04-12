@@ -5,7 +5,7 @@ stop() {
 }
 
 start() {
-    docker run --name=data-producer -d --rm --restart=always \
+    docker run --name=data-producer -d --restart=always \
         --network lovely-net \
         -e PERIOD_IN_MS=10000 \
         -e NUM_OF_USERS= \
@@ -17,6 +17,7 @@ start() {
         -e EVENT_SCENARIO=random \
         -e NODE_OPTIONS=--max_old_space_size=4096 \
         -e REDIS_HOST=redis \
+        -e REDIS_PORT=6379 \
         -e BROKER=broker:19092 \
         -e VERBOSE=false \
         -e NODE_ENV=production canelmas/connect-data-producer:$1
