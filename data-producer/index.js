@@ -27,7 +27,7 @@ const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
 const SESSION_PER_USER = process.env.SESSION_PER_USER || 1
 const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
 
-const runMode = process.env.RUN_MODE || modes.GENERATE_AND_WRITE_USERS_TO_REDIS
+const runMode = process.env.RUN_MODE || modes.GENERATE_AND_SEND_EVENTS_AND_USERS
 
 const mode = process.env.NODE_ENV || "development"
 const verbose = process.env.VERBOSE || false
@@ -50,6 +50,10 @@ let error = (err) => {
 
 let info = (msg) => {
   console.info(msg)
+}
+
+let prettyPrint = (json) => {
+  info(JSON.stringify(json, null, 4))
 }
 
 let printSetup = () => {
@@ -77,7 +81,7 @@ kafkaProducer.on("error", (err) => {
 })
 
 kafkaProducer.on('ready', function () {
-  info("Kafka [OK]")  
+  info("Kafka [OK]")
   printSetup()
 
   if (runMode == modes.SEND_USERS_ON_REDIS) {
@@ -289,7 +293,7 @@ let sendUser = (userInfo) => {
     })
 
   } else {
-    info(JSON.stringify(userInfo))
+    prettyPrint(userInfo)
   }
 
 }
@@ -316,7 +320,7 @@ let sendEvent = (event) => {
     })
 
   } else {
-    info(JSON.stringify(event))
+    prettyPrint(event)
   }
 
 }
