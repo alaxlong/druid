@@ -21,8 +21,10 @@ let randomAttributes = () => {
   let view = _.sample(views)
 
   let viewName = util.format("%sScreen", view.charAt(0).toUpperCase() + view.substr(1).toLowerCase())
+  let viewClass = util.format("com.commencis.%s", viewName)
+  let viewId = Buffer.from(viewName, "ascii").toString("base64")
 
-  return JSON.parse(mustache.render(JSON.stringify(viewEventAttributes), {viewLabel: viewName, viewClass: viewName, viewId: viewName}))
+  return JSON.parse(mustache.render(JSON.stringify(viewEventAttributes), {viewLabel: viewName, viewClass: viewClass, viewId: viewId}))
 }
 
 let generateEvent = () => {
