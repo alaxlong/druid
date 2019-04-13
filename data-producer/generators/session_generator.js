@@ -7,7 +7,7 @@ let generate = () => {
   return {
     clientSession: {
       sessionId: uuid(),
-      startDateTime: moment(faker.date.between(moment().subtract(14, "days"), moment())).format("x")
+      startDateTime: moment(faker.date.between(moment().subtract(1, "months"), moment())).format("x")
     }
   } 
 }
