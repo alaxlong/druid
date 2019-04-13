@@ -90,7 +90,10 @@ const events = [
 ]
 
 let takeOne = () => {
-  return _.sample(events)
+  return {
+    "name": _.sample(events),
+    "attrs": null
+  }  
 }
 
 export default {
