@@ -24,10 +24,10 @@ const SCENARIO_COMMERCE = "commerce"
 const SCENARIO_CUSTOM = "custom" 
 
 const scenarios = [
-  SCENARIO_RANDOM,
-  SCENARIO_VIEW,
+  // SCENARIO_RANDOM,
+  // SCENARIO_VIEW,
   SCENARIO_COMMERCE,
-  SCENARIO_CUSTOM
+  // SCENARIO_CUSTOM
 ]
 
 export let generate = (eventName,
