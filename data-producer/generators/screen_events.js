@@ -8,23 +8,18 @@ const viewEvents = [
   "viewStop"
 ]
 
-const viewEventAttributes = {
-  "viewLabel" : "{{viewLabel}}",
-  "viewClass" : "{{viewClass}}",
-  "viewId" : "{{viewId}}"
-}
-
-const views = _.times(100, faker.lorem.word)
-
 let randomAttributes = () => {
 
-  let view = _.sample(views)
+  let view = faker.lorem.word()
 
-  let viewName = util.format("%sScreen", view.charAt(0).toUpperCase() + view.substr(1).toLowerCase())
-  let viewClass = util.format("com.commencis.%s", viewName)
-  let viewId = Buffer.from(viewName, "ascii").toString("base64")
+  let viewLabel = util.format("%sScreen", view.charAt(0).toUpperCase() + view.substr(1).toLowerCase())
+  
+  return {
+    viewId : Buffer.from(viewLabel, "ascii").toString("base64"),
+    viewLabel : viewLabel,
+    viewClass : util.format("com.commencis.%s", viewLabel),
+  }
 
-  return JSON.parse(mustache.render(JSON.stringify(viewEventAttributes), {viewLabel: viewName, viewClass: viewClass, viewId: viewId}))
 }
 
 let generateEvent = () => {
