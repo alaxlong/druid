@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import mustache from 'mustache';
 import faker from "faker"
 import util from "util"
 

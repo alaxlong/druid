@@ -2,58 +2,33 @@ import uuid from 'uuid/v4';
 import faker from 'faker';
 import _ from 'lodash';
 import moment from 'moment'
-import mustache from 'mustache';
 
 let generate = () => {
-  return JSON.parse(mustache.render(JSON.stringify(newTemplate()), getDataToPopulate()))
-}
 
-function newTemplate() {
-
-  return {
-    "appId": "{{appId}}",
-    "email": "{{email}}",
-    "phone": "{{phone}}",
-    "aid": "{{appconnectId}}",
-    "cid": "{{customerId}}",
-    "nid": "{{nationalId}}",
-    "ldid": "{{lastDeviceId}}",
-    "fn": "{{firstName}}",
-    "ln": "{{lastName}}",
-    "gender": "{{gender}}",
-    "dob": "{{dateOfBirth}}",
-    "dids": [
-      "{{lastDeviceId}}",
-      "{{anotherDeviceId}}"
-    ],
-    "cat": "{{createdAt}}",
-    "lma": "{{lastModifiedAt}}",
-    "lsa": "{{lastSeenAt}}",
-    "data" : process.env.GENERATE_USER_DEMOGRAPHICS ? generateDemographics() : null
-  }
-
-}
-
-let getDataToPopulate = () => {
+  let ldid = uuid()
 
   return {
     appId: 'poc',
     email : faker.internet.email(),
     phone: faker.phone.phoneNumber(),
-    appconnectId: uuid(),
-    customerId: uuid(),
-    nationalId: faker.finance.iban(),
-    lastDeviceId: uuid(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    aid: uuid(),
+    cid: uuid(),
+    nid: faker.finance.iban(),
+    ldid: ldid,
+    fn: faker.name.firstName(),
+    ln: faker.name.lastName(),
     gender: _.sample(["male", "female", "other"]),
-    dateOfBirth: moment(faker.date.past(_.sample([20, 25, 30, 35, 40, 45, 50, 55, 60]))).format("YYYY-MM-DD"),
-    marital_status: _.sample(["M", "S", "O"]),
-    anotherDeviceId: uuid(),
+    dob: moment(faker.date.past(_.sample([20, 25, 30, 35, 40, 45, 50, 55, 60]))).format("YYYY-MM-DD"),
+    maritalStatus: _.sample(["M", "S", "O"]),
+    dids : [
+      ldid,
+      uuid()
+    ],
     createdAt: moment(faker.date.past()).format('x'),
     lastSeenAt: moment(faker.date.recent()).format('x'),
-    lastModifiedAt: moment(faker.date.recent()).format('x')
-  }
+    lastModifiedAt: moment(faker.date.recent()).format('x'),
+    data : process.env.GENERATE_USER_DEMOGRAPHICS ? generateDemographics() : null
+  }  
 
 }
 

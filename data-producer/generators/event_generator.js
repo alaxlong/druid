@@ -4,7 +4,6 @@ import CommerceEvents from "./commerce_events"
 import CustomEvents from "./custom_events"
 import ViewEvents from "./screen_events"
 import {nextEventTime} from "../util.js"
-import mustache from 'mustache';
 
 // Event Categories
 const EVENT_CATEGORY_VIEWS = "view"
@@ -26,8 +25,8 @@ const SCENARIO_CUSTOM = "custom"
 const scenarios = [
   // SCENARIO_RANDOM,
   // SCENARIO_VIEW,
-  SCENARIO_COMMERCE,
-  // SCENARIO_CUSTOM
+  // SCENARIO_COMMERCE,
+  SCENARIO_CUSTOM
 ]
 
 export let generate = (eventName,
@@ -37,14 +36,17 @@ export let generate = (eventName,
                            appconnectId,
                            customerId) => {
 
-  let template = newTemplate(deviceInfo, clientSession, null)
-
-  return JSON.parse(mustache.render(JSON.stringify(template),
-                                    getDataToPopulate(eventName,
-                                                      eventCreationTime,
-                                                      deviceInfo,
-                                                      appconnectId,
-                                                      customerId)))
+  return {
+    eventId: uuid(),
+    deviceId: deviceInfo["deviceId"],
+    appconnectId: appconnectId,
+    customerId: customerId,
+    eventName: eventName,
+    clientCreationDate: eventCreationTime,
+    deviceProperty: deviceInfo,
+    clientSession : clientSession,
+    attributes : null
+  }
 
 }
 
@@ -68,22 +70,6 @@ export let generateSessionEvents = (numOfEvents,
                                 appconnectId,
                                 customerId)
   })
-
-}
-
-let newTemplate = (deviceInfo, clientSession, attributes) => {
-
-  return {
-    "eventId": "{{eventId}}",
-    "deviceId": "{{deviceId}}",
-    "appconnectId": "{{appconnectId}}",
-    "customerId": "{{customerId}}",
-    "eventName": "{{eventName}}",
-    "clientCreationDate": "{{clientCreationDate}}",
-    "deviceProperty": deviceInfo,
-    "clientSession" : clientSession,
-    "attributes" : attributes
-  }
 
 }
 
@@ -145,8 +131,9 @@ let generateCustomEvent = (eventCreationTime,
                              appconnectId,
                              customerId) => {
 
-  return generateEvent(CustomEvents.takeOne(),
-                       null,
+  let event = CustomEvents.takeOne()                                                        
+  return generateEvent(event["name"],
+                       event["attrs"],
                        eventCreationTime,
                        deviceInfo,
                        clientSession,
@@ -212,27 +199,18 @@ let generateEvent = (eventName,
                        appconnectId,
                        customerId) => {
 
-  let template = newTemplate(deviceInfo, clientSession, attributes)
-
-  return JSON.parse(mustache.render(JSON.stringify(template),
-                                    getDataToPopulate(eventName,
-                                                      eventCreationTime,
-                                                      deviceInfo,
-                                                      appconnectId,
-                                                      customerId)))
-}
-
-let getDataToPopulate = (eventName, eventCreationTime, deviceInfo, appconnectId, customerId) => {
-
   return {
     eventId: uuid(),
     deviceId: deviceInfo["deviceId"],
     appconnectId: appconnectId,
     customerId: customerId,
     eventName: eventName,
-    clientCreationDate: eventCreationTime
-  }
-
+    clientCreationDate: eventCreationTime,
+    deviceProperty: deviceInfo,
+    clientSession : clientSession,
+    attributes : attributes
+  }                      
+  
 }
 
 export default {

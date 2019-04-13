@@ -1,29 +1,7 @@
 import _ from 'lodash';
-import mustache from 'mustache';
-
-const deviceTemplate = {
-  "deviceId": "{{deviceId}}",
-  "timezone": "Europe/Istanbul",
-  "language": "{{language}}",
-  "country": "{{country}}",
-  "appVersionName": "{{appVersionName}}",
-  "appVersionCode": "{{appVersionCode}}",
-  "appPackageName": "com.cnlms.lovelyapp",
-  "platform": "{{platform}}",
-  "deviceCategory": "{{deviceCategory}}",
-  "deviceBrand": "{{deviceBrand}}",
-  "deviceModel": "{{deviceModel}}",
-  "osVersion": "{{osVersion}}",
-  "sdkVersion": "1.0.0",
-  "carrier": "{{carrier}}"
-}
 
 let generate = (deviceId) => {
-  return JSON.parse(mustache.render(JSON.stringify(deviceTemplate), getDataToPopulate(deviceId)))
-}
-
-let getDataToPopulate = (deviceId) => {
-
+  
   let platform = _.sample(["ANDROID", "iOS"]) // no web for now
   let brand = getDeviceBrand(platform)
   let model = getDeviceModel(brand)
