@@ -16,7 +16,7 @@ let randomAttributes = () => {
   return {
     viewId : Buffer.from(viewLabel, "ascii").toString("base64"),
     viewLabel : viewLabel,
-    viewClass : util.format("com.commencis.%s", viewLabel),
+    viewClass : util.format("com.lovely.%s", viewLabel),
   }
 
 }

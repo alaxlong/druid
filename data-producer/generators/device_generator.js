@@ -1,8 +1,37 @@
 import _ from 'lodash';
 
+
+let ANDROID_BRANDS = [
+  "HTC",
+  "Casper",
+  "LGE",
+  "Samsung",
+  "General Mobile",
+  "Motorola",
+  "Huawei",
+  "Google",
+  "Xiaomi"
+]
+
+let ANDROID_MODELS = [
+  "Nexus 5",
+  "SM-G928C",
+  "LG-D802",
+  "SM-G610F",
+  "Pixel",
+  "GT-N7100",
+  "Samsung Grand Prime Plus",
+  "Samsung Galaxy S8",
+  "Samsung Grand J5",
+  "Samsung Grand S7",
+  "Xiaomi Redmi Note",
+  "Samsung Galaxy S9"
+]
+
+
 let generate = (deviceId) => {
-  
-  let platform = _.sample(["ANDROID", "iOS"]) // no web for now
+
+  let platform = _.sample(["ANDROID", "iOS"])
   let brand = getDeviceBrand(platform)
   let model = getDeviceModel(brand)
 
@@ -25,7 +54,7 @@ let generate = (deviceId) => {
 let getDeviceBrand = (platform) => {
   switch (platform) {
     case "ANDROID":
-      return _.sample(["HTC", "Casper", "LGE", "Samsung", "General Mobile", "Motorola", "Huawei"])
+      return _.sample(ANDROID_BRANDS)
     case "iOS":
       return "Apple"
   }
@@ -37,7 +66,7 @@ let getDeviceModel = (brand) => {
     case "Apple":
       return _.sample(["iPhone SE", "iPhone 7 Plus", "iPhone X", "iPhone 6"])
     default:
-      return _.sample(["Nexus 5", "SM-G928C", "LG-D802", "SM-G610F", "Pixel", "GT-N7100"])
+      return _.sample(ANDROID_MODELS)
   }
 
 }
