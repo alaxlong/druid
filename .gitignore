@@ -86,10 +86,16 @@ heapdump/
 .vscode/
 
 data-producer/dist
-kafka/data
 redis/data
 useful.md
 aws/
 kafka-streams/sample/target
 druid/apache-druid-0.13.0-incubating
-druid/druid-0.13.0.bin.tar.gz
+druid/apache-druid-0.14.0-incubating
+
+# not yet
+kafka-streams
+data-processor
+
+druid/supervisors
+
