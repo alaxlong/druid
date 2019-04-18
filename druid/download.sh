@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DRUID_VERSION='0.13.0'
+DRUID_VERSION='0.14.0'
 DRUID_DOWNLOAD_URL="http://ftp.itu.edu.tr/Mirror/Apache/incubator/druid/$DRUID_VERSION-incubating/apache-druid-$DRUID_VERSION-incubating-bin.tar.gz"
 
 ZK_VERSION='3.4.11'
