@@ -1,34 +1,31 @@
 #!/bin/bash
 
-DATA_VOLUME="/Users/can/Projects/poc-kafka-hadoop-spark/redis/data"
+CONTAINER_NAME="redis"
 IMAGE="redis:5.0.3-alpine3.8"
 PORT=6379
 
-HELP='Usage: start <network:required> <reset:optional>'
-
+HELP='Usage: start <network:required> <bind_mount:required> <reset:optional>'
 
 reset() {
     echo "recreating redis data directory..."
-    rm -rf $DATA_VOLUME
-    mkdir -p $DATA_VOLUME
+    rm -rf $1
+    mkdir -p $1
 }
 
-start() {
+start() { 
 
-    NETWORK=$1
-
-    if [ "$2" == "reset" ]; then
-        reset
+    if [ "$3" == "reset" ]; then
+        reset $2
     fi
 
     echo 'removing existing redis container...'
-    docker stop redis && docker rm -f redis
+    docker stop $CONTAINER_NAME && docker rm -f $CONTAINER_NAME
 
     echo 'starting redis container...'
-    docker run -d --network=$NETWORK --name redis -v $DATA_VOLUME:/data -p $PORT:6379 $IMAGE
+    docker run -d --network=$1 --name $CONTAINER_NAME -v $2:/data -p $PORT:6379 $IMAGE
 }
 
-if [ $# -lt 1 ]; then
+if [ $# -lt 2 ]; then
     echo $HELP
     exit 0
 fi
