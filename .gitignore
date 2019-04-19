@@ -89,6 +89,7 @@ data-producer/dist
 redis/data
 useful.md
 aws/
+kafka/data
 kafka-streams/sample/target
 druid/apache-druid-0.13.0-incubating
 druid/apache-druid-0.14.0-incubating
