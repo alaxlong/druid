@@ -1,7 +1,6 @@
 import uuid from 'uuid/v4';
 import faker from 'faker';
 import _ from 'lodash';
-import mustache from 'mustache';
 import util from 'util'
 import {
   Buffer

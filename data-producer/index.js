@@ -25,7 +25,7 @@ const kafkaProducer = new Producer(kafkaClient, KafkaConfig.producerOptions)
 const PERIOD = process.env.PERIOD_IN_MS || 5 * 1000;
 const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
 const SESSION_PER_USER = process.env.SESSION_PER_USER || 1
-const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 1
+const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 5
 
 const runMode = process.env.RUN_MODE || modes.GENERATE_AND_SEND_EVENTS_AND_USERS
 
