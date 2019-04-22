@@ -212,9 +212,9 @@ let generateRandomAttributes = (event) => {
 let getRandomAttributes = () => {
   return {
     kullaniciTipi: _.sample(customerTypes),
-    other1: faker.lorem.word(),
-    other2 : faker.lorem.word(),
-    other3 : faker.lorem.word()
+    other1: faker.internet.domainWord(),
+    other2: faker.internet.domainWord(),
+    other3: faker.internet.domainWord()
   }
 }
 
