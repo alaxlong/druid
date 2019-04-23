@@ -44,9 +44,69 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     volumes:
       - broker-logs:/var/lib/kafka/data
+      - ${AWS_SECRETS}:/root/.aws      
+  
+  connect1:
+    image: confluentinc/cp-kafka-connect:5.2.1
+    container_name: connect1
+    hostname: connect1
+    depends_on:
+      - zookeeper
+      - broker
+    ports:
+      - 18083:18083
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: broker:9092
+      CONNECT_REST_PORT: 18083
+      CONNECT_GROUP_ID: "s3-sink"
+      CONNECT_CONFIG_STORAGE_TOPIC: "__s3-sink-config"
+      CONNECT_OFFSET_STORAGE_TOPIC: "__s3-sink-offsets"
+      CONNECT_STATUS_STORAGE_TOPIC: "__s3-sink-status"
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1      
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.storage.StringConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "connect1"
+      CONNECT_PLUGIN_PATH: /usr/share/java 
+      CONNECT_SCHEMAS_ENABLE: "false"
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"            
+    volumes:
       - ${AWS_SECRETS}:/root/.aws
-      - ${BROKER_PLUGINS}:/root/plugins
-      - ${BROKER_CONNECT_CONFIG}:/root/config
+
+  connect2:
+    image: confluentinc/cp-kafka-connect:5.2.1
+    container_name: connect2
+    hostname: connect2
+    depends_on:
+      - zookeeper
+      - broker
+    ports:
+      - 28083:28083
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: broker:9092
+      CONNECT_REST_PORT: 28083
+      CONNECT_GROUP_ID: "s3-sink"
+      CONNECT_CONFIG_STORAGE_TOPIC: "__s3-sink-config"
+      CONNECT_OFFSET_STORAGE_TOPIC: "__s3-sink-offsets"
+      CONNECT_STATUS_STORAGE_TOPIC: "__s3-sink-status"
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1      
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.storage.StringConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "connect2"
+      CONNECT_PLUGIN_PATH: /usr/share/java 
+      CONNECT_SCHEMAS_ENABLE: "false"
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"            
+    volumes:
+      - ${AWS_SECRETS}:/root/.aws  
 
   # schema-registry:
   #   image: confluentinc/cp-schema-registry:5.1.0
