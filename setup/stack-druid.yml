@@ -1,0 +1,275 @@
+version: '3.7'
+
+networks:
+  druid-net:
+    external: true
+
+volumes: 
+  zk-data:
+  zk-logs:
+  data-mysql:
+  data-broker:
+  data-coordinator:
+  data-historical:
+  data-overlord:
+  data-router:
+  data-redis:
+  data-kafka:
+  data-middlemanager:
+
+services:
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.1.0    
+    hostname: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    ports:
+      - 2181:2181
+    volumes:
+      - zk-data:/var/lib/zookeeper/data
+      - zk-logs:/var/lib/zookeeper/log
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.node.type == manager]
+      restart_policy:
+        condition: on-failure
+    networks: 
+      - druid-net
+
+  # EXTERNAL://ec2-52-29-159-96.eu-central-1.compute.amazonaws.com:19092
+  # EXTERNAL:PLAINTEXT
+  # 19092:19092      
+  kafka-broker:
+    image: confluentinc/cp-kafka:5.1.0    
+    hostname: kafka-broker
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092      
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-broker:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT
+      KAFKA_LOG_RETENTION_HOURS: 24
+      KAFKA_LOG_ROLL_HOURS: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - data-kafka:/var/lib/kafka/data
+      - ~/aws:/root/.aws
+      # - ${BROKER_PLUGINS}:/root/plugins
+      # - ${BROKER_CONNECT_CONFIG}:/root/config
+    deploy:
+      replicas: 1      
+      placement:
+        constraints: [node.labels.node.type == kafka]
+      restart_policy:
+        condition: on-failure
+    networks: 
+      - druid-net
+
+  redis:
+    image: redis:5.0.3-alpine3.8
+    hostname: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - data-redis:/data
+    deploy:
+      placement:
+        constraints: [node.labels.node.type == data]        
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks: 
+      - druid-net
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: druid
+      MYSQL_USER: druid
+      MYSQL_PASSWORD: diurd
+    command:
+      - --character-set-server=utf8
+      - --collation-server=utf8_unicode_ci
+    volumes:
+      - data-mysql:/var/lib/mysql
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.node.type == manager]
+    networks: 
+      - druid-net
+
+  historical:    
+    image: canelmas/druid:0.2.0    
+    command: historical
+    ports:
+      - 8083:8083
+    volumes:
+      - ~/conf:/opt/druid/conf
+      - data-historical:/opt/druid/var
+    depends_on:
+      - zookeeper
+      - mysql
+    deploy:
+      placement:
+        constraints: [node.labels.node.type == data]
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks: 
+      - druid-net
+
+  broker:
+    image: canelmas/druid:0.2.0  
+    command: broker
+    ports:
+      - 8082:8082
+    volumes:
+      - ~/conf:/opt/druid/conf
+      - data-broker:/opt/druid/var
+    depends_on:
+      - zookeeper
+      - mysql
+    deploy:
+      placement:
+        constraints: [node.labels.node.type == query]
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks: 
+      - druid-net
+
+  coordinator:
+    image: canelmas/druid:0.2.0
+    command: coordinator
+    ports:
+      - 8081:8081
+    volumes:
+      - ~/conf:/opt/druid/conf
+      - data-coordinator:/opt/druid/var
+    depends_on:
+      - zookeeper
+      - mysql
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.node.type == manager]
+      restart_policy:
+        condition: on-failure
+    networks: 
+      - druid-net
+
+  overlord:
+    image: canelmas/druid:0.2.0
+    command: overlord
+    ports:
+      - 8090:8090
+    volumes:
+      - ~/conf:/opt/druid/conf
+      - data-overlord:/opt/druid/var
+    depends_on:
+      - zookeeper
+      - mysql
+    deploy:
+      placement:
+        constraints: [node.labels.node.type == manager]
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks: 
+      - druid-net
+      
+  router:
+    image: canelmas/druid:0.2.0
+    command: router
+    ports:
+      - 8888:8888
+    volumes:
+      - ~/conf:/opt/druid/conf
+      - data-router:/opt/druid/var
+    depends_on:
+      - zookeeper
+      - mysql
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.node.type == query]
+      restart_policy:
+        condition: on-failure
+    networks: 
+      - druid-net
+  
+  middleManager:
+    image: canelmas/druid:0.2.0
+    command: middleManager
+    ports:
+      - 8091:8091
+    volumes:
+      - ~/conf:/opt/druid/conf
+      - data-middlemanager:/opt/druid/var
+    depends_on:
+      - zookeeper
+      - mysql
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.node.type == data]
+    networks: 
+      - druid-net
+  
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - 18080:8080
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.node.type == manager]
+    networks: 
+      - druid-net
+  
+  superset:
+    image: amancevice/superset:0.28.1
+    ports:
+      - 18088:8088    
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.node.type == query]
+    networks: 
+      - druid-net
+
+  data-producer:
+    image: canelmas/connect-data-producer:3.0.0-a24
+    environment:
+      PERIOD_IN_MS: 15000
+      NUM_OF_USERS: 30
+      SESSION_PER_USER: 5
+      EVENTS_PER_SESSION: 30
+      TOPICS_USERS: users
+      TOPICS_EVENTS: events
+      RUN_MODE: 0
+      EVENT_SCENARIO: random
+      NODE_OPTIONS: --max_old_space_size=4096
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      BROKER: kafka-broker:9092
+      VERBOSE: "false"
+      NODE_ENV: production
+    deploy:
+      placement:
+        constraints: [node.labels.node.type == producer]
+      replicas: 0
+      restart_policy:
+        condition: on-failure
+    networks: 
+      - druid-net

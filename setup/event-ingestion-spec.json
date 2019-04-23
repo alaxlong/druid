@@ -1,0 +1,347 @@
+{
+    "type": "kafka",
+    "dataSchema": {
+        "dataSource": "events",
+        "parser": {
+            "type": "string",
+            "parseSpec": {
+                "format": "json",
+                "flattenSpec": {
+                    "useFieldDiscovery": true,
+                    "fields": [                        
+                        {
+                            "type": "path",
+                            "name": "sessionId",
+                            "expr": "$.clientSession.sessionId"
+                        },
+                        {
+                            "type": "path",
+                            "name": "timezone",
+                            "expr": "$.deviceProperty.timezone"
+                        },
+                        {
+                            "type": "path",
+                            "name": "lang",
+                            "expr": "$.deviceProperty.language"
+                        },
+                        {
+                            "type": "path",
+                            "name": "country",
+                            "expr": "$.deviceProperty.country"
+                        },
+                        {
+                            "type": "path",
+                            "name": "appVersionName",
+                            "expr": "$.deviceProperty.appVersionName"
+                        },
+                        {
+                            "type": "path",
+                            "name": "appVersionCode",
+                            "expr": "$.deviceProperty.appVersionCode"
+                        },
+                        {
+                            "type": "path",
+                            "name": "appPackageName",
+                            "expr": "$.deviceProperty.appPackageName"
+                        },
+                        {
+                            "type": "path",
+                            "name": "platform",
+                            "expr": "$.deviceProperty.platform"
+                        },
+                        {
+                            "type": "path",
+                            "name": "deviceCategory",
+                            "expr": "$.deviceProperty.deviceCategory"
+                        },
+                        {
+                            "type": "path",
+                            "name": "deviceBrand",
+                            "expr": "$.deviceProperty.deviceBrand"
+                        },
+                        {
+                            "type": "path",
+                            "name": "deviceModel",
+                            "expr": "$.deviceProperty.deviceModel"
+                        },
+                        {
+                            "type": "path",
+                            "name": "osVersion",
+                            "expr": "$.deviceProperty.osVersion"
+                        },
+                        {
+                            "type": "path",
+                            "name": "sdkVersion",
+                            "expr": "$.deviceProperty.sdkVersion"
+                        },
+                        {
+                            "type": "path",
+                            "name": "carrier",
+                            "expr": "$.deviceProperty.carrier"
+                        },           
+                        {
+                            "type" : "jq",
+                            "name" : "viewLabel",
+                            "expr" : "if .eventName == \"viewStart\" or .eventName == \"viewStop\" then .attributes.viewLabel else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "viewClass",
+                            "expr" : "if .eventName == \"viewStart\" or .eventName == \"viewStop\" then .attributes.viewClass else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "viewId",
+                            "expr" : "if .eventName == \"viewStart\" or .eventName == \"viewStop\" then .attributes.viewId else null end"
+                        },   
+                        {
+                            "type" : "jq",
+                            "name" : "productId",
+                            "expr" : "if .eventName == \"viewProduct\" or .eventName == \"addToWishList\" or.eventName == \"removeFromWishList\" or .eventName == \"addToCart\" or .eventName == \"removeFromCart\" then .attributes.id else null end"
+                        },  
+                        {
+                            "type" : "jq",
+                            "name" : "productName",
+                            "expr" : "if .eventName == \"viewProduct\" or .eventName == \"addToWishList\" or.eventName == \"removeFromWishList\" or .eventName == \"addToCart\" or .eventName == \"removeFromCart\" then .attributes.name else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "productDescr",
+                            "expr" : "if .eventName == \"viewProduct\" or .eventName == \"addToWishList\" or.eventName == \"removeFromWishList\" or .eventName == \"addToCart\" or .eventName == \"removeFromCart\" then .attributes.description else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "brand",
+                            "expr" : "if .eventName == \"viewProduct\" or .eventName == \"addToWishList\" or.eventName == \"removeFromWishList\" or .eventName == \"addToCart\" or .eventName == \"removeFromCart\" then .attributes.brand else null end"
+                        },                          
+                        {
+                            "type" : "jq",
+                            "name" : "quantity",
+                            "expr" : "if .eventName == \"viewProduct\" or .eventName == \"addToWishList\" or.eventName == \"removeFromWishList\" or .eventName == \"addToCart\" or .eventName == \"removeFromCart\" or .eventName == \"startCheckout\" or .eventName == \"purchase\" then .attributes.quantity else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "price",
+                            "expr" : "if .eventName == \"viewProduct\" or .eventName == \"addToWishList\" or.eventName == \"removeFromWishList\" or .eventName == \"addToCart\" or .eventName == \"removeFromCart\" then .attributes.price else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "variant",
+                            "expr" : "if .eventName == \"viewProduct\" or .eventName == \"addToWishList\" or.eventName == \"removeFromWishList\" or .eventName == \"addToCart\" or .eventName == \"removeFromCart\" then .attributes.variant else null end"
+                        },                   
+                        {
+                            "type" : "jq",
+                            "name" : "category",
+                            "expr" : "if .eventName == \"viewProduct\" or .eventName == \"addToWishList\" or.eventName == \"removeFromWishList\" or .eventName == \"addToCart\" or .eventName == \"removeFromCart\" or .eventName == \"viewCategory\" then .attributes.category else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "currency",
+                            "expr" : "if .eventName == \"viewProduct\" or .eventName == \"addToWishList\" or.eventName == \"removeFromWishList\" or .eventName == \"addToCart\" or .eventName == \"removeFromCart\" or .eventName == \"startCheckout\" or .eventName == \"purchase\" then .attributes.currency else null end"
+                        },   
+                        {
+                            "type" : "jq",
+                            "name" : "keyword",
+                            "expr" : "if .eventName == \"search\" then .attributes.keyword else null end"
+                        },     
+                        {
+                            "type" : "jq",
+                            "name" : "value",
+                            "expr" : "if .eventName == \"startCheckout\" or .eventName == \"purchase\" then .attributes.value else null end"
+                        },     
+                        {
+                            "type" : "jq",
+                            "name" : "tax",
+                            "expr" : "if .eventName == \"purchase\" then .attributes.tax else null end"
+                        },   
+                        {
+                            "type" : "jq",
+                            "name" : "ship",
+                            "expr" : "if .eventName == \"purchase\" then .attributes.ship else null end"
+                        },       
+                        {
+                            "type" : "jq",
+                            "name" : "coupon",
+                            "expr" : "if .eventName == \"purchase\" then .attributes.coupon else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "discount",
+                            "expr" : "if .eventName == \"purchase\" then .attributes.discount else null end"
+                        },  
+                        {
+                            "type" : "jq",
+                            "name" : "trxId",
+                            "expr" : "if .eventName == \"purchase\" then .attributes.trxId else null end"
+                        },   
+                        {
+                            "type" : "jq",
+                            "name" : "paymentMethod",
+                            "expr" : "if .eventName == \"purchase\" then .attributes.paymentMethod else null end"
+                        },       
+                        {
+                            "type" : "jq",
+                            "name" : "purchaseSuccess",
+                            "expr" : "if .eventName == \"purchase\" then .attributes.success else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "purchaseErrorCode",
+                            "expr" : "if .eventName == \"purchase\" then .attributes.errorCode else null end"
+                        },    
+                        {
+                            "type" : "jq",
+                            "name" : "purchaseErrorMessage",
+                            "expr" : "if .eventName == \"purchase\" then .attributes.errorMessage else null end"
+                        },                                                                                                                                        
+                        {
+                            "type": "jq",
+                            "name": "ppIds",
+                            "expr": "if .eventName == \"purchase\" then [.attributes.products[].id] else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "ppNames",
+                            "expr": "if .eventName == \"purchase\" then [.attributes.products[].name] else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "ppDescriptions",
+                            "expr": "if .eventName == \"purchase\" then [.attributes.products[].description] else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "ppBrands",
+                            "expr": "if .eventName == \"purchase\" then [.attributes.products[].brand] else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "ppQuantities",
+                            "expr": "if .eventName == \"purchase\" then [.attributes.products[].quantity] else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "ppPrices",
+                            "expr": "if .eventName == \"purchase\" then [.attributes.products[].price] else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "ppVariants",
+                            "expr": "if .eventName == \"purchase\" then [.attributes.products[].variant] else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "ppCategories",
+                            "expr": "if .eventName == \"purchase\" then [.attributes.products[].category] else null end"
+                        },   
+                        {
+                            "type": "jq",
+                            "name": "ppCurrencies",
+                            "expr": "if .eventName == \"purchase\" then [.attributes.products[].currency] else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrKey1",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[0]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[0] else null end"
+                        },                                              
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrKey2",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[1]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[1] else null end"
+                        },                      
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrKey3",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[2]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[2] else null end"
+                        },
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrKey4",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[3]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[3] else null end"
+                        },                        
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrKey5",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[4]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[4] else null end"
+                        },         
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrVal1",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[0]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[0] | .value else null end"
+                        },                                 
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrVal2",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[1]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[1] | .value else null end"
+                        },                               
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrVal3",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[2]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[2] | .value else null end"
+                        },                               
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrVal4",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[3]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[3] | .value else null end"
+                        },                               
+                        {
+                            "type" : "jq",
+                            "name" : "custAttrVal5",
+                            "expr" : "if (.attributes != null) and (.attributes | keys | .[4]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[4] | .value else null end"
+                        }
+                    ]
+                },
+                "timestampSpec": {
+                    "column": "clientCreationDate",
+                    "format": "auto"
+                },
+                "dimensionsSpec": {
+                    "dimensions": []
+                }
+            }
+        },
+        "metricsSpec": [            
+            {
+                "type": "thetaSketch",
+                "name": "user_id_sketch",
+                "fieldName": "appconnectId"
+            },
+            {
+                "type": "thetaSketch",
+                "name": "session_id_sketch",
+                "fieldName": "sessionId"
+            },
+            {
+                "type": "thetaSketch",
+                "name": "event_id_sketch",
+                "fieldName": "eventId"
+            },
+            {
+                "type": "thetaSketch",
+                "name": "device_id_sketch",
+                "fieldName": "deviceId"
+            }
+        ],
+        "granularitySpec": {
+            "type": "uniform",
+            "segmentGranularity": "DAY",
+            "queryGranularity": "HOUR",
+            "rollup": true
+        }
+    },
+    "tuningConfig": {
+        "type": "kafka",
+        "reportParseExceptions": true,
+        "resetOffsetAutomatically": false
+    },
+    "ioConfig": {
+        "topic": "events",
+        "replicas": 1,
+        "taskDuration": "PT1H",
+        "completionTimeout": "PT30M",
+        "useEarliestOffset": false,
+        "consumerProperties": {
+            "bootstrap.servers": "kafka-broker:9092"
+        }
+    }
+}
