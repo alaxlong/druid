@@ -7,8 +7,7 @@ import {
 } from 'buffer';
 
 const commerceEvents = [
-  "purchase",
-  "errorPurchase",
+  "purchase",  
   "viewProduct",
   "viewCategory",
   "search",
@@ -113,10 +112,7 @@ let generateEvent = () => {
       })
 
     case "purchase":
-      return render(event, generatePurchase(true))
-
-    case "errorPurchase":
-      return render(event, generatePurchase(false))
+      return render(event, generatePurchase(_.sample[true, false]))    
 
     case "addToWishList":
       return render(event, generateProduct())

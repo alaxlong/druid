@@ -10,7 +10,7 @@ start() {
         -e PERIOD_IN_MS=10000 \
         -e NUM_OF_USERS=5 \
         -e SESSION_PER_USER=2 \
-        -e EVENTS_PER_SESSION=10 \
+        -e EVENTS_PER_SESSION=20 \
         -e TOPICS_USERS=users \
         -e TOPICS_EVENTS=events \
         -e RUN_MODE=0 \
