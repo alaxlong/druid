@@ -1,50 +1,58 @@
 #!/bin/bash
 
-YML="docker/docker-compose-template.yml"
-DATA_FOLDER="/Users/can/Projects/poc-kafka-hadoop-spark/kafka/data"
+YML="docker/kafka-template.yml"
 KAFKA_CONNECT_S3_SINK="confluentinc-kafka-connect-s3-5.0.0.zip"
 
-clear_dirs() {    
-    rm -rf $DATA_FOLDER/zk-data
-    rm -rf $DATA_FOLDER/zk-logs
-    rm -rf $DATA_FOLDER/k1-data
-    rm -rf $DATA_FOLDER/plugins
-    rm -rf $DATA_FOLDER/connect
-    rm -rf $DATA_FOLDER/aws
+help() {
+    echo "Usage : start.sh <bind_mount:required> <reset:optional>"
 }
 
 create_dirs() {    
-    mkdir -p $DATA_FOLDER/zk-data
-    mkdir -p $DATA_FOLDER/zk-logs
-    mkdir -p $DATA_FOLDER/k1-data
-    mkdir -p $DATA_FOLDER/plugins
-    mkdir -p $DATA_FOLDER/connect
-    mkdir -p $DATA_FOLDER/aws
+    rm -rf $1
+    mkdir -p $1/plugins
+    mkdir -p $1/connect
+    mkdir -p $1/aws
 }
 
 copy_files() {
-    cp config/workers/worker-json.properties $DATA_FOLDER/connect/
-    cp config/sinks/kafka-to-s3-json-gzip.properties $DATA_FOLDER/connect/
-    cp config/aws/* $DATA_FOLDER/aws/    
-    tar -C $DATA_FOLDER/plugins/ -zxf $KAFKA_CONNECT_S3_SINK
+    cp config/workers/worker-json.properties $1/connect/
+    cp config/sinks/kafka-to-s3-json-gzip.properties $1/connect/
+    cp config/aws/* $1/aws/
+    tar -C $1/plugins/ -zxf $KAFKA_CONNECT_S3_SINK
+}
+
+clear_volumes() {
+    docker volume rm docker_zk-data
+    docker volume rm docker_zk-logs
+    docker volume rm docker_broker-logs  
+}
+
+create_network() {
+    docker network rm kafka-net
+    docker network create kafka-net
 }
 
 reset() {
-    echo 'recreating kafka data directories...'
-    clear_dirs
-    create_dirs
-    copy_files
+    echo 'recreating kafka data directories...'    
+    create_dirs $1
+    copy_files $1
+    clear_volumes
+    create_network
 }
 
-start() {           
-    if [ "$1" == "reset" ]
-    then
-        reset
+start() {
+    if [ "$2" == "reset" ]; then
+        reset $1
     fi
 
     echo 'starting kafka..'
     cp docker/local.env ./.env
-    docker-compose --file $YML up
+    docker-compose --file $YML up -d
 }
 
-start $1
+if [ $# -lt 2 ]; then
+    help
+    exit
+fi
+
+start $1 $2
