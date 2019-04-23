@@ -207,7 +207,7 @@ let readUsersFromRedisAndSendEvents = () => {
   }, PERIOD)
 }
 
-let generateAndSendEventsAndUsers = () => {
+let generateAndSendEventsAndUsers = () => {  
 
   setInterval(() => {
 
@@ -300,7 +300,7 @@ let sendUser = (userInfo) => {
 
 let sendEvent = (event) => {
 
-  if (isProd()) {
+  if (isProd()) {    
 
     let event_payload = [{
       topic: KafkaConfig.topics.events,
@@ -312,7 +312,7 @@ let sendEvent = (event) => {
     kafkaProducer.send(event_payload, (err, result) => {
       if (err) {
         error(`Error producing! ${err}`)
-      } else {
+      } else {        
         if (isVerbose()) {
           info(result)
         }

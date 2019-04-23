@@ -1,5 +1,5 @@
 export default {
-  brokerHost: process.env.BROKER || 'localhost:9092',
+  brokerHost: process.env.BROKER || 'localhost:19092',
   timeout: 20000,
   producerOptions: {
     requireAcks: 1,
@@ -7,8 +7,8 @@ export default {
     partitionerType: 0
   },
   topics: {
-    users: process.env.TOPICS_USERS || 'poc-users',
-    events: process.env.TOPICS_EVENTS || 'poc-events'
+    users: process.env.TOPICS_USERS || 'users',
+    events: process.env.TOPICS_EVENTS || 'events'
   },
   compressionType: 1 // 1: gzip 0: no compression
 }

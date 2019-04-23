@@ -214,7 +214,8 @@ let getRandomAttributes = () => {
     kullaniciTipi: _.sample(customerTypes),
     other1: faker.internet.domainWord(),
     other2: faker.internet.domainWord(),
-    other3: faker.internet.domainWord()
+    other3: faker.internet.domainWord(),
+    other4: faker.internet.domainWord()
   }
 }
 

@@ -14,7 +14,7 @@ start() {
         -e TOPICS_USERS=users \
         -e TOPICS_EVENTS=events \
         -e RUN_MODE=0 \
-        -e EVENT_SCENARIO=commerce \
+        -e EVENT_SCENARIO=random \
         -e NODE_OPTIONS=--max_old_space_size=4096 \
         -e REDIS_HOST=redis \
         -e REDIS_PORT=6379 \
