@@ -1,0 +1,27 @@
+{
+    "queryType": "groupBy",
+    "dataSource": "events",
+    "intervals" : ["2019-04-22/2019-04-23"],
+    "granularity": {
+      "type": "all"
+    },
+    "dimensions": [
+      {
+        "type": "default",
+        "dimension": "products",
+        "outputName": "products"
+      }
+    ],
+    "filter" : {
+        "type" : "and",
+        "fields" : [
+            {"type" : "selector", "dimension" : "eventName", "value" : "purchase"}
+        ]
+    },
+    "aggregations": [
+      {
+        "type": "count",
+        "name": "count"
+      }
+    ]
+  }

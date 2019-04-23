@@ -1,0 +1,15 @@
+{
+    "queryType": "topN",
+    "dataSource" : "events",
+    "intervals" : ["2019-03-01/2019-04-23"],
+    "granularity" :"all",
+    "dimension" : "eventName",
+    "metric" : "count",
+    "threshold" :10,
+    "aggregations" : [
+        {
+            "type" : "count",
+            "name" : "count"
+        }
+    ]
+}

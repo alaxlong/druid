@@ -1,0 +1,18 @@
+{
+    "queryType": "groupBy",
+    "dataSource": "events",
+    "granularity": "all",
+    "dimensions": ["country", "carrier"],
+    "limitSpec": { "type": "default", "limit": 5000, "columns": ["country"] },
+    "filter": {
+      "type": "and",
+      "fields": [
+        { "type": "selector", "dimension": "eventName", "value": "purchase" },
+        { "type": "selector", "dimension": "country", "value": "BS" }                
+      ]
+    },    
+    "aggregations" : [
+        {"type": "count", "name" : "totalCount", "fieldName" : "eventId"}
+    ],
+    "intervals": [ "2019-01-01T00:00:00.000/2019-04-23T00:00:00.000" ]    
+  }
