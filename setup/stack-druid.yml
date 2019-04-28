@@ -343,7 +343,7 @@ services:
       - druid-net
 
   data-producer:
-    image: canelmas/connect-data-producer:3.0.0-a26
+    image: canelmas/data-producer:1.0.0
     environment:
       PERIOD_IN_MS: 5000
       NUM_OF_USERS: 10
