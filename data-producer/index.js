@@ -1,7 +1,8 @@
 import _ from 'lodash';
 
 import {
-  sessionStopTime
+  getSessionStopTime,
+  getSessionDuration
 } from "./util";
 import {
   KafkaClient,
@@ -207,22 +208,22 @@ let readUsersFromRedisAndSendEvents = () => {
   }, PERIOD)
 }
 
-let generateAndSendEventsAndUsers = () => {  
+let generateAndSendEventsAndUsers = () => {
 
   setInterval(() => {
 
     for (var k = 0; k < NUM_OF_USERS; k++) {
 
-      // create new user
+      // new user
       let userInfo = UserGenerator.generate()
 
-      // create new device based on user's last device id
+      // new device based on user's last device id
       let deviceInfo = DeviceGenerator.generate(userInfo["ldid"])
 
-      // create user sessions
+      // sessions
       for (var i = 0; i < SESSION_PER_USER; i++) {
 
-        // create session events
+        // session events
         createAndSendSessionEvents(userInfo, deviceInfo)
 
       }
@@ -260,14 +261,19 @@ let createAndSendSessionEvents = (userInfo, deviceInfo) => {
 
   _.forEach(sessionEvents, sendEvent)
 
-  // fire clientSessionStop
+  // fire clientSessionStop  
+  let sessionStoptime = getSessionStopTime(EVENTS_PER_SESSION, sessionStartTime)
+  _.assignIn(sessionInfo["clientSession"], {
+    stopDateTime: sessionStoptime,
+    duration: getSessionDuration(sessionStartTime, sessionStoptime)
+  })
+
   sendEvent(EventGenerator.generate('clientSessionStop',
-    sessionStopTime(EVENTS_PER_SESSION, sessionStartTime),
+    sessionStoptime,
     deviceInfo,
     sessionInfo["clientSession"],
     userInfo["aid"],
     userInfo["cid"]))
-
 }
 
 let sendUser = (userInfo) => {
@@ -300,7 +306,7 @@ let sendUser = (userInfo) => {
 
 let sendEvent = (event) => {
 
-  if (isProd()) {    
+  if (isProd()) {
 
     let event_payload = [{
       topic: KafkaConfig.topics.events,
@@ -312,7 +318,7 @@ let sendEvent = (event) => {
     kafkaProducer.send(event_payload, (err, result) => {
       if (err) {
         error(`Error producing! ${err}`)
-      } else {        
+      } else {
         if (isVerbose()) {
           info(result)
         }
