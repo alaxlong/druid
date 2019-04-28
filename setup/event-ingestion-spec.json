@@ -15,6 +15,11 @@
                             "expr": "$.clientSession.sessionId"
                         },
                         {
+                            "type": "jq",
+                            "name": "sessionDuration",
+                            "expr": "if .eventName == \"clientSessionStop\" then .clientSession.duration else null end"                            
+                        },
+                        {
                             "type": "path",
                             "name": "timezone",
                             "expr": "$.deviceProperty.timezone"
@@ -187,12 +192,12 @@
                         {
                             "type" : "jq",
                             "name" : "purchaseErrorCode",
-                            "expr" : "if .eventName == \"purchase\" then .attributes.errorCode else null end"
+                            "expr" : "if .eventName == \"purchase\" and .attributes.errorCode != null then .attributes.errorCode else null end"
                         },    
                         {
                             "type" : "jq",
                             "name" : "purchaseErrorMessage",
-                            "expr" : "if .eventName == \"purchase\" then .attributes.errorMessage else null end"
+                            "expr" : "if .eventName == \"purchase\" and .attributes.errorMessage != null then .attributes.errorMessage else null end"
                         },                                                                                                                                        
                         {
                             "type": "jq",
@@ -320,7 +325,7 @@
                 "type": "thetaSketch",
                 "name": "device_id_sketch",
                 "fieldName": "deviceId"
-            }
+            }           
         ],
         "granularitySpec": {
             "type": "uniform",
@@ -337,7 +342,8 @@
     "ioConfig": {
         "topic": "events",
         "replicas": 1,
-        "taskDuration": "PT1H",
+        "taskCount" : 2,
+        "taskDuration": "PT5M",
         "completionTimeout": "PT30M",
         "useEarliestOffset": false,
         "consumerProperties": {
