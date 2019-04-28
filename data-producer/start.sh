@@ -20,7 +20,7 @@ start() {
         -e REDIS_PORT=6379 \
         -e BROKER=broker:9092 \
         -e VERBOSE=true \
-        -e NODE_ENV=production canelmas/connect-data-producer:$1
+        -e NODE_ENV=production canelmas/data-producer:$1
 }
 
 if [ $# -lt 2 ]; then

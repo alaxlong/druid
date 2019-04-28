@@ -3,8 +3,8 @@
 build_and_push() {
     npm run build
 
-    docker build -t canelmas/connect-data-producer:$1 .
-    docker push canelmas/connect-data-producer:$1
+    docker build -t canelmas/data-producer:$1 .
+    docker push canelmas/data-producer:$1
 }
 
 if [ $# -lt 1 ]; then

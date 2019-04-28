@@ -8,6 +8,7 @@ import {
 
 const commerceEvents = [
   "purchase",  
+  "purchaseError",
   "viewProduct",
   "viewCategory",
   "search",
@@ -112,7 +113,10 @@ let generateEvent = () => {
       })
 
     case "purchase":
-      return render(event, generatePurchase(_.sample[true, false]))    
+      return render(event, generatePurchase(true))    
+    
+    case "purchaseError":
+      return render("purchase", generatePurchase(false))    
 
     case "addToWishList":
       return render(event, generateProduct())
