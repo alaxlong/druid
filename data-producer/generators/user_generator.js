@@ -7,8 +7,7 @@ let generate = () => {
 
   let ldid = uuid()
 
-  return {
-    appId: 'poc',
+  return {    
     email : faker.internet.email(),
     phone: faker.phone.phoneNumber(),
     aid: uuid(),

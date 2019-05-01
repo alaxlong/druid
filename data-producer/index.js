@@ -27,18 +27,23 @@ const PERIOD = process.env.PERIOD_IN_MS || 5 * 1000;
 const NUM_OF_USERS = process.env.NUM_OF_USERS || 1
 const SESSION_PER_USER = process.env.SESSION_PER_USER || 1
 const EVENTS_PER_SESSION = process.env.EVENTS_PER_SESSION || 5
+const RUN_MODE = process.env.RUN_MODE || modes.GENERATE_AND_SEND_EVENTS_AND_USERS
 
-const runMode = process.env.RUN_MODE || modes.GENERATE_AND_SEND_EVENTS_AND_USERS
+const NODE_ENV = process.env.NODE_ENV || "development"
+const VERBOSE = process.env.VERBOSE || false
 
-const mode = process.env.NODE_ENV || "development"
-const verbose = process.env.VERBOSE || false
+const apps = (process.env.APP_IDS || "DemoApp").replace(" ", "").split(",")  
+
+let getRandomAppId = () => {  
+  return _.sample(apps)
+}
 
 let isVerbose = () => {
-  return verbose == "true"
+  return VERBOSE == "true"
 }
 
 let isProd = () => {
-  return mode == "production"
+  return NODE_ENV == "production"
 }
 
 let exit = () => {
@@ -57,14 +62,14 @@ let prettyPrint = (json) => {
   info(JSON.stringify(json, null, 4))
 }
 
-let printSetup = () => {
-  info(`mode=${mode}`)
-  info(`runMode=${runMode}`)
+let showConfig = () => {
+  info(`mode=${NODE_ENV}`)
+  info(`runMode=${RUN_MODE}`)
   info(`period=${PERIOD}`)
   info(`numOfUsers=${NUM_OF_USERS}`)
   info(`sessionPerUser=${SESSION_PER_USER}`)
   info(`eventPerSession=${EVENTS_PER_SESSION}`)
-  info(`verbose=${verbose}`)
+  info(`verbose=${VERBOSE}`)  
 }
 
 redisClient.on('ready', () => {
@@ -83,13 +88,13 @@ kafkaProducer.on("error", (err) => {
 
 kafkaProducer.on('ready', function () {
   info("Kafka [OK]")
-  printSetup()
+  showConfig()
 
-  if (runMode == modes.SEND_USERS_ON_REDIS) {
+  if (RUN_MODE == modes.SEND_USERS_ON_REDIS) {
     sendUsersOnRedis()
-  } else if (runMode == modes.GENERATE_AND_WRITE_USERS_TO_REDIS) {
+  } else if (RUN_MODE == modes.GENERATE_AND_WRITE_USERS_TO_REDIS) {
     generateAndPersistUsersOntoRedis()
-  } else if (runMode == modes.GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS) {
+  } else if (RUN_MODE == modes.GENERATE_AND_SEND_EVENTS_WITH_USERS_READ_FROM_REDIS) {
     readUsersFromRedisAndSendEvents()
   } else {
     generateAndSendEventsAndUsers()
@@ -214,6 +219,8 @@ let generateAndSendEventsAndUsers = () => {
 
     for (var k = 0; k < NUM_OF_USERS; k++) {
 
+      let appId = getRandomAppId()
+
       // new user
       let userInfo = UserGenerator.generate()
 
@@ -224,7 +231,7 @@ let generateAndSendEventsAndUsers = () => {
       for (var i = 0; i < SESSION_PER_USER; i++) {
 
         // session events
-        createAndSendSessionEvents(userInfo, deviceInfo)
+        createAndSendSessionEvents(appId, userInfo, deviceInfo)
 
       }
 
@@ -237,19 +244,21 @@ let generateAndSendEventsAndUsers = () => {
 
 }
 
-let createAndSendSessionEvents = (userInfo, deviceInfo) => {
+let createAndSendSessionEvents = (appId, userInfo, deviceInfo) => {
 
   let sessionInfo = SessionGenerator.generate()
 
   let sessionStartTime = sessionInfo["clientSession"]["startDateTime"]
 
   // fire clientSessionStart
-  sendEvent(EventGenerator.generate('clientSessionStart',
-    sessionStartTime,
-    deviceInfo,
-    sessionInfo["clientSession"],
-    userInfo["aid"],
-    userInfo["cid"]))
+  sendEvent(
+    EventGenerator.generate('clientSessionStart',
+      sessionStartTime,
+      deviceInfo,
+      sessionInfo["clientSession"],
+      userInfo["aid"],
+      userInfo["cid"],
+      appId))
 
   // fire session events
   let sessionEvents = EventGenerator.generateSessionEvents(EVENTS_PER_SESSION,
@@ -257,12 +266,14 @@ let createAndSendSessionEvents = (userInfo, deviceInfo) => {
     deviceInfo,
     sessionInfo["clientSession"],
     userInfo["aid"],
-    userInfo["cid"])
+    userInfo["cid"],
+    appId)
 
   _.forEach(sessionEvents, sendEvent)
 
   // fire clientSessionStop  
   let sessionStoptime = getSessionStopTime(EVENTS_PER_SESSION, sessionStartTime)
+
   _.assignIn(sessionInfo["clientSession"], {
     stopDateTime: sessionStoptime,
     duration: getSessionDuration(sessionStartTime, sessionStoptime)
@@ -273,7 +284,8 @@ let createAndSendSessionEvents = (userInfo, deviceInfo) => {
     deviceInfo,
     sessionInfo["clientSession"],
     userInfo["aid"],
-    userInfo["cid"]))
+    userInfo["cid"],
+    appId))
 }
 
 let sendUser = (userInfo) => {
@@ -285,8 +297,7 @@ let sendUser = (userInfo) => {
       messages: [JSON.stringify(userInfo)],
       attributes: KafkaConfig.compressionType
     }]
-
-    // send user
+    
     kafkaProducer.send(user_payload, (err, result) => {
       if (err) {
         error(`Error producing! ${err}`)
@@ -313,8 +324,7 @@ let sendEvent = (event) => {
       messages: [JSON.stringify(event)],
       attributes: KafkaConfig.compressionType
     }]
-
-    // send user
+    
     kafkaProducer.send(event_payload, (err, result) => {
       if (err) {
         error(`Error producing! ${err}`)

@@ -34,7 +34,8 @@ export let generate = (eventName,
                            deviceInfo,
                            clientSession,
                            appconnectId,
-                           customerId) => {
+                           customerId,
+                           appId) => {
 
   return {
     eventId: uuid(),
@@ -42,6 +43,7 @@ export let generate = (eventName,
     appconnectId: appconnectId,
     customerId: customerId,
     eventName: eventName,
+    appId : appId,
     clientCreationDate: eventCreationTime,
     deviceProperty: deviceInfo,
     clientSession : clientSession,
@@ -55,7 +57,8 @@ export let generateSessionEvents = (numOfEvents,
                                         deviceInfo,
                                         clientSession,
                                         appconnectId,
-                                        customerId) => {
+                                        customerId,
+                                        appId) => {
 
   let scenario = process.env.EVENT_SCENARIO || _.sample(scenarios)
 
@@ -68,7 +71,8 @@ export let generateSessionEvents = (numOfEvents,
                                 deviceInfo,
                                 clientSession,
                                 appconnectId,
-                                customerId)
+                                customerId,
+                                appId)
   })
 
 }
@@ -78,33 +82,38 @@ let generateSessionEvent = (scenario,
                               deviceInfo,
                               clientSession,
                               appconnectId,
-                              customerId) => {
+                              customerId,
+                              appId) => {
   switch(scenario) {
     case SCENARIO_COMMERCE:
       return generateCommerceEvent(eventCreationTime,
                                    deviceInfo,
                                    clientSession,
                                    appconnectId,
-                                   customerId)
+                                   customerId,
+                                   appId)
     case SCENARIO_CUSTOM:
       return generateCustomEvent(eventCreationTime,
                                  deviceInfo,
                                  clientSession,
                                  appconnectId,
-                                 customerId)
+                                 customerId,
+                                 appId)
     case SCENARIO_VIEW:
       return generateViewEvent(eventCreationTime,
                                deviceInfo,
                                clientSession,
                                appconnectId,
-                               customerId)
+                               customerId,
+                               appId)
     case SCENARIO_RANDOM:
     default:
       return generateRandomEvent(eventCreationTime,
                                  deviceInfo,
                                  clientSession,
                                  appconnectId,
-                                 customerId)
+                                 customerId,
+                                 appId)
   }
 
 }
@@ -113,7 +122,8 @@ let generateCommerceEvent = (eventCreationTime,
                                deviceInfo,
                                clientSession,
                                appconnectId,
-                               customerId) => {
+                               customerId,
+                               appId) => {
 
   let event = CommerceEvents.takeOne()
   return generateEvent(event["name"],
@@ -122,14 +132,16 @@ let generateCommerceEvent = (eventCreationTime,
                        deviceInfo,
                        clientSession,
                        appconnectId,
-                       customerId)
+                       customerId,
+                       appId)
 }
 
 let generateCustomEvent = (eventCreationTime,
                              deviceInfo,
                              clientSession,
                              appconnectId,
-                             customerId) => {
+                             customerId,
+                             appId) => {
 
   let event = CustomEvents.takeOne()                                                        
   return generateEvent(event["name"],
@@ -138,7 +150,8 @@ let generateCustomEvent = (eventCreationTime,
                        deviceInfo,
                        clientSession,
                        appconnectId,
-                       customerId)
+                       customerId,
+                       appId)
 
 }
 
@@ -146,7 +159,8 @@ let generateViewEvent = (eventCreationTime,
                            deviceInfo,
                            clientSession,
                            appconnectId,
-                           customerId) => {
+                           customerId,
+                           appId) => {
 
   let event = ViewEvents.takeOne()
   return generateEvent(event["name"],
@@ -155,7 +169,8 @@ let generateViewEvent = (eventCreationTime,
                        deviceInfo,
                        clientSession,
                        appconnectId,
-                       customerId)
+                       customerId,
+                       appId)
 
 }
 
@@ -163,7 +178,8 @@ let generateRandomEvent = (eventCreationTime,
                              deviceInfo,
                              clientSession,
                              appconnectId,
-                             customerId) => {
+                             customerId,
+                             appId) => {
 
   let category = _.sample(eventCategories)
 
@@ -173,20 +189,23 @@ let generateRandomEvent = (eventCreationTime,
                                    deviceInfo,
                                    clientSession,
                                    appconnectId,
-                                   customerId)
+                                   customerId,
+                                   appId)
     case EVENT_CATEGORY_VIEWS:
       return generateViewEvent(eventCreationTime,
                                deviceInfo,
                                clientSession,
                                appconnectId,
-                               customerId)
+                               customerId,
+                               appId)
     case EVENT_CATEGORY_CUSTOM:
     default:
       return generateCustomEvent(eventCreationTime,
                                  deviceInfo,
                                  clientSession,
                                  appconnectId,
-                                 customerId)
+                                 customerId,
+                                 appId)
   }
 
 }
@@ -197,7 +216,8 @@ let generateEvent = (eventName,
                        deviceInfo,
                        clientSession,
                        appconnectId,
-                       customerId) => {
+                       customerId,
+                       appId) => {
 
   return {
     eventId: uuid(),
@@ -205,6 +225,7 @@ let generateEvent = (eventName,
     appconnectId: appconnectId,
     customerId: customerId,
     eventName: eventName,
+    appId: appId,
     clientCreationDate: eventCreationTime,
     deviceProperty: deviceInfo,
     clientSession : clientSession,
