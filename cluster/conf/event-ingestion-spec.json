@@ -342,8 +342,8 @@
     "ioConfig": {
         "topic": "events",
         "replicas": 1,
-        "taskCount" : 2,
-        "taskDuration": "PT5M",
+        "taskCount" : 3,
+        "taskDuration": "PT15M",
         "completionTimeout": "PT30M",
         "useEarliestOffset": false,
         "consumerProperties": {

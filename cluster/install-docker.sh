@@ -28,4 +28,5 @@ version_d="docker-compose --version"
 echo $(eval $version_dc)
 echo $(eval $version_d)
 
-echo "Go reboot the instance"
+echo "Rebooting instance..."
+sudo reboot

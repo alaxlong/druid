@@ -61,7 +61,7 @@ services:
     networks: 
       - druid-net
     
-  kafka-broker: # no swarm mode support for confluent kafka
+  kafka-broker: # no swarm support for confluent kafka
     image: wurstmeister/kafka:2.12-2.2.0
     hostname: kafka-broker
     depends_on:
@@ -77,7 +77,7 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL      
       KAFKA_LOG_DIRS: /kafka/logs
-      KAFKA_LOG_RETENTION_HOURS: 3 
+      KAFKA_LOG_RETENTION_HOURS: 2
       KAFKA_LOG_ROLL_HOURS: 1        
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_RESERVED_BROKER_MAX_ID : 1020     
@@ -93,25 +93,6 @@ services:
         condition: on-failure
     networks: 
       - druid-net
-  
-  # burrow:
-  #   image: vixns/burrow:latest
-  #   depends_on:
-  #     - zookeeper
-  #     - kafka-broker
-  #   ports:
-  #     - 18000:8000
-  #   volumes:
-  #     - ~/conf/burrow:/etc/burrow  
-  #   deploy:
-  #     replicas: 1
-  #     placement:
-  #       constraints:
-  #         - node.labels.node.type == kafka
-  #     restart_policy:
-  #       condition: on-failure
-  #   networks: 
-  #     - druid-net
  
   connect:
     image: confluentinc/cp-kafka-connect:5.2.1    
@@ -142,6 +123,7 @@ services:
       CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"            
     volumes:
       - ~/aws:/root/.aws
+      - ~/conf-kconnect:/usr/share/java
     deploy:
       replicas: 1
       placement:
@@ -195,7 +177,7 @@ services:
     ports:
       - 8083:8083
     volumes:
-      - ~/conf:/opt/druid/conf
+      - ~/conf-druid:/opt/druid/conf
       - data-historical:/opt/druid/var
     depends_on:
       - zookeeper
@@ -216,7 +198,7 @@ services:
     ports:
       - 8082:8082
     volumes:
-      - ~/conf:/opt/druid/conf
+      - ~/conf-druid:/opt/druid/conf
       - data-broker:/opt/druid/var
     depends_on:
       - zookeeper
@@ -237,7 +219,7 @@ services:
     ports:
       - 8081:8081
     volumes:
-      - ~/conf:/opt/druid/conf
+      - ~/conf-druid:/opt/druid/conf
       - data-coordinator:/opt/druid/var
     depends_on:
       - zookeeper
@@ -258,7 +240,7 @@ services:
     ports:
       - 8090:8090
     volumes:
-      - ~/conf:/opt/druid/conf
+      - ~/conf-druid:/opt/druid/conf
       - data-overlord:/opt/druid/var
     depends_on:
       - zookeeper
@@ -279,7 +261,7 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - ~/conf:/opt/druid/conf
+      - ~/conf-druid:/opt/druid/conf
       - data-router:/opt/druid/var
     depends_on:
       - zookeeper
@@ -302,7 +284,7 @@ services:
     ports:
       - 8091:8091
     volumes:
-      - ~/conf:/opt/druid/conf
+      - ~/conf-druid:/opt/druid/conf
       - data-middlemanager:/opt/druid/var
     depends_on:
       - zookeeper
@@ -343,12 +325,12 @@ services:
       - druid-net
 
   data-producer:
-    image: canelmas/data-producer:1.0.0
+    image: canelmas/data-producer:1.2.1
     environment:
       PERIOD_IN_MS: 5000
       NUM_OF_USERS: 10
-      SESSION_PER_USER: 5
-      EVENTS_PER_SESSION: 30
+      SESSION_PER_USER: 3
+      EVENTS_PER_SESSION: 20
       TOPICS_USERS: users
       TOPICS_EVENTS: events
       RUN_MODE: 0
@@ -359,6 +341,7 @@ services:
       BROKER: kafka-broker:9092
       VERBOSE: "false"
       NODE_ENV: production
+      APP_IDS: "LovelyApp,LoveliestApp,HappyApp,HappiestApp"
     deploy:
       replicas: 0
       placement:
