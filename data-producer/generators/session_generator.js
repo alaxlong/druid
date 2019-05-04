@@ -1,13 +1,12 @@
 import _ from 'lodash';
 import uuid from 'uuid/v4';
-import faker from 'faker';
-import moment from 'moment';
+import { newEventTime } from "../util";
 
 let generate = () => {
   return {
     clientSession: {
       sessionId: uuid(),
-      startDateTime: moment(faker.date.between(moment().subtract(1, "months"), moment())).format("x")
+      startDateTime: newEventTime()
     }
   } 
 }
