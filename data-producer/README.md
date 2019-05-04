@@ -1,1 +1,1 @@
-Project moved to https://github.com/canelmas/data-producer
+Project moved under https://github.com/canelmas/data-producer
