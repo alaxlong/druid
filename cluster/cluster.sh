@@ -30,6 +30,8 @@ S3_ACCESS_KEYS=aws-s3-access
 
 TOPIC_EVENTS=events
 TOPIC_USERS=users
+NUM_OF_PARTITION=3
+REPLICATION_FACTOR=1
 
 # todo : fetch these
 manager="ec2-35-158-44-1.eu-central-1.compute.amazonaws.com"
@@ -294,26 +296,28 @@ init() {
 
 }
 
-post_init() {
-
-    # create kafka topics
-    execute "docker exec -it $(docker ps -a | grep kafka-broker | awk '{print $1}') /opt/kafka/bin/kafka-topics.sh --create \
+create_topics() {
+    execute "docker exec -t $1 /opt/kafka/bin/kafka-topics.sh --create \
         --zookeeper zookeeper:2181 \
-        --replication-factor 1 \
-        --partitions 3 \
+        --replication-factor $REPLICATION_FACTOR \
+        --partitions $NUM_OF_PARTITION \
         --topic $TOPIC_EVENTS" $kafka    
 
-    execute "docker exec -it $(docker ps -a | grep kafka-broker | awk '{print $1}') /opt/kafka/bin/kafka-topics.sh --create \
+    execute "docker exec -t $1 /opt/kafka/bin/kafka-topics.sh --create \
         --zookeeper zookeeper:2181 \
-        --replication-factor 1 \
-        --partitions 3 \
-        --topic $TOPIC_USERS" $kafka
+        --replication-factor $REPLICATION_FACTOR \
+        --partitions $NUM_OF_PARTITION \
+        --topic $TOPIC_USERS" $kafka    
+}
+
+post_init() {
+
+    # create kafka topics    
+    kafka_container=$(ssh $SSH_USER@$kafka "docker ps --filter status=running | grep kafka-broker | awk '{print \$1}'")        
+    create_topics $kafka_container
 
     # Kafka connect    
-    execute "curl -d @\"~/s3-sink.json\" -H \"Content-type: application/json\" -X POST localhost:18083/connectors" $kafka
-
-    # initialize superset 
-    execute "docker exec -it $(docker ps -a | grep superset | awk '{print $1}') superset-init" $query    
+    execute "curl -d @\"/home/ubuntu/s3-sink.json\" -H \"Content-type: application/json\" -X POST localhost:18083/connectors" $kafka    
     
 }
 

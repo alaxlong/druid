@@ -100,6 +100,6 @@ data-processor
 Todo.md
 useful.md
 aws-s3-access
-conf-kconnect/kafka
-conf-kconnect/kafka-connect-s3
-conf-kconnect/kafka-connect-storage-common
+cluster/conf-kconnect/kafka/*
+cluster/conf-kconnect/kafka-connect-s3/*
+cluster/conf-kconnect/kafka-connect-storage-common/*

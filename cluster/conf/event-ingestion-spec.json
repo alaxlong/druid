@@ -13,7 +13,7 @@
                             "type": "path",
                             "name": "sessionId",
                             "expr": "$.clientSession.sessionId"
-                        },
+                        },                        
                         {
                             "type": "jq",
                             "name": "sessionDuration",
