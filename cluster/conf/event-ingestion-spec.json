@@ -13,6 +13,26 @@
                             "type": "path",
                             "name": "sessionId",
                             "expr": "$.clientSession.sessionId"
+                        },                 
+                        {
+                            "type": "path",
+                            "name": "_sessionId",
+                            "expr": "$.clientSession.sessionId"
+                        },                    
+                        {
+                            "type": "path",
+                            "name": "_eventId",
+                            "expr": "$.eventId"
+                        }, 
+                        {
+                            "type": "path",
+                            "name": "_deviceId",
+                            "expr": "$.deviceId"
+                        }, 
+                        {
+                            "type": "path",
+                            "name": "_appconnectId",
+                            "expr": "$.appconnectId"
                         },                        
                         {
                             "type": "jq",
