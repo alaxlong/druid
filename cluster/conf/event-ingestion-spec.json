@@ -357,7 +357,7 @@
     "tuningConfig": {
         "type": "kafka",
         "reportParseExceptions": true,
-        "resetOffsetAutomatically": false
+        "resetOffsetAutomatically": true
     },
     "ioConfig": {
         "topic": "events",
