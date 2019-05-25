@@ -3,7 +3,7 @@
 EC2_TYPE_DATA="m5a.2xlarge"
 EC2_TYPE_QUERY="m5a.2xlarge"
 EC2_TYPE_MANAGER="m5a.xlarge"
-EC2_TYPE_KAFKA="m5a.xlarge"
+EC2_TYPE_KAFKA="m5a.2xlarge"
 EC2_TYPE_PRODUCER="m5a.2xlarge"
 
 STACK_YML=stack-druid.yml
@@ -35,21 +35,24 @@ REPLICATION_FACTOR=1
 
 # todo : fetch these
 manager="ec2-35-158-44-1.eu-central-1.compute.amazonaws.com"
-kafka="ec2-3-122-55-75.eu-central-1.compute.amazonaws.com"
+kafka="ec2-3-121-218-227.eu-central-1.compute.amazonaws.com"
 data1="ec2-35-159-21-192.eu-central-1.compute.amazonaws.com"
 data2="ec2-18-194-88-251.eu-central-1.compute.amazonaws.com"
 data3="ec2-3-120-37-208.eu-central-1.compute.amazonaws.com"
 query="ec2-54-93-214-35.eu-central-1.compute.amazonaws.com"
-producer="ec2-52-59-214-179.eu-central-1.compute.amazonaws.com"
+producer1="ec2-52-59-214-179.eu-central-1.compute.amazonaws.com"
+producer2="ec2-52-57-237-144.eu-central-1.compute.amazonaws.com"
+
 
 # todo : fetch these
 node_manager="ip-172-31-47-95"
-node_kafka="ip-172-31-40-46"
+node_kafka="ip-172-31-4-159"
 node_data_1="ip-172-31-34-171"
 node_data_2="ip-172-31-38-116"
 node_data_3="ip-172-31-36-12"
 node_query="ip-172-31-23-128"
-node_producer="ip-172-31-21-84"
+node_producer_1="ip-172-31-21-84"
+node_producer_2="ip-172-31-14-89"
 
 node_type_data="data"
 node_type_query="query"
@@ -68,7 +71,8 @@ copy_ssh_keys() {
     copy_ssh_key $data2
     copy_ssh_key $data3
     copy_ssh_key $query
-    copy_ssh_key $producer
+    copy_ssh_key $producer1
+    copy_ssh_key $producer2
 }
 
 install_docker_on_nodes() {
@@ -78,7 +82,8 @@ install_docker_on_nodes() {
     install_docker $data2
     install_docker $data3
     install_docker $query
-    install_docker $producer
+    install_docker $producer1
+    install_docker $producer2
 }
 
 install_docker() {
@@ -124,7 +129,8 @@ copy_to_each_node() {
     copy $1 $data2
     copy $1 $data3
     copy $1 $query
-    copy $1 $producer
+    copy $1 $producer1
+    copy $1 $producer2
 }
 
 copy() {
@@ -144,7 +150,8 @@ remove_swarm() {
     remove_node $data2
     remove_node $data3
     remove_node $query
-    remove_node $producer
+    remove_node $producer1
+    remove_node $producer2
     remove_node $manager
 
     execute "docker rm \$(docker ps -aq) && docker volume prune" $kafka
@@ -152,7 +159,8 @@ remove_swarm() {
     execute "docker rm \$(docker ps -aq) && docker volume prune" $data2
     execute "docker rm \$(docker ps -aq) && docker volume prune" $data3
     execute "docker rm \$(docker ps -aq) && docker volume prune" $query
-    execute "docker rm \$(docker ps -aq) && docker volume prune" $producer
+    execute "docker rm \$(docker ps -aq) && docker volume prune" $producer1
+    execute "docker rm \$(docker ps -aq) && docker volume prune" $producer2
     execute "docker rm \$(docker ps -aq) && docker volume prune" $manager    
 
 }
@@ -171,7 +179,8 @@ init_swarm() {
     join_node $data2 $token $url
     join_node $data3 $token $url
     join_node $query $token $url
-    join_node $producer $token $url
+    join_node $producer1 $token $url
+    join_node $producer2 $token $url
 
     # add labels    
     execute "docker node update --label-add node.type=$node_type_manager $node_manager" $manager    
@@ -179,7 +188,8 @@ init_swarm() {
     execute "docker node update --label-add node.type=$node_type_data $node_data_2" $manager
     execute "docker node update --label-add node.type=$node_type_kafka $node_kafka" $manager
     execute "docker node update --label-add node.type=$node_type_data $node_data_3" $manager
-    execute "docker node update --label-add node.type=$node_type_producer $node_producer" $manager
+    execute "docker node update --label-add node.type=$node_type_producer $node_producer_1" $manager
+    execute "docker node update --label-add node.type=$node_type_producer $node_producer_2" $manager
     execute "docker node update --label-add node.type=$node_type_query $node_query" $manager
 
 }
@@ -220,17 +230,17 @@ provision() {
         --sec-group=$SEC_GROUP \
         --ami=$AMI_UBUNTU_18_LTS
 
-    # kafka
+    # # kafka
     eyws --profile $AWS_PROFILE create-instances \
         --count=1 \
         --name=druid-kafka \
         --instance-type=$EC2_TYPE_KAFKA \
-        --ebs-vol-size=250 \
+        --ebs-vol-size=400 \
         --key-pair=$KEY_PAIR \
         --sec-group=$SEC_GROUP \
         --ami=$AMI_UBUNTU_18_LTS
 
-    # data
+    # # data
     eyws --profile $AWS_PROFILE create-instances \
         --count=3 \
         --name=druid-data \
@@ -318,7 +328,8 @@ post_init() {
 
     # Kafka connect    
     execute "curl -d @\"/home/ubuntu/s3-sink.json\" -H \"Content-type: application/json\" -X POST localhost:18083/connectors" $kafka    
-    
+
+    # init superset manually : superset-init    
 }
 
 help() {
