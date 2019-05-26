@@ -6,222 +6,222 @@
 }, {
   "timestamp" : "2019-04-08T00:00:00.000Z",
   "result" : {
-    "unique_users" : 67110.73948931643
+    "unique_users" : 67092.64850060694
   }
 }, {
   "timestamp" : "2019-04-09T00:00:00.000Z",
   "result" : {
-    "unique_users" : 155882.0945153872
+    "unique_users" : 155864.23475914224
   }
 }, {
   "timestamp" : "2019-04-10T00:00:00.000Z",
   "result" : {
-    "unique_users" : 219896.2829191451
+    "unique_users" : 220178.52670465273
   }
 }, {
   "timestamp" : "2019-04-11T00:00:00.000Z",
   "result" : {
-    "unique_users" : 264858.9075946913
+    "unique_users" : 263311.2475617663
   }
 }, {
   "timestamp" : "2019-04-12T00:00:00.000Z",
   "result" : {
-    "unique_users" : 297250.4484084124
+    "unique_users" : 297123.7216768944
   }
 }, {
   "timestamp" : "2019-04-13T00:00:00.000Z",
   "result" : {
-    "unique_users" : 347325.9612078669
+    "unique_users" : 348790.57780958846
   }
 }, {
   "timestamp" : "2019-04-14T00:00:00.000Z",
   "result" : {
-    "unique_users" : 386128.54858062224
+    "unique_users" : 386953.5687708772
   }
 }, {
   "timestamp" : "2019-04-15T00:00:00.000Z",
   "result" : {
-    "unique_users" : 439562.392559163
+    "unique_users" : 440670.90353378083
   }
 }, {
   "timestamp" : "2019-04-16T00:00:00.000Z",
   "result" : {
-    "unique_users" : 479287.33042002853
+    "unique_users" : 479627.7547350777
   }
 }, {
   "timestamp" : "2019-04-17T00:00:00.000Z",
   "result" : {
-    "unique_users" : 524845.5197003469
+    "unique_users" : 524180.64743565646
   }
 }, {
   "timestamp" : "2019-04-18T00:00:00.000Z",
   "result" : {
-    "unique_users" : 535611.0243096144
+    "unique_users" : 537091.7194904889
   }
 }, {
   "timestamp" : "2019-04-19T00:00:00.000Z",
   "result" : {
-    "unique_users" : 555522.1646228465
+    "unique_users" : 548864.6168589873
   }
 }, {
   "timestamp" : "2019-04-20T00:00:00.000Z",
   "result" : {
-    "unique_users" : 575181.5601073013
+    "unique_users" : 577479.5600835672
   }
 }, {
   "timestamp" : "2019-04-21T00:00:00.000Z",
   "result" : {
-    "unique_users" : 614848.5653723906
+    "unique_users" : 611952.2905969247
   }
 }, {
   "timestamp" : "2019-04-22T00:00:00.000Z",
   "result" : {
-    "unique_users" : 638664.9812736018
+    "unique_users" : 639541.896765675
   }
 }, {
   "timestamp" : "2019-04-23T00:00:00.000Z",
   "result" : {
-    "unique_users" : 655652.522794983
+    "unique_users" : 654398.5691500186
   }
 }, {
   "timestamp" : "2019-04-24T00:00:00.000Z",
   "result" : {
-    "unique_users" : 654004.8256006452
+    "unique_users" : 650392.8664394417
   }
 }, {
   "timestamp" : "2019-04-25T00:00:00.000Z",
   "result" : {
-    "unique_users" : 657288.1938334202
+    "unique_users" : 657117.511020958
   }
 }, {
   "timestamp" : "2019-04-26T00:00:00.000Z",
   "result" : {
-    "unique_users" : 655293.5841893014
+    "unique_users" : 652981.2035373505
   }
 }, {
   "timestamp" : "2019-04-27T00:00:00.000Z",
   "result" : {
-    "unique_users" : 654104.4870848699
+    "unique_users" : 658164.148958725
   }
 }, {
   "timestamp" : "2019-04-28T00:00:00.000Z",
   "result" : {
-    "unique_users" : 658608.0128516675
+    "unique_users" : 660096.7773082369
   }
 }, {
   "timestamp" : "2019-04-29T00:00:00.000Z",
   "result" : {
-    "unique_users" : 653846.0266059218
+    "unique_users" : 654102.0802688532
   }
 }, {
   "timestamp" : "2019-04-30T00:00:00.000Z",
   "result" : {
-    "unique_users" : 655598.4960752774
+    "unique_users" : 650286.1095752098
   }
 }, {
   "timestamp" : "2019-05-01T00:00:00.000Z",
   "result" : {
-    "unique_users" : 654807.1669325244
+    "unique_users" : 656354.8157259093
   }
 }, {
   "timestamp" : "2019-05-02T00:00:00.000Z",
   "result" : {
-    "unique_users" : 651673.5638413682
+    "unique_users" : 652154.2383739025
   }
 }, {
   "timestamp" : "2019-05-03T00:00:00.000Z",
   "result" : {
-    "unique_users" : 656564.0160527178
+    "unique_users" : 653835.8428146016
   }
 }, {
   "timestamp" : "2019-05-04T00:00:00.000Z",
   "result" : {
-    "unique_users" : 658380.0935412406
+    "unique_users" : 656722.5299857614
   }
 }, {
   "timestamp" : "2019-05-05T00:00:00.000Z",
   "result" : {
-    "unique_users" : 655330.8829193129
+    "unique_users" : 652843.5770043802
   }
 }, {
   "timestamp" : "2019-05-06T00:00:00.000Z",
   "result" : {
-    "unique_users" : 658323.8167045363
+    "unique_users" : 657327.3635566848
   }
 }, {
   "timestamp" : "2019-05-07T00:00:00.000Z",
   "result" : {
-    "unique_users" : 655117.1314563166
+    "unique_users" : 653364.9211904451
   }
 }, {
   "timestamp" : "2019-05-08T00:00:00.000Z",
   "result" : {
-    "unique_users" : 586391.559006069
+    "unique_users" : 583109.2624674054
   }
 }, {
   "timestamp" : "2019-05-09T00:00:00.000Z",
   "result" : {
-    "unique_users" : 502781.9232588173
+    "unique_users" : 504983.5389290493
   }
 }, {
   "timestamp" : "2019-05-10T00:00:00.000Z",
   "result" : {
-    "unique_users" : 436282.35792386
+    "unique_users" : 436393.8040626459
   }
 }, {
   "timestamp" : "2019-05-11T00:00:00.000Z",
   "result" : {
-    "unique_users" : 391719.06150850357
+    "unique_users" : 391126.1868202656
   }
 }, {
   "timestamp" : "2019-05-12T00:00:00.000Z",
   "result" : {
-    "unique_users" : 358930.5122967725
+    "unique_users" : 357227.7757127133
   }
 }, {
   "timestamp" : "2019-05-13T00:00:00.000Z",
   "result" : {
-    "unique_users" : 307203.1030408678
+    "unique_users" : 307895.75092885434
   }
 }, {
   "timestamp" : "2019-05-14T00:00:00.000Z",
   "result" : {
-    "unique_users" : 269613.465145012
+    "unique_users" : 269738.0670612457
   }
 }, {
   "timestamp" : "2019-05-15T00:00:00.000Z",
   "result" : {
-    "unique_users" : 214759.06401640765
+    "unique_users" : 213889.97892768023
   }
 }, {
   "timestamp" : "2019-05-16T00:00:00.000Z",
   "result" : {
-    "unique_users" : 175462.79256927388
+    "unique_users" : 174742.61114347313
   }
 }, {
   "timestamp" : "2019-05-17T00:00:00.000Z",
   "result" : {
-    "unique_users" : 131135.23576394859
+    "unique_users" : 130551.26706208756
   }
 }, {
   "timestamp" : "2019-05-18T00:00:00.000Z",
   "result" : {
-    "unique_users" : 120791.11543082175
+    "unique_users" : 120723.66399986974
   }
 }, {
   "timestamp" : "2019-05-19T00:00:00.000Z",
   "result" : {
-    "unique_users" : 101614.93805222619
+    "unique_users" : 101414.51741842326
   }
 }, {
   "timestamp" : "2019-05-20T00:00:00.000Z",
   "result" : {
-    "unique_users" : 81182.51136300144
+    "unique_users" : 81190.68883062086
   }
 }, {
   "timestamp" : "2019-05-21T00:00:00.000Z",
   "result" : {
-    "unique_users" : 44654.0
+    "unique_users" : 44678.595466017985
   }
 }, {
   "timestamp" : "2019-05-22T00:00:00.000Z",

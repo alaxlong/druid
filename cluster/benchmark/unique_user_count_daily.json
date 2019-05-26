@@ -9,7 +9,7 @@
             "name": "unique_users",
             "fieldName": "user_id_sketch",
             "isInputThetaSketch": true,
-            "size": 65536
+            "size": 32768
         }
     ]
 }
