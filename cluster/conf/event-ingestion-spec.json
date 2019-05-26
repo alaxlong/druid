@@ -332,6 +332,10 @@
         },
         "metricsSpec": [
             {
+                "name": "count",
+                "type": "count"
+            },
+            {
                 "type": "thetaSketch",
                 "name": "user_id_sketch",
                 "fieldName": "appconnectId"
