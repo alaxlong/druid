@@ -1,0 +1,2913 @@
+[ {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 3568935,
+    "platform" : "iOS",
+    "viewLabel" : "EtScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 3553158,
+    "platform" : "ANDROID",
+    "viewLabel" : "EtScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1948833,
+    "platform" : "iOS",
+    "viewLabel" : "AutScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1946771,
+    "platform" : "iOS",
+    "viewLabel" : "QuiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1946726,
+    "platform" : "iOS",
+    "viewLabel" : "UtScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1938473,
+    "platform" : "ANDROID",
+    "viewLabel" : "UtScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1938168,
+    "platform" : "ANDROID",
+    "viewLabel" : "AutScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1937552,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1622735,
+    "platform" : "iOS",
+    "viewLabel" : "EstScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1614345,
+    "platform" : "ANDROID",
+    "viewLabel" : "EstScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1298890,
+    "platform" : "iOS",
+    "viewLabel" : "QuiaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1296754,
+    "platform" : "iOS",
+    "viewLabel" : "VoluptatemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1293121,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuiaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 1292934,
+    "platform" : "ANDROID",
+    "viewLabel" : "VoluptatemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 974328,
+    "platform" : "iOS",
+    "viewLabel" : "OmnisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 974014,
+    "platform" : "iOS",
+    "viewLabel" : "ConsequaturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 973847,
+    "platform" : "iOS",
+    "viewLabel" : "SedScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 973713,
+    "platform" : "iOS",
+    "viewLabel" : "VoluptasScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 973498,
+    "platform" : "iOS",
+    "viewLabel" : "NonScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 972337,
+    "platform" : "iOS",
+    "viewLabel" : "SitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 971788,
+    "platform" : "iOS",
+    "viewLabel" : "RerumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 970782,
+    "platform" : "ANDROID",
+    "viewLabel" : "SedScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 969608,
+    "platform" : "ANDROID",
+    "viewLabel" : "VoluptasScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 969326,
+    "platform" : "ANDROID",
+    "viewLabel" : "OmnisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 969216,
+    "platform" : "ANDROID",
+    "viewLabel" : "RerumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 968722,
+    "platform" : "ANDROID",
+    "viewLabel" : "SitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 968218,
+    "platform" : "ANDROID",
+    "viewLabel" : "ConsequaturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 967566,
+    "platform" : "ANDROID",
+    "viewLabel" : "NonScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 649693,
+    "platform" : "iOS",
+    "viewLabel" : "EnimScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 649589,
+    "platform" : "iOS",
+    "viewLabel" : "QuisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 649512,
+    "platform" : "iOS",
+    "viewLabel" : "SintScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 649423,
+    "platform" : "iOS",
+    "viewLabel" : "DoloresScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 649284,
+    "platform" : "iOS",
+    "viewLabel" : "IdScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 649269,
+    "platform" : "iOS",
+    "viewLabel" : "DoloremScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 649217,
+    "platform" : "iOS",
+    "viewLabel" : "MolestiaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 649070,
+    "platform" : "iOS",
+    "viewLabel" : "VelitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 648920,
+    "platform" : "iOS",
+    "viewLabel" : "SuntScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 648687,
+    "platform" : "iOS",
+    "viewLabel" : "EosScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 648193,
+    "platform" : "iOS",
+    "viewLabel" : "EaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 648073,
+    "platform" : "iOS",
+    "viewLabel" : "EumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 648067,
+    "platform" : "iOS",
+    "viewLabel" : "NihilScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 648013,
+    "platform" : "iOS",
+    "viewLabel" : "QuoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 647675,
+    "platform" : "iOS",
+    "viewLabel" : "DolorScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 647667,
+    "platform" : "iOS",
+    "viewLabel" : "InScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 647449,
+    "platform" : "iOS",
+    "viewLabel" : "VelScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 647381,
+    "platform" : "ANDROID",
+    "viewLabel" : "DoloremScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 647196,
+    "platform" : "ANDROID",
+    "viewLabel" : "MolestiaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 647070,
+    "platform" : "ANDROID",
+    "viewLabel" : "EaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 647032,
+    "platform" : "ANDROID",
+    "viewLabel" : "DolorScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646911,
+    "platform" : "ANDROID",
+    "viewLabel" : "NihilScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646811,
+    "platform" : "iOS",
+    "viewLabel" : "AutemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646793,
+    "platform" : "ANDROID",
+    "viewLabel" : "AutemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646707,
+    "platform" : "ANDROID",
+    "viewLabel" : "EosScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646697,
+    "platform" : "ANDROID",
+    "viewLabel" : "InScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646594,
+    "platform" : "ANDROID",
+    "viewLabel" : "VelitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646350,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646278,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646169,
+    "platform" : "ANDROID",
+    "viewLabel" : "EumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646067,
+    "platform" : "ANDROID",
+    "viewLabel" : "EnimScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646057,
+    "platform" : "ANDROID",
+    "viewLabel" : "DoloresScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 646032,
+    "platform" : "ANDROID",
+    "viewLabel" : "SintScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 645824,
+    "platform" : "ANDROID",
+    "viewLabel" : "SuntScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 645591,
+    "platform" : "ANDROID",
+    "viewLabel" : "IdScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 645359,
+    "platform" : "ANDROID",
+    "viewLabel" : "VelScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325952,
+    "platform" : "iOS",
+    "viewLabel" : "MolestiasScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325755,
+    "platform" : "iOS",
+    "viewLabel" : "QuisquamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325614,
+    "platform" : "iOS",
+    "viewLabel" : "NamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325573,
+    "platform" : "iOS",
+    "viewLabel" : "TemporibusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325517,
+    "platform" : "iOS",
+    "viewLabel" : "BeataeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325498,
+    "platform" : "iOS",
+    "viewLabel" : "RationeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325348,
+    "platform" : "iOS",
+    "viewLabel" : "ReprehenderitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325314,
+    "platform" : "iOS",
+    "viewLabel" : "DistinctioScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325308,
+    "platform" : "iOS",
+    "viewLabel" : "ExcepturiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325272,
+    "platform" : "iOS",
+    "viewLabel" : "ArchitectoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325208,
+    "platform" : "iOS",
+    "viewLabel" : "OfficiisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325185,
+    "platform" : "iOS",
+    "viewLabel" : "SaepeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325153,
+    "platform" : "iOS",
+    "viewLabel" : "MagniScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325142,
+    "platform" : "iOS",
+    "viewLabel" : "FugiatScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325129,
+    "platform" : "iOS",
+    "viewLabel" : "QuaeratScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325108,
+    "platform" : "iOS",
+    "viewLabel" : "IpsaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325097,
+    "platform" : "iOS",
+    "viewLabel" : "NullaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325058,
+    "platform" : "iOS",
+    "viewLabel" : "SequiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325038,
+    "platform" : "iOS",
+    "viewLabel" : "FacilisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325035,
+    "platform" : "iOS",
+    "viewLabel" : "AbScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325034,
+    "platform" : "iOS",
+    "viewLabel" : "NemoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325025,
+    "platform" : "iOS",
+    "viewLabel" : "ConsecteturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325016,
+    "platform" : "iOS",
+    "viewLabel" : "DolorumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325012,
+    "platform" : "iOS",
+    "viewLabel" : "MinimaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325008,
+    "platform" : "iOS",
+    "viewLabel" : "DoloribusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325004,
+    "platform" : "iOS",
+    "viewLabel" : "AccusantiumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 325002,
+    "platform" : "iOS",
+    "viewLabel" : "LaudantiumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324969,
+    "platform" : "iOS",
+    "viewLabel" : "PorroScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324961,
+    "platform" : "iOS",
+    "viewLabel" : "CorporisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324937,
+    "platform" : "iOS",
+    "viewLabel" : "ImpeditScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324925,
+    "platform" : "iOS",
+    "viewLabel" : "QuasiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324907,
+    "platform" : "iOS",
+    "viewLabel" : "DictaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324906,
+    "platform" : "iOS",
+    "viewLabel" : "IpsamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324901,
+    "platform" : "iOS",
+    "viewLabel" : "DelectusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324892,
+    "platform" : "iOS",
+    "viewLabel" : "CulpaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324870,
+    "platform" : "iOS",
+    "viewLabel" : "ItaqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324868,
+    "platform" : "iOS",
+    "viewLabel" : "PerspiciatisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324859,
+    "platform" : "iOS",
+    "viewLabel" : "CorruptiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324851,
+    "platform" : "iOS",
+    "viewLabel" : "IllumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324848,
+    "platform" : "iOS",
+    "viewLabel" : "BlanditiisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324845,
+    "platform" : "iOS",
+    "viewLabel" : "PossimusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324836,
+    "platform" : "iOS",
+    "viewLabel" : "DebitisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324802,
+    "platform" : "iOS",
+    "viewLabel" : "CommodiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324789,
+    "platform" : "iOS",
+    "viewLabel" : "ExpeditaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324763,
+    "platform" : "iOS",
+    "viewLabel" : "VoluptatibusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324762,
+    "platform" : "iOS",
+    "viewLabel" : "AdScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324761,
+    "platform" : "iOS",
+    "viewLabel" : "OfficiaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324733,
+    "platform" : "iOS",
+    "viewLabel" : "ExercitationemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324712,
+    "platform" : "iOS",
+    "viewLabel" : "FugaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324691,
+    "platform" : "iOS",
+    "viewLabel" : "NequeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324688,
+    "platform" : "iOS",
+    "viewLabel" : "SapienteScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324680,
+    "platform" : "iOS",
+    "viewLabel" : "VitaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324676,
+    "platform" : "iOS",
+    "viewLabel" : "NisiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324674,
+    "platform" : "iOS",
+    "viewLabel" : "LaborumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324673,
+    "platform" : "iOS",
+    "viewLabel" : "NecessitatibusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324673,
+    "platform" : "iOS",
+    "viewLabel" : "ErrorScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324661,
+    "platform" : "iOS",
+    "viewLabel" : "PerferendisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324650,
+    "platform" : "iOS",
+    "viewLabel" : "UndeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324646,
+    "platform" : "ANDROID",
+    "viewLabel" : "MaximeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324629,
+    "platform" : "iOS",
+    "viewLabel" : "TemporaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324625,
+    "platform" : "iOS",
+    "viewLabel" : "DoloremqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324621,
+    "platform" : "iOS",
+    "viewLabel" : "VoluptatumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324615,
+    "platform" : "iOS",
+    "viewLabel" : "InciduntScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324600,
+    "platform" : "iOS",
+    "viewLabel" : "DucimusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324585,
+    "platform" : "iOS",
+    "viewLabel" : "AmetScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324578,
+    "platform" : "iOS",
+    "viewLabel" : "IpsumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324573,
+    "platform" : "iOS",
+    "viewLabel" : "RepudiandaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324566,
+    "platform" : "iOS",
+    "viewLabel" : "AliasScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324534,
+    "platform" : "iOS",
+    "viewLabel" : "QuibusdamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324529,
+    "platform" : "iOS",
+    "viewLabel" : "AliquidScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324519,
+    "platform" : "iOS",
+    "viewLabel" : "AtqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324499,
+    "platform" : "iOS",
+    "viewLabel" : "AperiamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324496,
+    "platform" : "iOS",
+    "viewLabel" : "SuscipitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324490,
+    "platform" : "iOS",
+    "viewLabel" : "IsteScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324476,
+    "platform" : "iOS",
+    "viewLabel" : "AtScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324473,
+    "platform" : "iOS",
+    "viewLabel" : "QuaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324454,
+    "platform" : "iOS",
+    "viewLabel" : "AccusamusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324419,
+    "platform" : "iOS",
+    "viewLabel" : "InventoreScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324418,
+    "platform" : "iOS",
+    "viewLabel" : "ConsequunturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324404,
+    "platform" : "iOS",
+    "viewLabel" : "MagnamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324395,
+    "platform" : "iOS",
+    "viewLabel" : "IureScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324393,
+    "platform" : "iOS",
+    "viewLabel" : "QuosScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324380,
+    "platform" : "iOS",
+    "viewLabel" : "MinusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324361,
+    "platform" : "iOS",
+    "viewLabel" : "OdioScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324357,
+    "platform" : "iOS",
+    "viewLabel" : "PlaceatScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324352,
+    "platform" : "iOS",
+    "viewLabel" : "ExplicaboScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324343,
+    "platform" : "iOS",
+    "viewLabel" : "SolutaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324338,
+    "platform" : "iOS",
+    "viewLabel" : "VoluptateScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324330,
+    "platform" : "iOS",
+    "viewLabel" : "EarumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324327,
+    "platform" : "iOS",
+    "viewLabel" : "NostrumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324327,
+    "platform" : "iOS",
+    "viewLabel" : "VoluptatesScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324301,
+    "platform" : "iOS",
+    "viewLabel" : "EiusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324296,
+    "platform" : "iOS",
+    "viewLabel" : "QuamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324295,
+    "platform" : "iOS",
+    "viewLabel" : "HarumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324282,
+    "platform" : "iOS",
+    "viewLabel" : "EsseScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324257,
+    "platform" : "iOS",
+    "viewLabel" : "AdipisciScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324249,
+    "platform" : "iOS",
+    "viewLabel" : "FugitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324232,
+    "platform" : "iOS",
+    "viewLabel" : "NatusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324218,
+    "platform" : "iOS",
+    "viewLabel" : "RepellatScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324215,
+    "platform" : "iOS",
+    "viewLabel" : "TemporeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324204,
+    "platform" : "ANDROID",
+    "viewLabel" : "FacilisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324198,
+    "platform" : "iOS",
+    "viewLabel" : "LiberoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324186,
+    "platform" : "iOS",
+    "viewLabel" : "QuodScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324180,
+    "platform" : "iOS",
+    "viewLabel" : "EaqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324166,
+    "platform" : "iOS",
+    "viewLabel" : "NesciuntScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324160,
+    "platform" : "iOS",
+    "viewLabel" : "ModiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324139,
+    "platform" : "iOS",
+    "viewLabel" : "ProvidentScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324138,
+    "platform" : "iOS",
+    "viewLabel" : "VeritatisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324122,
+    "platform" : "iOS",
+    "viewLabel" : "AspernaturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324114,
+    "platform" : "iOS",
+    "viewLabel" : "QuasScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324113,
+    "platform" : "iOS",
+    "viewLabel" : "ExScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324113,
+    "platform" : "iOS",
+    "viewLabel" : "EvenietScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324109,
+    "platform" : "iOS",
+    "viewLabel" : "AliquamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324102,
+    "platform" : "iOS",
+    "viewLabel" : "CumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324090,
+    "platform" : "iOS",
+    "viewLabel" : "PraesentiumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324085,
+    "platform" : "iOS",
+    "viewLabel" : "AssumendaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324084,
+    "platform" : "iOS",
+    "viewLabel" : "VeroScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324083,
+    "platform" : "iOS",
+    "viewLabel" : "TeneturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324080,
+    "platform" : "iOS",
+    "viewLabel" : "IustoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324063,
+    "platform" : "iOS",
+    "viewLabel" : "RemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324060,
+    "platform" : "iOS",
+    "viewLabel" : "EligendiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324059,
+    "platform" : "iOS",
+    "viewLabel" : "CumqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324043,
+    "platform" : "iOS",
+    "viewLabel" : "AsperioresScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324035,
+    "platform" : "ANDROID",
+    "viewLabel" : "OdioScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324031,
+    "platform" : "iOS",
+    "viewLabel" : "NumquamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 324017,
+    "platform" : "iOS",
+    "viewLabel" : "OptioScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323990,
+    "platform" : "iOS",
+    "viewLabel" : "UllamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323982,
+    "platform" : "ANDROID",
+    "viewLabel" : "FugitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323980,
+    "platform" : "iOS",
+    "viewLabel" : "DeseruntScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323954,
+    "platform" : "ANDROID",
+    "viewLabel" : "CommodiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323925,
+    "platform" : "iOS",
+    "viewLabel" : "OccaecatiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323924,
+    "platform" : "iOS",
+    "viewLabel" : "HicScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323919,
+    "platform" : "iOS",
+    "viewLabel" : "MollitiaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323883,
+    "platform" : "iOS",
+    "viewLabel" : "VeniamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323856,
+    "platform" : "iOS",
+    "viewLabel" : "FacereScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323840,
+    "platform" : "iOS",
+    "viewLabel" : "AnimiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323839,
+    "platform" : "ANDROID",
+    "viewLabel" : "ConsequunturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323837,
+    "platform" : "ANDROID",
+    "viewLabel" : "RepudiandaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323836,
+    "platform" : "iOS",
+    "viewLabel" : "TotamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323792,
+    "platform" : "iOS",
+    "viewLabel" : "RecusandaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323791,
+    "platform" : "iOS",
+    "viewLabel" : "MaioresScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323783,
+    "platform" : "ANDROID",
+    "viewLabel" : "TemporaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323772,
+    "platform" : "iOS",
+    "viewLabel" : "DelenitiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323739,
+    "platform" : "ANDROID",
+    "viewLabel" : "CorporisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323739,
+    "platform" : "ANDROID",
+    "viewLabel" : "DelectusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323732,
+    "platform" : "ANDROID",
+    "viewLabel" : "CumqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323723,
+    "platform" : "iOS",
+    "viewLabel" : "MaximeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323707,
+    "platform" : "ANDROID",
+    "viewLabel" : "PerspiciatisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323706,
+    "platform" : "iOS",
+    "viewLabel" : "LaboriosamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323699,
+    "platform" : "iOS",
+    "viewLabel" : "DoloreScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323678,
+    "platform" : "ANDROID",
+    "viewLabel" : "NatusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323678,
+    "platform" : "ANDROID",
+    "viewLabel" : "AccusamusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323670,
+    "platform" : "ANDROID",
+    "viewLabel" : "VeritatisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323666,
+    "platform" : "iOS",
+    "viewLabel" : "OditScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323657,
+    "platform" : "ANDROID",
+    "viewLabel" : "PariaturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323625,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323611,
+    "platform" : "ANDROID",
+    "viewLabel" : "LaboreScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323603,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuasScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323583,
+    "platform" : "ANDROID",
+    "viewLabel" : "AliquamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323581,
+    "platform" : "ANDROID",
+    "viewLabel" : "SuscipitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323563,
+    "platform" : "iOS",
+    "viewLabel" : "NobisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323546,
+    "platform" : "ANDROID",
+    "viewLabel" : "BlanditiisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323538,
+    "platform" : "ANDROID",
+    "viewLabel" : "HicScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323523,
+    "platform" : "ANDROID",
+    "viewLabel" : "NecessitatibusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323500,
+    "platform" : "ANDROID",
+    "viewLabel" : "IustoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323497,
+    "platform" : "ANDROID",
+    "viewLabel" : "LiberoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323467,
+    "platform" : "iOS",
+    "viewLabel" : "DignissimosScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323443,
+    "platform" : "iOS",
+    "viewLabel" : "RepellendusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323436,
+    "platform" : "ANDROID",
+    "viewLabel" : "VeroScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323434,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323431,
+    "platform" : "ANDROID",
+    "viewLabel" : "ExcepturiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323431,
+    "platform" : "ANDROID",
+    "viewLabel" : "TemporeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323422,
+    "platform" : "iOS",
+    "viewLabel" : "CupiditateScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323415,
+    "platform" : "ANDROID",
+    "viewLabel" : "AccusantiumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323406,
+    "platform" : "ANDROID",
+    "viewLabel" : "AbScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323395,
+    "platform" : "iOS",
+    "viewLabel" : "LaboreScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323380,
+    "platform" : "ANDROID",
+    "viewLabel" : "FugaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323375,
+    "platform" : "ANDROID",
+    "viewLabel" : "AsperioresScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323372,
+    "platform" : "ANDROID",
+    "viewLabel" : "FacereScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323356,
+    "platform" : "ANDROID",
+    "viewLabel" : "EligendiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323351,
+    "platform" : "ANDROID",
+    "viewLabel" : "CorruptiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323349,
+    "platform" : "ANDROID",
+    "viewLabel" : "OditScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323348,
+    "platform" : "ANDROID",
+    "viewLabel" : "LaboriosamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323348,
+    "platform" : "ANDROID",
+    "viewLabel" : "IsteScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323343,
+    "platform" : "ANDROID",
+    "viewLabel" : "PraesentiumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323339,
+    "platform" : "ANDROID",
+    "viewLabel" : "MagnamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323329,
+    "platform" : "iOS",
+    "viewLabel" : "AScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323321,
+    "platform" : "iOS",
+    "viewLabel" : "QuidemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323317,
+    "platform" : "ANDROID",
+    "viewLabel" : "ReprehenderitScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323297,
+    "platform" : "ANDROID",
+    "viewLabel" : "CulpaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323285,
+    "platform" : "ANDROID",
+    "viewLabel" : "NisiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323284,
+    "platform" : "ANDROID",
+    "viewLabel" : "AperiamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323283,
+    "platform" : "ANDROID",
+    "viewLabel" : "RecusandaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323283,
+    "platform" : "ANDROID",
+    "viewLabel" : "IpsumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323271,
+    "platform" : "ANDROID",
+    "viewLabel" : "EsseScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323267,
+    "platform" : "ANDROID",
+    "viewLabel" : "VoluptateScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323259,
+    "platform" : "iOS",
+    "viewLabel" : "SimiliqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323253,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuidemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323244,
+    "platform" : "ANDROID",
+    "viewLabel" : "MollitiaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323241,
+    "platform" : "ANDROID",
+    "viewLabel" : "TeneturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323236,
+    "platform" : "ANDROID",
+    "viewLabel" : "RepellendusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323221,
+    "platform" : "ANDROID",
+    "viewLabel" : "VoluptatibusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323169,
+    "platform" : "ANDROID",
+    "viewLabel" : "TotamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323157,
+    "platform" : "iOS",
+    "viewLabel" : "IlloScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323154,
+    "platform" : "ANDROID",
+    "viewLabel" : "EiusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323152,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuaeratScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323134,
+    "platform" : "ANDROID",
+    "viewLabel" : "IpsaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323130,
+    "platform" : "ANDROID",
+    "viewLabel" : "SequiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323128,
+    "platform" : "ANDROID",
+    "viewLabel" : "EvenietScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323121,
+    "platform" : "ANDROID",
+    "viewLabel" : "OptioScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323116,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuodScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323115,
+    "platform" : "ANDROID",
+    "viewLabel" : "NesciuntScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323110,
+    "platform" : "ANDROID",
+    "viewLabel" : "DebitisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323109,
+    "platform" : "ANDROID",
+    "viewLabel" : "VitaeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323100,
+    "platform" : "ANDROID",
+    "viewLabel" : "AScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323073,
+    "platform" : "ANDROID",
+    "viewLabel" : "ProvidentScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323062,
+    "platform" : "ANDROID",
+    "viewLabel" : "UndeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323059,
+    "platform" : "ANDROID",
+    "viewLabel" : "ImpeditScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323047,
+    "platform" : "ANDROID",
+    "viewLabel" : "AssumendaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323020,
+    "platform" : "ANDROID",
+    "viewLabel" : "ErrorScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323019,
+    "platform" : "ANDROID",
+    "viewLabel" : "AspernaturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 323012,
+    "platform" : "ANDROID",
+    "viewLabel" : "DoloremqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322996,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuosScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322993,
+    "platform" : "ANDROID",
+    "viewLabel" : "ItaqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322993,
+    "platform" : "ANDROID",
+    "viewLabel" : "MaioresScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322988,
+    "platform" : "ANDROID",
+    "viewLabel" : "IlloScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322981,
+    "platform" : "ANDROID",
+    "viewLabel" : "RemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322969,
+    "platform" : "ANDROID",
+    "viewLabel" : "DistinctioScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322929,
+    "platform" : "ANDROID",
+    "viewLabel" : "NemoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322901,
+    "platform" : "iOS",
+    "viewLabel" : "PariaturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322896,
+    "platform" : "ANDROID",
+    "viewLabel" : "FugiatScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322886,
+    "platform" : "ANDROID",
+    "viewLabel" : "DoloribusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322885,
+    "platform" : "ANDROID",
+    "viewLabel" : "MolestiasScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322882,
+    "platform" : "ANDROID",
+    "viewLabel" : "SimiliqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322879,
+    "platform" : "ANDROID",
+    "viewLabel" : "ReiciendisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322876,
+    "platform" : "iOS",
+    "viewLabel" : "ReiciendisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322860,
+    "platform" : "ANDROID",
+    "viewLabel" : "IllumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322856,
+    "platform" : "ANDROID",
+    "viewLabel" : "OfficiisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322824,
+    "platform" : "ANDROID",
+    "viewLabel" : "AliquidScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322816,
+    "platform" : "ANDROID",
+    "viewLabel" : "SapienteScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322813,
+    "platform" : "ANDROID",
+    "viewLabel" : "DignissimosScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322809,
+    "platform" : "ANDROID",
+    "viewLabel" : "RationeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322806,
+    "platform" : "ANDROID",
+    "viewLabel" : "AnimiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322800,
+    "platform" : "ANDROID",
+    "viewLabel" : "EarumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322796,
+    "platform" : "ANDROID",
+    "viewLabel" : "MinimaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322793,
+    "platform" : "ANDROID",
+    "viewLabel" : "PorroScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322790,
+    "platform" : "ANDROID",
+    "viewLabel" : "PerferendisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322786,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuisquamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322785,
+    "platform" : "ANDROID",
+    "viewLabel" : "AdScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322779,
+    "platform" : "ANDROID",
+    "viewLabel" : "NostrumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322765,
+    "platform" : "ANDROID",
+    "viewLabel" : "LaudantiumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322760,
+    "platform" : "ANDROID",
+    "viewLabel" : "VeniamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322756,
+    "platform" : "ANDROID",
+    "viewLabel" : "NumquamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322755,
+    "platform" : "ANDROID",
+    "viewLabel" : "ExercitationemScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322706,
+    "platform" : "ANDROID",
+    "viewLabel" : "ExpeditaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322706,
+    "platform" : "ANDROID",
+    "viewLabel" : "AmetScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322699,
+    "platform" : "ANDROID",
+    "viewLabel" : "NobisScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322695,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuasiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322692,
+    "platform" : "ANDROID",
+    "viewLabel" : "ConsecteturScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322682,
+    "platform" : "ANDROID",
+    "viewLabel" : "AtScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322669,
+    "platform" : "ANDROID",
+    "viewLabel" : "IpsamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322656,
+    "platform" : "ANDROID",
+    "viewLabel" : "VoluptatumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322655,
+    "platform" : "ANDROID",
+    "viewLabel" : "AtqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322652,
+    "platform" : "ANDROID",
+    "viewLabel" : "ArchitectoScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322641,
+    "platform" : "ANDROID",
+    "viewLabel" : "EaqueScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322614,
+    "platform" : "ANDROID",
+    "viewLabel" : "TemporibusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322612,
+    "platform" : "ANDROID",
+    "viewLabel" : "CumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322602,
+    "platform" : "ANDROID",
+    "viewLabel" : "NamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322573,
+    "platform" : "ANDROID",
+    "viewLabel" : "CupiditateScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322535,
+    "platform" : "ANDROID",
+    "viewLabel" : "DelenitiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322524,
+    "platform" : "ANDROID",
+    "viewLabel" : "MagniScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322507,
+    "platform" : "ANDROID",
+    "viewLabel" : "ExScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322490,
+    "platform" : "ANDROID",
+    "viewLabel" : "NullaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322485,
+    "platform" : "ANDROID",
+    "viewLabel" : "AdipisciScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322484,
+    "platform" : "ANDROID",
+    "viewLabel" : "ExplicaboScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322473,
+    "platform" : "ANDROID",
+    "viewLabel" : "LaborumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322470,
+    "platform" : "ANDROID",
+    "viewLabel" : "DictaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322443,
+    "platform" : "ANDROID",
+    "viewLabel" : "VoluptatesScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322437,
+    "platform" : "ANDROID",
+    "viewLabel" : "UllamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322401,
+    "platform" : "ANDROID",
+    "viewLabel" : "HarumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322396,
+    "platform" : "ANDROID",
+    "viewLabel" : "QuibusdamScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322393,
+    "platform" : "ANDROID",
+    "viewLabel" : "RepellatScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322387,
+    "platform" : "ANDROID",
+    "viewLabel" : "PlaceatScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322351,
+    "platform" : "ANDROID",
+    "viewLabel" : "PossimusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322346,
+    "platform" : "ANDROID",
+    "viewLabel" : "AliasScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322330,
+    "platform" : "ANDROID",
+    "viewLabel" : "SolutaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322325,
+    "platform" : "ANDROID",
+    "viewLabel" : "SaepeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322322,
+    "platform" : "ANDROID",
+    "viewLabel" : "InciduntScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322273,
+    "platform" : "ANDROID",
+    "viewLabel" : "OccaecatiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322252,
+    "platform" : "ANDROID",
+    "viewLabel" : "BeataeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322207,
+    "platform" : "ANDROID",
+    "viewLabel" : "MinusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322141,
+    "platform" : "ANDROID",
+    "viewLabel" : "DeseruntScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322117,
+    "platform" : "ANDROID",
+    "viewLabel" : "InventoreScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322086,
+    "platform" : "ANDROID",
+    "viewLabel" : "OfficiaScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 322066,
+    "platform" : "ANDROID",
+    "viewLabel" : "ModiScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 321951,
+    "platform" : "ANDROID",
+    "viewLabel" : "DoloreScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 321900,
+    "platform" : "ANDROID",
+    "viewLabel" : "DucimusScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 321794,
+    "platform" : "ANDROID",
+    "viewLabel" : "NequeScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 321760,
+    "platform" : "ANDROID",
+    "viewLabel" : "DolorumScreen"
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-01T00:00:00.000Z",
+  "event" : {
+    "count" : 321643,
+    "platform" : "ANDROID",
+    "viewLabel" : "IureScreen"
+  }
+} ]

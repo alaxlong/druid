@@ -1,0 +1,16 @@
+{
+    "queryType" : "topN",
+    "dataSource" : "events",
+    "intervals" : ["2019-04-01/2019-06-01"],
+    "granularity" : "all",
+    "dimension" : "viewLabel",
+    "metric" : "count",
+    "threshold" : 100,
+    "filter": { "type": "selector", "dimension": "eventName", "value": "viewStart" },    
+    "aggregations" : [
+      {
+        "type" : "count",
+        "name" : "count"
+      }
+    ]
+  }

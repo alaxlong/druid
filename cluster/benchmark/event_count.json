@@ -1,0 +1,16 @@
+{
+    "queryType": "timeseries",
+    "dataSource": "events",
+    "granularity": "all",
+    "descending" : true,
+    "aggregations": [
+        {
+            "type": "count",
+            "name": "count",
+            "fieldName": "_eventId"
+        }
+    ],
+    "intervals": [
+        "2019-04-01/2019-06-01"
+    ]
+}

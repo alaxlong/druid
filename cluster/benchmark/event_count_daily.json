@@ -1,0 +1,15 @@
+{
+    "queryType": "groupBy",
+    "dataSource": "events",
+    "granularity": "day",
+    "descending" : true,    
+    "aggregations": [
+        {
+            "type": "count",
+            "name": "count"
+        }
+    ],
+    "intervals": [
+        "2019-04-01/2019-06-01"
+    ]
+}

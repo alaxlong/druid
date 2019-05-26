@@ -1,0 +1,277 @@
+[ {
+  "version" : "v1",
+  "timestamp" : "2019-04-07T00:00:00.000Z",
+  "event" : {
+    "count" : 3181
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-08T00:00:00.000Z",
+  "event" : {
+    "count" : 67775
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-09T00:00:00.000Z",
+  "event" : {
+    "count" : 155404
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-10T00:00:00.000Z",
+  "event" : {
+    "count" : 219468
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-11T00:00:00.000Z",
+  "event" : {
+    "count" : 262350
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-12T00:00:00.000Z",
+  "event" : {
+    "count" : 291783
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-13T00:00:00.000Z",
+  "event" : {
+    "count" : 342499
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-14T00:00:00.000Z",
+  "event" : {
+    "count" : 380043
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-15T00:00:00.000Z",
+  "event" : {
+    "count" : 432388
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-16T00:00:00.000Z",
+  "event" : {
+    "count" : 471579
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-17T00:00:00.000Z",
+  "event" : {
+    "count" : 513692
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-18T00:00:00.000Z",
+  "event" : {
+    "count" : 521712
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-19T00:00:00.000Z",
+  "event" : {
+    "count" : 541032
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-20T00:00:00.000Z",
+  "event" : {
+    "count" : 561859
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-21T00:00:00.000Z",
+  "event" : {
+    "count" : 599173
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-22T00:00:00.000Z",
+  "event" : {
+    "count" : 625756
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-23T00:00:00.000Z",
+  "event" : {
+    "count" : 638574
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-24T00:00:00.000Z",
+  "event" : {
+    "count" : 638980
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-25T00:00:00.000Z",
+  "event" : {
+    "count" : 639107
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-26T00:00:00.000Z",
+  "event" : {
+    "count" : 638989
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-27T00:00:00.000Z",
+  "event" : {
+    "count" : 640232
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-28T00:00:00.000Z",
+  "event" : {
+    "count" : 638665
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-29T00:00:00.000Z",
+  "event" : {
+    "count" : 637950
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-04-30T00:00:00.000Z",
+  "event" : {
+    "count" : 637258
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-01T00:00:00.000Z",
+  "event" : {
+    "count" : 639110
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-02T00:00:00.000Z",
+  "event" : {
+    "count" : 638164
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-03T00:00:00.000Z",
+  "event" : {
+    "count" : 639472
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-04T00:00:00.000Z",
+  "event" : {
+    "count" : 639684
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-05T00:00:00.000Z",
+  "event" : {
+    "count" : 639748
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-06T00:00:00.000Z",
+  "event" : {
+    "count" : 639780
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-07T00:00:00.000Z",
+  "event" : {
+    "count" : 636543
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-08T00:00:00.000Z",
+  "event" : {
+    "count" : 570697
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-09T00:00:00.000Z",
+  "event" : {
+    "count" : 484329
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-10T00:00:00.000Z",
+  "event" : {
+    "count" : 420360
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-11T00:00:00.000Z",
+  "event" : {
+    "count" : 376150
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-12T00:00:00.000Z",
+  "event" : {
+    "count" : 347456
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-13T00:00:00.000Z",
+  "event" : {
+    "count" : 297416
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-14T00:00:00.000Z",
+  "event" : {
+    "count" : 259657
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-15T00:00:00.000Z",
+  "event" : {
+    "count" : 205806
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-16T00:00:00.000Z",
+  "event" : {
+    "count" : 167487
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-17T00:00:00.000Z",
+  "event" : {
+    "count" : 125515
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-18T00:00:00.000Z",
+  "event" : {
+    "count" : 116943
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-19T00:00:00.000Z",
+  "event" : {
+    "count" : 97710
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-20T00:00:00.000Z",
+  "event" : {
+    "count" : 78099
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-21T00:00:00.000Z",
+  "event" : {
+    "count" : 41332
+  }
+}, {
+  "version" : "v1",
+  "timestamp" : "2019-05-22T00:00:00.000Z",
+  "event" : {
+    "count" : 12862
+  }
+} ]

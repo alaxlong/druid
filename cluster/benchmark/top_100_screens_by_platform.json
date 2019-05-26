@@ -1,0 +1,20 @@
+{
+    "queryType" : "groupBy",
+    "dataSource" : "events",
+    "intervals" : ["2019-04-01/2019-06-01"],
+    "granularity" : "all",
+    "dimensions" : ["platform", "viewLabel"],        
+    "filter": { "type": "selector", "dimension": "eventName", "value": "viewStart" },    
+    "limitSpec": { "type": "default", "limit": 5000, "columns": [
+        {
+            "dimension" : "count",
+            "direction" : "descending"            
+        }
+    ] },
+    "aggregations" : [
+      {
+        "type" : "count",
+        "name" : "count"        
+      }
+    ]
+  }

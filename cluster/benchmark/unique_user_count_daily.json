@@ -1,0 +1,15 @@
+{
+    "queryType": "timeseries",
+    "dataSource": "events",
+    "intervals": "2019-04-01/2019-06-01",
+    "granularity": "day",
+    "aggregations": [
+        {
+            "type": "thetaSketch",
+            "name": "unique_users",
+            "fieldName": "user_id_sketch",
+            "isInputThetaSketch": true,
+            "size": 65536
+        }
+    ]
+}

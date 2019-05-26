@@ -1,0 +1,16 @@
+{
+    "queryType": "groupBy",
+    "dataSource": "events",
+    "granularity": "day",
+    "descending" : true,
+    "filter": { "type": "selector", "dimension": "eventName", "value": "clientSessionStart" },    
+    "aggregations": [
+        {
+            "type": "count",
+            "name": "count"
+        }
+    ],
+    "intervals": [
+        "2019-04-01/2019-06-01"
+    ]
+}
