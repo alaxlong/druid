@@ -16,18 +16,19 @@ volumes:
   data-redis:
   data-kafka:
   data-middlemanager:
+  data-grafana:
 
 services:
 
   # zookeeper:
-  #   image: zookeeper:3.4.14
+  #   image: zookeeper:3.5.5
   #   hostname: zookeeper
   #   ports:
   #     - 2181:2181
   #   environment:
   #     ZOO_MY_ID: 1
   #     ZOO_SERVERS: server.1=0.0.0.0:2888:3888
-  #     ZOO_INIT_LIMIT: 2000
+  #     ZOO_INIT_LIMIT: 10000
   #   volumes:      
   #     - zk-data:/data
   #     - zk-logs:/datalog
@@ -42,10 +43,13 @@ services:
   #     - druid-net
 
   zookeeper:
-    image: confluentinc/cp-zookeeper:5.1.0    
+    image: confluentinc/cp-zookeeper:5.2.1   
     hostname: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_INIT_LIMIT: 10
+      ZOOKEEPER_SYNC_LIMIT: 5
     ports:
       - 2181:2181
     volumes:
@@ -61,31 +65,44 @@ services:
     networks: 
       - druid-net
     
-  kafka-broker: # no swarm support for confluent kafka
+  kafka-broker:
     image: wurstmeister/kafka:2.12-2.2.0
     hostname: kafka-broker
     depends_on:
       - zookeeper
-    ports:
-      - 19092:19092
+    ports:           
+      - target: 19092
+        published: 19092
+        protocol: tcp
+        mode: host        
+      - 7777:7777                 
     environment:  # todo : fix broker id generation
       BROKER_ID_COMMAND: "curl http://169.254.169.254/latest/meta-data/local-ipv4 | awk -F '.' '{print $$1 + $$2 + $$3 + $$4}'"
       HOSTNAME_COMMAND: "curl http://169.254.169.254/latest/meta-data/public-hostname"
+      # HOSTNAME_COMMAND: "wget -t3 -T2 -qO-  http://169.254.169.254/latest/meta-data/local-ipv4"      
+      # HOSTNAME_COMMAND: "docker info | grep ^Name: | cut -d' ' -f 2"      
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181        
       KAFKA_LISTENERS: INTERNAL://:9092,EXTERNAL://:19092
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://:9092,EXTERNAL://_{HOSTNAME_COMMAND}:19092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL      
       KAFKA_LOG_DIRS: /kafka/logs
-      KAFKA_LOG_RETENTION_HOURS: 6
-      KAFKA_LOG_ROLL_HOURS: 3        
+      KAFKA_LOG_RETENTION_HOURS: 8
+      KAFKA_LOG_ROLL_HOURS: 4       
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_RESERVED_BROKER_MAX_ID : 1020     
+      KAFKA_RESERVED_BROKER_MAX_ID : 1020   
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE : "false"
+      KAFKA_LEADER_IMBALANCE_CHECK_INTERVAL_SECONDS: 30
+      KAFKA_LEADER_IMBALANCE_PER_BROKER_PERCENTAGE: 0
+      KAFKA_OFFSETS_RETENTION_CHECK_INTERVAL_MS: 30000   
+      KAFKA_JMX_PORT : 7777      
+      EXTRA_ARGS: -javaagent:/root/prometheus/jmx_prometheus_javaagent-0.11.0.jar=7777:/root/prometheus/prom-jmx-agent-config.yml
     volumes:
       - data-kafka:/kafka
-      - ~/aws:/root/.aws      
+      - ~/aws:/root/.aws    
+      - ~/conf-prometheus:/root/prometheus/  
     deploy:
-      replicas: 1
+      mode: global
       placement:
         constraints: 
           - node.labels.node.type == kafka
@@ -101,7 +118,8 @@ services:
       - zookeeper
       - kafka-broker
     ports:
-      - 18083:18083
+      - target: 18083
+        published: 18083        
     environment:
       CONNECT_BOOTSTRAP_SERVERS: "kafka-broker:9092"
       CONNECT_REST_PORT: 18083
@@ -120,7 +138,8 @@ services:
       CONNECT_PLUGIN_PATH: /usr/share/java 
       CONNECT_SCHEMAS_ENABLE: "false"
       CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
-      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"            
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"              
+      KAFKA_HEAP_OPTS: "-Xms10g -Xmx25g"
     volumes:
       - ~/aws:/root/.aws
       - ~/conf-kconnect:/usr/share/java
@@ -145,7 +164,7 @@ services:
       replicas: 1
       placement:
         constraints: 
-          - node.labels.node.type == data      
+          - node.labels.node.type == manager      
       restart_policy:
         condition: on-failure
     networks: 
@@ -291,10 +310,10 @@ services:
       - mysql
       - broker
     deploy:
-      mode: global
+      replicas: 2
       placement:
         constraints: 
-          - node.labels.node.type == data
+          - node.labels.node.type == ingestion
     networks: 
       - druid-net
   
@@ -317,6 +336,42 @@ services:
     ports:
       - 18088:8088    
     deploy:
+      replicas: 0
+      placement:
+        constraints: 
+          - node.labels.node.type == query
+    networks: 
+      - druid-net
+    
+  prometheus:
+    image: prom/prometheus:v2.10.0    
+    ports:
+      - 9090:9090
+    depends_on:
+      - zookeeper
+      - broker
+    volumes:    
+      - ~/conf-prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    deploy:
+      replicas: 1
+      placement:
+        constraints: 
+          - node.labels.node.type == query
+    networks: 
+      - druid-net
+
+  grafana:
+    image: grafana/grafana:6.2.1    
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+    volumes:
+      - data-grafana:/var/lib/grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: byob
+      GF_SECURITY_ADMIN_PASSWORD: byob
+    deploy:
       replicas: 1
       placement:
         constraints: 
@@ -325,23 +380,27 @@ services:
       - druid-net
 
   data-producer:
-    image: canelmas/data-producer:1.4.1
+    image: canelmas/data-producer:2.0.3
+    depends_on:
+      - redis
     environment:
       PERIOD_IN_MS: 3000
-      NUM_OF_USERS: 3
-      SESSION_PER_USER: 5
-      EVENTS_PER_SESSION: 60
+      NUM_OF_USERS: 5
+      SESSION_PER_USER: 3
+      EVENTS_PER_SESSION: 25
       TOPICS_USERS: users
       TOPICS_EVENTS: events
-      RUN_MODE: 0
+      # CREATE_TOPICS: "events:10:1,users:5:1"
+      RUN_MODE: default
       EVENT_SCENARIO: random
       NODE_OPTIONS: --max_old_space_size=4096
       REDIS_HOST: redis
-      REDIS_PORT: 6379
-      BROKER: kafka-broker:9092
+      REDIS_PORT: 6379    
+      BROKERS: kafka-broker:9092
       VERBOSE: "false"
       NODE_ENV: production
       APP_IDS: "LovelyApp,LoveliestApp,HappyApp,HappiestApp"
+      DATE_FORMAT: YYYY-MM-DDTHH:mm:ssZ
     deploy:
       replicas: 0
       placement:

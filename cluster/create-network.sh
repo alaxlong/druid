@@ -3,7 +3,7 @@
 DRIVER="overlay"
 NETWORK="druid-net"
 
-start() {
+create() {
 
     echo "Creating $DRIVER docker network $NETWORK..."
     docker network rm $NETWORK
@@ -11,4 +11,4 @@ start() {
     
 }
 
-start
+create
