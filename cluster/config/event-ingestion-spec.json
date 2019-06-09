@@ -112,7 +112,7 @@
                         {
                             "type": "jq",
                             "name": "viewLabel",
-                            "expr": "if .eventName == \"viewStart\" or .eventName == \"viewStop\" then .attributes.viewLabel else null end"
+                            "expr": "if .eventName == \"viewStart\" or .eventName == \"viewStop\" or .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.viewLabel else null end"
                         },
                         {
                             "type": "jq",
@@ -122,7 +122,7 @@
                         {
                             "type": "jq",
                             "name": "viewId",
-                            "expr": "if .eventName == \"viewStart\" or .eventName == \"viewStop\" then .attributes.viewId else null end"
+                            "expr": "if .eventName == \"viewStart\" or .eventName == \"viewStop\" or .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.viewId else null end"
                         },
                         {
                             "type": "jq",
@@ -272,52 +272,127 @@
                         {
                             "type": "jq",
                             "name": "custAttrKey1",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[0]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[0] else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[0]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | keys | .[0] else null end"
                         },
                         {
                             "type": "jq",
                             "name": "custAttrKey2",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[1]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[1] else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[1]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | keys | .[1] else null end"
                         },
                         {
                             "type": "jq",
                             "name": "custAttrKey3",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[2]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[2] else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[2]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | keys | .[2] else null end"
                         },
                         {
                             "type": "jq",
                             "name": "custAttrKey4",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[3]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[3] else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[3]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | keys | .[3] else null end"
                         },
                         {
                             "type": "jq",
                             "name": "custAttrKey5",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[4]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | keys | .[4] else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[4]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | keys | .[4] else null end"
                         },
                         {
                             "type": "jq",
                             "name": "custAttrVal1",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[0]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[0] | .value else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[0]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | to_entries | .[0] | .value else null end"
                         },
                         {
                             "type": "jq",
                             "name": "custAttrVal2",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[1]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[1] | .value else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[1]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | to_entries | .[1] | .value else null end"
                         },
                         {
                             "type": "jq",
                             "name": "custAttrVal3",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[2]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[2] | .value else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[2]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | to_entries | .[2] | .value else null end"
                         },
                         {
                             "type": "jq",
                             "name": "custAttrVal4",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[3]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[3] | .value else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[3]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | to_entries | .[3] | .value else null end"
                         },
                         {
                             "type": "jq",
                             "name": "custAttrVal5",
-                            "expr": "if (.attributes != null) and (.attributes | keys | .[4]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\"] | index($event) == null) then .attributes | to_entries | .[4] | .value else null end"
+                            "expr": "if (.attributes != null) and (.attributes | keys | .[4]) and (.eventName as $event | [\"viewStart\",\"viewStop\",\"clientSessionStart\",\"clientSessionStop\",\"purchase\",\"viewProduct\",\"viewCategory\",\"search\",\"clearCart\",\"addToWishList\",\"removeFromWishList\",\"startCheckout\",\"addToCart\",\"removeFromCart\",\"httpCall\",\"networkError\"] | index($event) == null) then .attributes | to_entries | .[4] | .value else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "port",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.pt else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "conType",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ct else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "host",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ht else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "errorType",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.et else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "exception",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ex else null end"
+                        },                                        
+                        {
+                            "type": "jq",
+                            "name": "errorCode",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ec else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "errorMessage",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.em else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "success",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.s else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "duration",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.d else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "statusCode",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.sc else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "reqSize",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.rqs else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "respSize",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.rps else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "method",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.m else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "schema",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.sch else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "path",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ph else null end"
                         }
                     ]
                 },
@@ -344,12 +419,7 @@
                 "type": "thetaSketch",
                 "name": "session_id_sketch",
                 "fieldName": "sessionId"
-            },
-            {
-                "type": "thetaSketch",
-                "name": "event_id_sketch",
-                "fieldName": "eventId"
-            },
+            },            
             {
                 "type": "thetaSketch",
                 "name": "device_id_sketch",
@@ -364,7 +434,7 @@
         "granularitySpec": {
             "type": "uniform",
             "segmentGranularity": "DAY",
-            "queryGranularity": "HOUR",
+            "queryGranularity": "DAY",
             "rollup": true
         }
     },
@@ -377,8 +447,8 @@
         "topic": "events",
         "replicas": 1,
         "taskCount": 3,
-        "taskDuration": "PT15M",
-        "completionTimeout": "PT30M",
+        "taskDuration": "PT1H",
+        "completionTimeout": "PT90M",
         "useEarliestOffset": false,
         "consumerProperties": {
             "bootstrap.servers": "kafka-broker:9092"
