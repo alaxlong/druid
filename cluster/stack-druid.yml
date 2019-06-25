@@ -19,29 +19,7 @@ volumes:
   data-grafana:
 
 services:
-
-  # zookeeper:
-  #   image: zookeeper:3.5.5
-  #   hostname: zookeeper
-  #   ports:
-  #     - 2181:2181
-  #   environment:
-  #     ZOO_MY_ID: 1
-  #     ZOO_SERVERS: server.1=0.0.0.0:2888:3888
-  #     ZOO_INIT_LIMIT: 10000
-  #   volumes:      
-  #     - zk-data:/data
-  #     - zk-logs:/datalog
-  #   deploy:
-  #     replicas: 1
-  #     placement:
-  #       constraints: 
-  #         - node.labels.node.type == manager
-  #     restart_policy:
-  #       condition: on-failure
-  #   networks: 
-  #     - druid-net
-
+  
   zookeeper:
     image: confluentinc/cp-zookeeper:5.2.1   
     hostname: zookeeper
@@ -76,7 +54,7 @@ services:
         protocol: tcp
         mode: host        
       - 7777:7777                 
-    environment:  # todo : fix broker id generation
+    environment:  # todo : checkout broker id generation
       BROKER_ID_COMMAND: "curl http://169.254.169.254/latest/meta-data/local-ipv4 | awk -F '.' '{print $$1 + $$2 + $$3 + $$4}'"
       HOSTNAME_COMMAND: "curl http://169.254.169.254/latest/meta-data/public-hostname"
       # HOSTNAME_COMMAND: "wget -t3 -T2 -qO-  http://169.254.169.254/latest/meta-data/local-ipv4"      
@@ -148,23 +126,6 @@ services:
       placement:
         constraints: 
           - node.labels.node.type == kafka
-      restart_policy:
-        condition: on-failure
-    networks: 
-      - druid-net
-
-  redis:
-    image: redis:5.0.3-alpine3.8
-    hostname: redis
-    ports:
-      - 6379:6379
-    volumes:
-      - data-redis:/data
-    deploy:
-      replicas: 1
-      placement:
-        constraints: 
-          - node.labels.node.type == manager      
       restart_policy:
         condition: on-failure
     networks: 
@@ -380,25 +341,21 @@ services:
       - druid-net
 
   data-producer:
-    image: canelmas/data-producer:2.0.3
-    depends_on:
-      - redis
+    image: canelmas/data-producer:3.0.0-a3
     environment:
+      VERBOSE: "false"
+      ENV: production
+      MODE: default
+      EVENT_SCENARIO: apm
+      EXCLUDE_SESSION_EVENTS : "true"
       PERIOD_IN_MS: 3000
       NUM_OF_USERS: 5
       SESSION_PER_USER: 3
-      EVENTS_PER_SESSION: 25
-      TOPICS_USERS: users
-      TOPICS_EVENTS: events
-      # CREATE_TOPICS: "events:10:1,users:5:1"
-      RUN_MODE: default
-      EVENT_SCENARIO: random
-      NODE_OPTIONS: --max_old_space_size=4096
-      REDIS_HOST: redis
-      REDIS_PORT: 6379    
-      BROKERS: kafka-broker:9092
-      VERBOSE: "false"
-      NODE_ENV: production
+      EVENTS_PER_SESSION: 20
+      TOPIC_USERS: users
+      TOPIC_EVENTS: events            
+      NODE_OPTIONS: --max_old_space_size=4096      
+      BROKERS: kafka-broker:9092      
       APP_IDS: "LovelyApp,LoveliestApp,HappyApp,HappiestApp"
       DATE_FORMAT: YYYY-MM-DDTHH:mm:ssZ
     deploy:

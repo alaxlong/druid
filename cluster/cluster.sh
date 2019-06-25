@@ -39,14 +39,14 @@ REPLICATION_FACTOR=1
 URL_JMX_EXPORTER="https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.11.0/jmx_prometheus_javaagent-0.11.0.jar"
 
 # todo : fetch these
-manager="ec2-18-184-30-95.eu-central-1.compute.amazonaws.com"
-ingestion1="ec2-3-120-174-225.eu-central-1.compute.amazonaws.com"
-ingestion2="ec2-3-121-214-191.eu-central-1.compute.amazonaws.com"
-kafka1="ec2-18-185-49-64.eu-central-1.compute.amazonaws.com"
-data1="ec2-3-120-180-111.eu-central-1.compute.amazonaws.com"
-query1="ec2-54-93-101-248.eu-central-1.compute.amazonaws.com"
-producer1="ec2-3-120-249-61.eu-central-1.compute.amazonaws.com"
-producer2="ec2-18-184-53-65.eu-central-1.compute.amazonaws.com"
+manager="ec2-35-159-18-91.eu-central-1.compute.amazonaws.com"
+ingestion1="ec2-52-59-220-106.eu-central-1.compute.amazonaws.com"
+ingestion2="ec2-54-93-244-92.eu-central-1.compute.amazonaws.com"
+kafka1="ec2-18-184-197-133.eu-central-1.compute.amazonaws.com"
+data1="ec2-3-121-110-215.eu-central-1.compute.amazonaws.com"
+query1="ec2-54-93-241-184.eu-central-1.compute.amazonaws.com"
+producer1="ec2-18-195-186-223.eu-central-1.compute.amazonaws.com"
+producer2="ec2-18-195-68-17.eu-central-1.compute.amazonaws.com"
 
 # todo : fetch these
 node_manager="ip-172-31-38-186"
@@ -118,6 +118,7 @@ copy_configs() {
 
     # ingestion spec
     copy $CONF/event-ingestion-spec.json $manager
+    copy $CONF/apm-ingestion-spec.json $manager
 
     # s3 sink
     copy $CONF/s3-sink.json $manager    

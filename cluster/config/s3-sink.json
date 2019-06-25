@@ -1,7 +1,7 @@
 {
     "name": "connect-s3-sink",
     "config": {
-        "topics": "events,users",
+        "topics": "events",
         "connector.class": "io.confluent.connect.s3.S3SinkConnector",
         "tasks.max" : 5,
         "flush.size": 500000,
