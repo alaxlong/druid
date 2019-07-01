@@ -1,0 +1,219 @@
+{
+    "type": "kafka",
+    "dataSchema": {
+        "dataSource": "apm-events-1",
+        "parser": {
+            "type": "string",
+            "parseSpec": {
+                "format": "json",
+                "flattenSpec": {
+                    "useFieldDiscovery": false,
+                    "fields": [
+                        {
+                            "type": "path",
+                            "name": "timezone",
+                            "expr": "$.deviceProperty.timezone"
+                        },
+                        {
+                            "type": "path",
+                            "name": "lang",
+                            "expr": "$.deviceProperty.language"
+                        },
+                        {
+                            "type": "path",
+                            "name": "country",
+                            "expr": "$.deviceProperty.country"
+                        },
+                        {
+                            "type": "path",
+                            "name": "appVersionName",
+                            "expr": "$.deviceProperty.appVersionName"
+                        },                        
+                        {
+                            "type": "path",
+                            "name": "platform",
+                            "expr": "$.deviceProperty.platform"
+                        },
+                        {
+                            "type": "path",
+                            "name": "deviceCategory",
+                            "expr": "$.deviceProperty.deviceCategory"
+                        },
+                        {
+                            "type": "path",
+                            "name": "deviceBrand",
+                            "expr": "$.deviceProperty.deviceBrand"
+                        },                        
+                        {
+                            "type": "path",
+                            "name": "osVersion",
+                            "expr": "$.deviceProperty.osVersion"
+                        },
+                        {
+                            "type": "path",
+                            "name": "sdkVersion",
+                            "expr": "$.deviceProperty.sdkVersion"
+                        },
+                        {
+                            "type": "path",
+                            "name": "carrier",
+                            "expr": "$.deviceProperty.carrier"
+                        },                        
+                        {
+                            "type": "jq",
+                            "name": "port",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.pt else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "conType",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ct else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "host",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ht else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "errorType",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.et else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "exception",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ex else null end"
+                        },                                        
+                        {
+                            "type": "jq",
+                            "name": "errorCode",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ec else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "errorMessage",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.em else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "success",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.s else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "duration",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.d else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "statusCode",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.sc else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "reqSize",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.rqs else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "respSize",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.rps else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "method",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.m else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "schema",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.sch else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "path",
+                            "expr": "if .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.ph else null end"
+                        },
+                        {
+                            "type": "jq",
+                            "name": "viewLabel",
+                            "expr": "if .eventName == \"viewStart\" or .eventName == \"viewStop\" or .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.viewLabel else null end"
+                        },                     
+                        {
+                            "type": "jq",
+                            "name": "viewId",
+                            "expr": "if .eventName == \"viewStart\" or .eventName == \"viewStop\" or .eventName == \"httpCall\" or .eventName == \"networkError\" then .attributes.viewId else null end"
+                        }
+                    ]
+                },
+                "timestampSpec": {
+                    "column": "clientCreationDate",
+                    "format": "auto"
+                },
+                "dimensionsSpec": {
+                    "dimensions": [
+                        "eventName",
+                        "appId",
+                        "country",
+                        "language",
+                        "appVersionName",
+                        "sdkVersion",
+                        "timezone",
+                        "platform",
+                        "deviceCategory",
+                        "deviceBrand",                        
+                        "osVersion",
+                        "carrier",
+                        "port",
+                        "host",
+                        "conType",
+                        "errorType",
+                        "errorCode",
+                        "errorMessage",
+                        "success",
+                        "statusCode",
+                        "method",
+                        "schema",
+                        "path",
+                        "exception",
+                        "viewId",
+                        "viewLabel"
+                    ]
+                }
+            }
+        },
+        "metricsSpec": [
+            {
+                "name": "count",
+                "type": "count"
+            },
+            {
+                "name": "unique_users",
+                "type": "thetaSketch",
+                "fieldName": "appconnectId"
+            }            
+        ],
+        "granularitySpec": {
+            "type": "uniform",
+            "segmentGranularity": "DAY",
+            "queryGranularity": "HOUR",
+            "rollup": true
+        }
+    },
+    "tuningConfig": {
+        "type": "kafka",
+        "reportParseExceptions": true,
+        "resetOffsetAutomatically": true
+    },
+    "ioConfig": {
+        "topic": "events",
+        "replicas": 1,
+        "taskCount": 3,
+        "taskDuration": "PT1H",
+        "completionTimeout": "PT75M",
+        "useEarliestOffset": false,
+        "consumerProperties": {
+            "bootstrap.servers": "kafka-broker:9092"
+        }
+    }
+}

@@ -32,6 +32,7 @@ S3_ACCESS_KEYS=aws-s3-access
 
 TOPIC_EVENTS=events
 TOPIC_USERS=users
+
 NUM_OF_PARTITION=3
 REPLICATION_FACTOR=1
 
@@ -40,13 +41,13 @@ URL_JMX_EXPORTER="https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheu
 
 # todo : fetch these
 manager="ec2-35-159-18-91.eu-central-1.compute.amazonaws.com"
-ingestion1="ec2-52-59-220-106.eu-central-1.compute.amazonaws.com"
-ingestion2="ec2-54-93-244-92.eu-central-1.compute.amazonaws.com"
+ingestion1="ec2-18-185-149-139.eu-central-1.compute.amazonaws.com"
+ingestion2="ec2-3-123-22-59.eu-central-1.compute.amazonaws.com"
 kafka1="ec2-18-184-197-133.eu-central-1.compute.amazonaws.com"
-data1="ec2-3-121-110-215.eu-central-1.compute.amazonaws.com"
+data1="ec2-18-185-39-12.eu-central-1.compute.amazonaws.com"
 query1="ec2-54-93-241-184.eu-central-1.compute.amazonaws.com"
-producer1="ec2-18-195-186-223.eu-central-1.compute.amazonaws.com"
-producer2="ec2-18-195-68-17.eu-central-1.compute.amazonaws.com"
+producer1="ec2-3-122-101-149.eu-central-1.compute.amazonaws.com"
+producer2="ec2-18-184-34-174.eu-central-1.compute.amazonaws.com"
 
 # todo : fetch these
 node_manager="ip-172-31-38-186"
@@ -65,8 +66,12 @@ node_type_producer="producer"
 node_type_kafka="kafka"
 node_type_ingestion="ingestion"
 
+SSH_PUB_KEYS="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMJaDhMuKaXLzMNtSXiNc2eTURmlWVOEU/0dHluWQQIS0yZbSCfdeCX6+x6pRRRnAlPW7V4ajhYEdtfdyDSDLnK70xLlzwxFXeN74X9COp7sabFQ5dH3VZJx6Cqa0EMejXpSI+QwJoFgntoULpGeJgsapO/YYAQWwIzVBw1iQiN2QNQZyd2oQAU47bT1lQpBbLWzsfjm2yziCZspJed0xPtdyRxXit2iyJgf1pUAqys7Xf5w/VClrpFrPD0pH7r641OYZUYqAPZxJ7G3OGVPsKF4ewG5bbDRnMEqEhW25GHZ1o44Bo8rwT7NuKGsa9XaWo5iASA/WaMSDiDsm+X/Z1 can@Cans-MacBook-Pro.local 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDshCjraYZOcX94RfRJO2JOVv9LXhOg1i2vPegzP6+e+0iN3YQ6skbmNQRVV+YmTjLZl+WmQF2rD7swV6/9k7EmskozPafVXKsb7gl25g2c+br8ghYktvYL9VKer7pTMtbQUhKYcWIDPugcXPlJtxxp+cP2x7dHyJDWWAXjFaaVyUxb5EZ6lVgqL5KD/ejhiKuYd+OOvytTkjiDaeOZce9Ber5nsrNynLzN1eJ5AIv+DvtQnbHSErFAgn/6mrcXyB5xOOjy+cWW8PsS2MX5jepx6/ZJM80kWcrXZR6rjN22bWUF8zBktV3O0Uy34BFgxJ/4nipIq5HQeju6glmu0Et kanata@ist01-2.local"
+
 copy_ssh_key() {
-    cat ~/.ssh/id_rsa.pub | ssh -i $KEY_PAIR.pem $SSH_USER@$1 "cat >> .ssh/authorized_keys"
+    # cat ~/.ssh/id_rsa.pub | ssh -i $KEY_PAIR.pem $SSH_USER@$1 "cat >> .ssh/authorized_keys"    
+    echo "$SSH_PUB_KEYS" | ssh -i $KEY_PAIR.pem $SSH_USER@$1 "cat >> .ssh/authorized_keys"             
 }
 
 copy_ssh_keys() {
@@ -293,7 +298,7 @@ provision() {
 
 prepare() {
     
-    echo 'copying ssh key to nodes...'
+    echo 'copying ssh keys to nodes...'
     copy_ssh_keys
     
     echo 'installing docker on nodes...'

@@ -4,7 +4,7 @@
         "topics": "events",
         "connector.class": "io.confluent.connect.s3.S3SinkConnector",
         "tasks.max" : 5,
-        "flush.size": 500000,
+        "flush.size": 250000,
         "rotate.schedule.interval.ms": "3600000",
         "rotate.interval.ms": "-1",
         "s3.region" : "eu-west-1",
